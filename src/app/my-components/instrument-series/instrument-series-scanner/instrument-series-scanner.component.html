@@ -1,0 +1,19 @@
+<div fxLayoutAlign="center center">
+
+  <app-scanner (qrCodeScanned)="onFetchInstrumentsByInstrumentSeriesCode($event)" fxFlex="40"></app-scanner>
+
+  <mat-card style="min-height:565px">
+    
+    <div class="title">
+      <h1>Scan Instrument Series Qr Code to Display Data</h1>
+    </div>
+
+    <div fxLayoutAlign="center center">
+      <ol>
+        <li *ngFor="let item of modelList">
+          <span fxFlex="33">{{item.instrumentName ? item.instrumentName: '-'}}</span>
+        </li>
+      </ol>
+    </div>
+  </mat-card>
+</div>

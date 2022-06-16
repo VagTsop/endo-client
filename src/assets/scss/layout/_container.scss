@@ -1,0 +1,10 @@
+.gene-base-container {
+  height: calc(100% - 64px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+.inner-container {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}

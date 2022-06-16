@@ -1,0 +1,24 @@
+<div>
+
+  <mat-toolbar class="header" fxFlex fxLayoutAlign="space-between center">
+
+    <div fxLayoutAlign="center center">
+
+      <button [disabled]="router.url ==='/home'" (click)="onSendIsSidebarOpened.emit(isOpened=!isOpened)"
+        mat-icon-button aria-label="Example icon-button with menu icon">
+        <mat-icon class="mat-sidenav-icon">menu</mat-icon>
+      </button>
+
+      <img src="./assets/images/logo/endofusion.jpg" style="margin-left:20px;width:150px">
+    </div>
+
+    <div class="header__header-items" fxLayoutAlign="center center">
+      <a class="header__header-items--header-item" routerLink="/home"><img matTooltip="home"
+          src="./assets/images/icons/home.png"></a>
+      <a class="header__header-items--header-item" routerLink="/manage-instrument"><img matTooltip="instrument"
+          src="./assets/images/icons/stethoscope.png"></a>
+      <a class="header__header-items--header-item" routerLink="/manage-instrument-series"><img
+          matTooltip="scan instruments series" src="./assets/images/icons/qr-code.png"></a>
+    </div>
+  </mat-toolbar>
+</div>

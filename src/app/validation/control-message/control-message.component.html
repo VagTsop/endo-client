@@ -1,0 +1,11 @@
+<style>
+  .tooltip-break-lines {
+    white-space: pre-line;
+  }
+</style>
+<small *ngIf="errorMessage && !errorMessage.split('#RV#')[1]" class="gene-block text-warn">
+  {{errorMessage}}
+</small>
+<small *ngIf="errorMessage && errorMessage.split('#RV#')[1]" class="gene-block text-warn">
+  {{errorMessage.split('#RV#')[1]}}
+</small>

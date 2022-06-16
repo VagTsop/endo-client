@@ -1,0 +1,188 @@
+<mat-card>
+
+  <div>
+
+    <div fxFlex="5" fxFlex>
+
+      <div fxLayoutAlign="start center" (click)="filterOpened = !filterOpened">
+
+        <mat-icon matTooltip="expand less" *ngIf="filterOpened" style="color:green;">expand_less</mat-icon>
+        <mat-icon matTooltip="expand more" *ngIf="!filterOpened" style="color: red;">expand_more</mat-icon>
+      </div>
+    </div>
+
+    <div fxFlex="90" *ngIf="filterOpened">
+
+      <div fxLayoutAlign="space-between center" fxFlex>
+
+        <div fxLayoutAlign="start center" fxFlex="20">
+
+          <label>Select Instrument</label>
+
+          <mat-form-field>
+            <mat-select [(ngModel)]="req.$instrumentName" panelClass="scroll">
+              <mat-option style="color:black">
+
+                <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
+                  noEntriesFoundLabel="no entries" (ngModelChange)="filterInstrumentList($event)">
+                </ngx-mat-select-search>
+              </mat-option>
+
+              <mat-option *ngFor="let item of filteredInstrumentList" [value]="item.instrumentName">
+                {{item.instrumentName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="start center" fxFlex="20">
+
+          <label>Select Instrument Series Code</label>
+
+          <mat-form-field>
+            <mat-select [(ngModel)]="req.$instrumentSeriesCodesList" multiple panelClass="scroll">
+              <mat-option>
+                <ngx-mat-select-search placeholderLabel="Search" ngModel noEntriesFoundLabel="no entries"
+                  (ngModelChange)="filterInstrumentSeriesCodesList($event)">
+                </ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let item of filteredInstrumentSeriesCodesList" [value]="item.instrumentSeriesCode">
+                {{item.instrumentSeriesCode}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="20" fxLayoutAlign="start center" fxLayout="row">
+
+          <label>Purchase Date From</label>
+
+          <mat-form-field>
+            <input matInput [min]="minDateFrom" [(ngModel)]="dateFrom" (ngModelChange)="onDatePicker($event)"
+              [matDatepicker]="startsAt">
+            <mat-datepicker-toggle [for]="startsAt" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #startsAt></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="20" fxLayoutAlign="start center" fxLayout="row">
+
+          <label>Purchase Date To</label>
+
+          <mat-form-field>
+            <input [min]="dateFrom" matInput [(ngModel)]="dateTo" [matDatepicker]="endsAt">
+            <mat-datepicker-toggle [for]="endsAt" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #endsAt></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div style="padding-right:5px" fxFlex="20" fxLayoutAlign="end center">
+
+          <button mat-icon-button (click)="onSearch()">
+            <mat-icon matTooltip="search">search</mat-icon>
+          </button>
+
+          <button mat-icon-button (click)="onReset()">
+            <mat-icon matTooltip="reset">refresh</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="5" style="padding-right:10px" fxLayoutAlign="end center">
+      <mat-icon matTooltip="create instrument" (click)="onForm()">add
+      </mat-icon>
+    </div>
+  </div>
+
+  <table border=1 frame=void rules=rows>
+    <thead>
+      <tr>
+
+        <th [style.width.%]="5"></th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Name'" [sortField]="'INSTRUMENT_NAME'"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+
+        <th [style.width.%]="17">
+          <app-sorting [paging]="req.$paging" [label]="'Description'" [sortField]="''"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+
+        <th [style.width.%]="8">
+          <app-sorting [paging]="req.$paging" [label]="'REF'" [sortField]="'INSTRUMENT_REF'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="8">
+          <app-sorting [paging]="req.$paging" [label]="'LOT'" [sortField]="'INSTRUMENT_LOT'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Manufacturer'" [sortField]="'INSTRUMENT_MANUFACTURER'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Purchase Date'" [sortField]="'INSTRUMENT_PURCHASE_DATE'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Notes'" [sortField]="''" (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Instrument Series Code'" [sortField]="'INSTRUMENT_SERIES_CODE'"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let item of modelList">
+
+        <td>
+
+          <button mat-icon-button [matMenuTriggerFor]="ol">
+            <mat-icon matTooltip="Action">more_vert</mat-icon>
+          </button>
+
+          <mat-menu #ol="matMenu">
+
+            <button (click)="onForm(item.instrumentId)" mat-menu-item>
+              <span>Edit</span>
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button (click)="onDeleteInstrument(item.instrumentId)" mat-menu-item>
+              <span>Delete</span>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-menu>
+        </td>
+
+        <td>{{item.instrumentName ? item.instrumentName : '-' }}</td>
+        <td>{{item.instrumentDescription ? item.instrumentDescription : '-' }}</td>
+        <td>{{item.instrumentRef ? item.instrumentRef : '-' }}</td>
+        <td>{{item.instrumentLot ? item.instrumentLot : '-' }}</td>
+        <td>{{item.instrumentManufacturer ? item.instrumentManufacturer : '-' }}</td>
+        <td>{{item.instrumentPurchaseDate | date: "dd/MM/yyyy"}}</td>
+        <td>{{item.instrumentNotes ? item.instrumentNotes : '-' }}</td>
+        <td>{{item.instrumentSeriesQrCode ? item.instrumentSeriesQrCode : '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:25px" fxLayoutAlign="center center">
+    <app-paging [paging]="req.$paging" (emitPaging)="onChangePaging($event)"></app-paging>
+  </div>
+</mat-card>

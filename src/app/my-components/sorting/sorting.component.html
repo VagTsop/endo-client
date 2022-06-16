@@ -1,0 +1,7 @@
+<span (click)="onSort()">
+  <span>{{label}}</span>
+  <mat-icon *ngIf="paging.$orderField === sortField && paging.$orderDirection === 'DESC'" style="color:green;">
+    arrow_drop_down</mat-icon>
+  <mat-icon *ngIf="paging.$orderField === sortField && paging.$orderDirection === 'ASC'" style="color: red;">
+    arrow_drop_up</mat-icon>
+</span>

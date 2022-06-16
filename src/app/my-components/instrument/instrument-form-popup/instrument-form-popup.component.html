@@ -1,0 +1,99 @@
+<div>
+
+  <div fxLayoutAlign="space-between center">
+
+    <h2 mat-dialog-title>Create Instrument</h2>
+
+    <button mat-icon-button tabindex="-1" (click)="onClose()">
+      <mat-icon matTooltip="close">close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="form">
+
+    <mat-dialog-content style="max-height: 80vh" fxLayout='column'>
+
+      <div fxLayout="row">
+        <mat-form-field>
+          <input [formControl]="form.controls.fileName" matInput>
+        </mat-form-field>
+        <img class="img-responsive img-circle" *ngIf="form.controls.userPhoto.value" [src]="anchorHref"
+          style="zoom: 0.2; margin-top: 40px;" alt="user image">
+      </div>
+
+      <div style="max-width: 700px; height:80%">
+        <div mat-dialog-content style="margin:0; padding:0;" fxLayout="row" flex fxLayoutAlign="space-between center">
+          <div fxLayout="column" style="margin-left:1%">
+            <h4>File Upload</h4>
+          </div>
+          <span fxFlex></span>
+          <button (click)="onClose()" mat-icon-button>
+            <mat-icon class="cyb-en-cross"></mat-icon>
+          </button>
+        </div>
+        <input style="display: none;" #fileRef type="file" (change)="onFileChange($event)" />
+
+        <button mat-icon-button for="fileRef" (click)="fileRef.click()">
+          <mat-icon class="cyb-mi-folder_open" matTooltipPosition="below"></mat-icon>
+        </button>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input [formControl]="form.controls.instrumentName" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.instrumentName">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea [formControl]="form.controls.instrumentDescription" matInput></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>REF</mat-label>
+        <input [formControl]="form.controls.instrumentRef" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.instrumentRef">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>LOT</mat-label>
+        <input [formControl]="form.controls.instrumentLot" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.instrumentLot">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Manufacturer</mat-label>
+        <input [formControl]="form.controls.instrumentManufacturer" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.instrumentManufacturer">
+      </control-message>
+
+      <mat-form-field>
+        <mat-label>Purchase Date</mat-label>
+        <input [formControl]="form.controls.instrumentPurchaseDate" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.instrumentPurchaseDate">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Notes</mat-label>
+        <textarea [formControl]="form.controls.instrumentNotes" matInput></textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions fxLayoutAlign="center center">
+      <button (click)="onSaveInstrument()" [disabled]="!form.valid" type="submit"
+        class="mat-raised-button mat-primary">Save</button>
+    </mat-dialog-actions>
+  </form>
+</div>

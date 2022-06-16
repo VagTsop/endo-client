@@ -1,0 +1,59 @@
+ol {
+  padding: 0;
+  width: 50%;
+  display: inline-block;
+  color: $secondaryColor;
+}
+
+ol li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li:hover:not(.selected) {
+  cursor: pointer;
+  background-color: lighten($color: $selectionHoverColor, $amount: 2);
+}
+
+[disabled].mat-raised-button {
+  box-shadow: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.custom-scroll {
+  max-height: 473px;
+  overflow-y: scroll;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f0f2f7;
+}
+
+.dark-theme-active .custom-scroll::-webkit-scrollbar-track {
+  background: #272727;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgb(148, 148, 148);
+  border-radius: 30px;
+}
+
+.custom-scroll-table::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+.custom-scroll-table::-webkit-scrollbar-track {
+  background: #f0f2f7;
+}
+
+.custom-scroll-table::-webkit-scrollbar-track {
+  background: #272727;
+}
+
+.custom-scroll-table::-webkit-scrollbar-thumb {
+  background: rgb(148, 148, 148);
+  border-radius: 30px;
+}
