@@ -15,7 +15,7 @@ export class InstrumentService {
     return this.http
       .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
         params: new HttpParams().set('qrCode', qrCode.toString()),
-      })//
+      })
       .pipe(
         map((response: any) => {
           return response;
