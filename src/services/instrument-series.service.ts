@@ -2,16 +2,17 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 import { InstrumentSeriesRequest } from "src/transport/instrument-series.request";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class InstrumentSeriesService {
   constructor(protected http: HttpClient) { }
 
-  private basePath = 'http://localhost:8080/api/instruments-series'
+  private baseUrl = environment.BASE_URL +  '/instruments-series'
 
   getInstrumentSeriesList(request: InstrumentSeriesRequest) {
     return this.http.get(
-      this.basePath + '/get-instrument-series-list',
+      this.baseUrl + '/get-instrument-series-list',
       {
         params: this.constructParams(request, null)
       }

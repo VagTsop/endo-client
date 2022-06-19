@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 import { InstrumentRequest } from "src/transport/instrument.request";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class InstrumentService {
   constructor(protected http: HttpClient) { }
 
-  private basePath = 'http://localhost:8080/api/instruments'
+  private baseUrl = environment.BASE_URL + '/instruments'
 
   fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
     return this.http
-      .get(this.basePath + '/fetch-instruments-by-instrument-series-code', {
+      .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
         params: new HttpParams().set('qrCode', qrCode.toString()),
       })//
       .pipe(
@@ -24,7 +25,7 @@ export class InstrumentService {
 
   createInstrument(request: InstrumentRequest): Observable<any> {
     return this.http.post(
-      this.basePath + '/create-instrument', request
+      this.baseUrl + '/create-instrument', request
     ).pipe(map((response: any) => {
       return response;
     }));
@@ -32,7 +33,7 @@ export class InstrumentService {
 
   updateInstrument(request: InstrumentRequest): Observable<any> {
     return this.http.put(
-      this.basePath + '/update-instrument?id=' + request.$instrumentId,
+      this.baseUrl + '/update-instrument?id=' + request.$instrumentId,
       request)
       .pipe(map((response: any) => {
         return response;
@@ -41,7 +42,7 @@ export class InstrumentService {
 
   deleteInstrument(id: number): Observable<any> {
     return this.http.post(
-      this.basePath + '/delete-instrument', id
+      this.baseUrl + '/delete-instrument', id
     ).pipe(map((response: any) => {
       return response;
     }));
@@ -49,7 +50,7 @@ export class InstrumentService {
 
   fetchInstruments(): Observable<any> {
     return this.http
-      .get(this.basePath + '/fetch-instruments')
+      .get(this.baseUrl + '/fetch-instruments')
       .pipe(
         map((response: any) => {
           return response;
@@ -59,9 +60,9 @@ export class InstrumentService {
 
   fetchInstrumentsSeriesCodes(): Observable<any> {
     return this.http
-      .get(this.basePath + '/fetch-instruments-series-codes')
+      .get(this.baseUrl + '/fetch-instruments-series-codes')
       .pipe(
-        map((response: any) => {//
+        map((response: any) => {
           return response;
         })
       );
@@ -69,7 +70,7 @@ export class InstrumentService {
 
   getInstrumentsList(request: InstrumentRequest) {
     return this.http.get(
-      this.basePath + '/get-instruments-list',
+      this.baseUrl + '/get-instruments-list',
       {
         params: this.constructParams(request, 'instrumentName,purchaseDateFrom,purchaseDateTo,instrumentSeriesCodesList')
       }
@@ -80,7 +81,7 @@ export class InstrumentService {
 
   getInstrumentById(id: number): Observable<any> {
     return this.http.get(
-      this.basePath + '/get-instrument-by-id',
+      this.baseUrl + '/get-instrument-by-id',
       {
         params: new HttpParams().set('id', id.toString())
       }
