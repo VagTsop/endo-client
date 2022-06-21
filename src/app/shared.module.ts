@@ -19,7 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatNativeDateModule } from "@angular/material/core";
-import { ZXingScannerModule } from "@zxing/ngx-scanner";
+//import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { ScannerComponent } from "./my-components/scanner/scanner.component";
 import { HeaderComponent } from "./my-components/layout/header/header.component";
 import { RouterModule } from "@angular/router";
@@ -63,7 +63,7 @@ const MATERIAL_MODULES = [
     RouterModule,
     ReactiveFormsModule,
     MATERIAL_MODULES,
-    ZXingScannerModule,
+//    ZXingScannerModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
@@ -84,7 +84,7 @@ const MATERIAL_MODULES = [
     SortingComponent,
     ScannerComponent,
     ControlMessageComponent,
-    ZXingScannerModule,
+//  ZXingScannerModule,
     HeaderComponent
   ],
   providers: [
