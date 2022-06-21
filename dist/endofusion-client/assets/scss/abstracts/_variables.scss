@@ -1,0 +1,47 @@
+// Variables
+
+// 1.0 Colors
+
+$primaryColor: #0c2538;
+$backgroundColor: #373c3c;
+$secondaryColor: #ffff;
+
+$borderColor: #293e68;
+$borderHoverColor: #344d81;
+$selectionHoverColor: #6183fd99;
+
+$sidenavColor: #1f2124fc;
+$mat-menu: #3c3936;
+$lightGrey: rgb(219, 219, 219);
+
+//  2.0 media queries breakpoints
+$desktop: 1281px;
+$desktop-laptop-breakpoint-max: 1280px;
+$desktop-laptop-breakpoint-min: 1025px;
+$tablet-ipad-breakpoint-max: 1024px;
+$tablet-ipad-breakpoint-min: 768px;
+$low-res-tablet-mobiles-breakpoint-max: 767px;
+$low-res-tablet-mobiles-breakpoint-min: 481px;
+$mobile-breakpoint-max: 480px;
+
+/*
+// Desktops
+@media only screen and (min-width: $desktop) {
+}
+
+// Laptops, Desktops
+@media only screen and (min-width: $desktop-laptop-breakpoint-min) and (max-width: $desktop-laptop-breakpoint-max) {
+}
+
+// Tablets, Ipads
+@media only screen and (min-width: $tablet-ipad-breakpoint-min) and (max-width: $tablet-ipad-breakpoint-max) {
+}
+
+// Low Resolution Tablets, Mobiles
+@media only screen and (min-width: $low-res-tablet-mobiles-breakpoint-min) and (max-width: $low-res-tablet-mobiles-breakpoint-max) {
+}
+
+// Most of the Smartphones Mobiles
+@media only screen and (max-width: $mobile-breakpoint-max) {
+}
+*/
