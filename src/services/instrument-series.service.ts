@@ -16,7 +16,7 @@ export class InstrumentSeriesService {
       {
         params: this.constructParams(request, null)
       }
-    ).pipe(map((response: any) => {//
+    ).pipe(map((response: any) => {////
       return response;
     }));
   }
