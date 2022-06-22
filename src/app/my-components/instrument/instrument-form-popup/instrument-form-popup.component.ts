@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { InstrumentService } from 'src/services/instrument.service';
 import { InstrumentRequest } from 'src/transport/instrument.request';
@@ -13,14 +13,14 @@ import { GenericComponent } from '../../generic.component';
 export class InstrumentFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
   id: any;
   instrumentPurchaseDate: Date;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public anchorHref: any = null;
   public imagePreview: any = null;
 
   constructor(
     private instrumentService: InstrumentService,
     public dialogRef: MatDialogRef<InstrumentFormPopupComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
   ) {
     super();
     this.req = new InstrumentRequest();

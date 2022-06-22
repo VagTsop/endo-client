@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 import { ValidationHelper } from '../validation.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { ValidationHelper } from '../validation.model';
   templateUrl: './control-message.component.html',
 })
 export class ControlMessageComponent {
-  @Input() control: FormControl;
+  @Input() control: UntypedFormControl;
 
   constructor() {}
 
