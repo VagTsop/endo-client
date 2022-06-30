@@ -14,7 +14,7 @@ import { InstrumentSeriesModule } from './my-components/instrument-series/instru
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,//
   ],
   imports: [
     HttpClientModule,
