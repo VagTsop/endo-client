@@ -1,0 +1,100 @@
+<div *ngIf="!isUserloggedIn" style="height: 100%" fxLayoutAlign="center center">
+  <mat-card-content>
+    <div
+      class="user_card"
+      fxLayout="column"
+      fxLayoutAlign="space-evenly center"
+    >
+      <div>
+        <img src="./assets/images/logo/Capture.PNG" style="width: 100px" />
+      </div>
+      <div>
+        <img src="./assets/images/logo/Capture2.PNG" style="width: 150px" />
+      </div>
+
+      <div fxLayoutAlign="center center" style="width: 100%"></div>
+      <div fxFlex="50" style="width: 100%">
+        <form
+          style="height: 100%"
+          fxLayoutAlign="space-between center"
+          #loginForm="ngForm"
+          fxLayout="column"
+          (ngSubmit)="onLogin(loginForm.value)"
+        >
+          <div fxLayout="column" fxLayoutAlign="start center">
+            <div>
+              <mat-form-field fxLayout="row" appearance="fill">
+                <mat-icon style="color: #305446" fxFlex="20">person</mat-icon>
+                <input
+                  fxFlex="80"
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Username"
+                  ngModel
+                  #usernameInput="ngModel"
+                  required
+                  matInput
+                />
+              </mat-form-field>
+            </div>
+            <span
+              class="help-block"
+              style="color: red"
+              *ngIf="usernameInput.invalid && usernameInput.touched"
+              >Please enter a username</span
+            >
+            <div>
+              <mat-form-field fxLayout="row" appearance="fill">
+                <mat-icon style="color: #305446" fxFlex="20">lock</mat-icon>
+                <input
+                  fxFlex="80"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  ngModel
+                  #passwordInput="ngModel"
+                  required
+                  matInput
+                />
+              </mat-form-field>
+            </div>
+            <span
+              class="help-block"
+              style="color: red"
+              *ngIf="passwordInput.invalid && passwordInput.touched"
+              >Please enter a password.</span
+            >
+          </div>
+
+          <div>
+            <mat-dialog-actions fxLayoutAlign="center center">
+              <button
+                style="
+                  text-align: center;
+                  background-color: #305446;
+                  width: 100px;
+                  height: 35px;
+                "
+                class="mat-raised-button mat-primary"
+                type="submit"
+                [disabled]="loginForm.invalid || showLoading"
+                name="button"
+              >
+                <mat-icon *ngIf="showLoading" fxFlex="20">spinner</mat-icon>
+
+                <div *ngIf="showLoading">Loading...</div>
+                <div *ngIf="!showLoading">Login</div>
+              </button>
+            </mat-dialog-actions>
+          </div>
+        </form>
+      </div>
+      <div fxLayoutAlign="center center" style="width: 100%">
+        <div style="color: #305446" class="d-flex justify-content-center links">Don't have an account?
+          <a routerLink="/register" class="ml-2" style="color: #2c3e50; padding-left: 5px">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</div>
