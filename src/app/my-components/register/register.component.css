@@ -7,7 +7,6 @@ html {
     background: #60a3bc !important;
 }
 .user_card {
-    height: 500px;
     width: 600px;
     margin-top: auto;
     margin-bottom: auto;
@@ -16,7 +15,7 @@ html {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0a, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
