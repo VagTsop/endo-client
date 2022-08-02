@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../../../services/authentication.service';
-import { NotificationService } from '../../../services/notification.service';
-import { User } from '../../../model/user';
-import { NotificationType } from '../../../enum/notification-type.enum';
+import { NotificationType } from 'src/enum/notification-type.enum';
+import { User } from 'src/model/user';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { NotificationService } from 'src/services/notification.service';
+
 
 @Component({
   selector: 'app-register',

@@ -1,16 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthenticationGuard } from "src/guard/authentication.guard";
-import { LoginComponent } from "./my-components/login/login.component";
-import { RegisterComponent } from "./my-components/register/register.component";
-
+import { ErrorComponent } from "./error/error.component";
 
 export const routes: Routes = [
   {
-    path: 'login', component: LoginComponent,
-  },
-  {
-    path: 'register', component: RegisterComponent,
+    path: 'login',
+    loadChildren: () => import('./my-components/public/public.module').then(m => m.PublicModule)
   },
   {
     path: 'home',
@@ -27,8 +23,7 @@ export const routes: Routes = [
     canActivate: [AuthenticationGuard],
     loadChildren: () => import('./my-components/instrument-series/instrument-series.module').then(m => m.InstrumentSeriesModule)
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // {path: '**', redirectTo: '/login'},
+  { path: '*', component: ErrorComponent }
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

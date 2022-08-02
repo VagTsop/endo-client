@@ -14,14 +14,14 @@ import { AuthenticationService } from 'src/services/authentication.service';
 import { UserService } from 'src/services/user.service';
 import { AuthInterceptor } from 'src/interceptor/auth.interceptor';
 import { AuthenticationGuard } from 'src/guard/authentication.guard';
-import { LoginComponent } from "src/app/my-components/login/login.component";
-import { RegisterComponent } from './my-components/register/register.component';
+import { PublicModule } from './my-components/public/public.module';
+import { ErrorComponent } from './error/error.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    ErrorComponent
   ],
   imports: [
     HttpClientModule,
@@ -30,6 +30,7 @@ import { RegisterComponent } from './my-components/register/register.component';
     AppRoutingModule,
     SharedModule,
     RouterModule.forRoot([]),
+    PublicModule,
     HomeModule,
     InstrumentModule,
     InstrumentSeriesModule

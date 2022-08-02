@@ -1,9 +1,6 @@
-<app-login *ngIf="!isUserLoggedIn" (onSendIsUserLoggedIn)="onGetIsUserLoggedIn($event)"></app-login>
+<app-header (onSendIsSidebarOpened)="onGetIsSideBarOpened($event)"></app-header>
 
-
-<app-header *ngIf="isUserLoggedIn"  (onSendIsSidebarOpened)="onGetIsSideBarOpened($event)"></app-header>
-
-<mat-sidenav-container  *ngIf="isUserLoggedIn">
+<mat-sidenav-container >
   <mat-sidenav [opened]="router.url !=='/home' ? !isSidebarOpened: isSidebarOpened" mode="side">
     <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
       <mat-list-item fxLayoutAlign="start center" menuToggleLink *ngFor="let menuitem of menuItems">
