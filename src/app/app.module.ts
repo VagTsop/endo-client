@@ -15,25 +15,25 @@ import { UserService } from 'src/services/user.service';
 import { AuthInterceptor } from 'src/interceptor/auth.interceptor';
 import { AuthenticationGuard } from 'src/guard/authentication.guard';
 import { PublicModule } from './my-components/public/public.module';
-import { ErrorComponent } from './error/error.component';
+import { ErrorModule } from './my-components/error/error.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
   ],
   imports: [
     HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule,
     SharedModule,
     RouterModule.forRoot([]),
     PublicModule,
     HomeModule,
     InstrumentModule,
-    InstrumentSeriesModule
+    InstrumentSeriesModule,
+    ErrorModule,
+    AppRoutingModule
   ],
   providers: [
     DatePipe, AuthenticationGuard, AuthenticationService, UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

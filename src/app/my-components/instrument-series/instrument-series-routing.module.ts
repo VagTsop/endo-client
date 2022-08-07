@@ -1,16 +1,17 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AuthenticationGuard } from "src/guard/authentication.guard";
 import { InstrumentSeriesScannerComponent } from "./instrument-series-scanner/instrument-series-scanner.component";
 import { ManageInstrumentSeriesComponent } from "./manage-instrument-series/manage-instrument-series.component";
 
 export const instrumentSeriesRoutes: Routes = [
   {
-    path: 'manage-instrument-series', component: ManageInstrumentSeriesComponent, data: {
+    path: 'manage-instrument-series',  canActivate: [AuthenticationGuard], component: ManageInstrumentSeriesComponent, data: {
       label: 'Manage Instrument Series'
     },
   },
   {
-    path: 'instrument-series-scanner', component: InstrumentSeriesScannerComponent, data: {
+    path: 'instrument-series-scanner',  canActivate: [AuthenticationGuard], component: InstrumentSeriesScannerComponent, data: {
       label: 'Scan Instrument Series'
     },
   }

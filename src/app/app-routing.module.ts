@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthenticationGuard } from "src/guard/authentication.guard";
-import { ErrorComponent } from "./error/error.component";
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: 'public',
     loadChildren: () => import('./my-components/public/public.module').then(m => m.PublicModule)
   },
   {
@@ -23,7 +22,7 @@ export const routes: Routes = [
     canActivate: [AuthenticationGuard],
     loadChildren: () => import('./my-components/instrument-series/instrument-series.module').then(m => m.InstrumentSeriesModule)
   },
-  { path: '*', component: ErrorComponent }
+  { path: '**', redirectTo: '/notfound' }
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

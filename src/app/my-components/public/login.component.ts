@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('/home');
     } else {
       this.isUserloggedIn = false;
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/public');
     }
   }
 
