@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.authenticationService.register(user).subscribe(
         (response: User) => {
           this.showLoading = false;
+          this.router.navigateByUrl('/public');
           this.sendNotification(NotificationType.SUCCESS, `A new account was created for ${response.firstName}.
           Please check your email for password to log in.`);
         },
@@ -45,16 +46,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   private sendNotification(notificationType: NotificationType, message: string): void {
-    if (message) {
+    if (message && notificationType === 'success') {
       this.notificationService.showNotification(
         { title: 'Success', type: 'SUCCESS', message: message, });
-      // this.notificationService.notify(notificationType, message);
     }
-    else {
+    if (message && notificationType === 'error') {
       this.notificationService.showNotification(
-        { title: 'Error', type: 'ERROR', message: "An error occurred. Please try again.", });
-      //this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+        { title: 'Error', type: 'ERROR', message: message, });
     }
+    // else {
+    //   this.notificationService.showNotification(
+    //     { title: 'Error', type: 'ERROR', message: "An error occurred. Please try again.", });
+    // }
   }
 
   ngOnDestroy(): void {

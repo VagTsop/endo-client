@@ -14,7 +14,7 @@ export class NotificationService {
         break;
       }
       case 'ERROR': {
-        this.toastr.success(message.title, message.message);
+        this.toastr.error(message.title, message.message);
         break;
       }
       default: {

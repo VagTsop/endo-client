@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,6 @@ import { NotificationService } from 'src/services/notification.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   isUserloggedIn: boolean;
-  @Output() onSendIsUserLoggedIn = new EventEmitter();
   public showLoading: boolean;
   subscriptions: Subscription[] = [];
   public userLoggedIn: boolean = false;
@@ -25,11 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.isUserloggedIn = true
-       this.onSendIsUserLoggedIn.emit(true);
       this.router.navigateByUrl('/home');
     } else {
-      this.isUserloggedIn = false;
       this.router.navigateByUrl('/public');
     }
   }
@@ -43,7 +39,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authenticationService.saveToken(token);
           this.authenticationService.addUserToLocalCache(response.body);
           this.router.navigateByUrl('/home');
-          this.onSendIsUserLoggedIn.emit(true);
           this.showLoading = false;
         },
         (errorResponse: HttpErrorResponse) => {
@@ -58,16 +53,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (message) {
       this.notificationService.showNotification(
         { title: 'Success', type: 'SUCCESS', message: message, });
-      // this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.showNotification(
-        { title: 'Error', type: 'ERROR', message: "An error occurred. Please try again.", });
-      // this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
     }
+    if (message && notificationType === 'error') {
+      this.notificationService.showNotification(
+        { title: 'Error', type: 'ERROR', message: message, });
+    }
+    // else {
+    //   this.notificationService.showNotification(
+    //     { title: 'Error', type: 'ERROR', message: "An error occurred. Please try again.", });
+    // }
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-
 }
