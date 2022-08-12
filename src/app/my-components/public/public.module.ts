@@ -4,6 +4,7 @@ import { SharedModule } from 'src/app/shared.module'
 import { PublicRoutingModule } from "./public-routing.module";
 import { LoginComponent } from "./login.component";
 import { RegisterComponent } from "./register.component";
+import { EmailVerificationComponent } from "../email-verification/email-verification.components.ts";
 
 
 
@@ -15,6 +16,7 @@ import { RegisterComponent } from "./register.component";
   ],
   declarations: [LoginComponent,
   RegisterComponent,
+  EmailVerificationComponent
  ]
 })
 export class PublicModule { }

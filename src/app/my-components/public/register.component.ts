@@ -14,7 +14,7 @@ import { NotificationService } from 'src/services/notification.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-
+  public isSuccessful = false;
   public showLoading: boolean;
   private subscriptions: Subscription[] = [];
 
@@ -33,7 +33,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.authenticationService.register(user).subscribe(
         (response: User) => {
           this.showLoading = false;
-          this.router.navigateByUrl('/public');
+          this.isSuccessful = true;
+     //   this.router.navigateByUrl('/public');
           this.sendNotification(NotificationType.SUCCESS, `A new account was created for ${response.firstName}.
           Please check your email for password to log in.`);
         },

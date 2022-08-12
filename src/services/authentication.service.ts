@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  private baseUrl = environment.BASE_URL + '/user'
   host = environment.BASE_URL;
   token: string | null;
   loggedInUsername: string | null;
@@ -51,6 +52,20 @@ export class AuthenticationService {
   public getToken(): string {
     return this.token as any;
   }
+
+  verifyCode(code: string): Observable<any> {
+    return this.http.get(
+      this.baseUrl + `/verify?code=${code}`
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
+  // verifyToken(token): Observable<any> {
+  //   return this.http.post(AppConstants.AUTH_API + 'token/verify', token, {
+  //         headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
+  //   });
+  // }
 
   public isUserLoggedIn(): boolean {
     this.loadToken();
