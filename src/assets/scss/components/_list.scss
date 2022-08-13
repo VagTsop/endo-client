@@ -21,6 +21,11 @@ li:hover:not(.selected) {
   opacity: 0.5;
   cursor: not-allowed;
 }
+.mat-raised-button {
+  border-radius: 4.5px;
+  border: none;
+  cursor: pointer;
+}
 
 .custom-scroll {
   max-height: 473px;

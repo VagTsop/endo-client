@@ -8,7 +8,7 @@ import { environment } from "src/environments/environment";
 export class InstrumentSeriesService {
   constructor(protected http: HttpClient) { }
 
-  private baseUrl = environment.BASE_URL +  '/instruments-series'
+  private baseUrl = environment.BASE_URL + '/instruments-series'
 
   getInstrumentSeriesList(request: InstrumentSeriesRequest) {
     return this.http.get(
@@ -16,7 +16,7 @@ export class InstrumentSeriesService {
       {
         params: this.constructParams(request, null)
       }
-    ).pipe(map((response: any) => {////
+    ).pipe(map((response: any) => {
       return response;
     }));
   }

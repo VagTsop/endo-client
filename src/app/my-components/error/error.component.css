@@ -1,0 +1,24 @@
+.far {
+  font-size: 8.5rem;
+  color: #ffffff;
+}
+
+.err {
+  color: #ffffff;
+  font-size: 11rem;
+}
+
+.msg {
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: underline;
+}

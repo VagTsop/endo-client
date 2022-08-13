@@ -6,29 +6,37 @@ import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './my-components/home/home.module';
 import { InstrumentModule } from './my-components/instrument/instrument.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InstrumentSeriesModule } from './my-components/instrument-series/instrument-series.module';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { UserService } from 'src/services/user.service';
+import { AuthInterceptor } from 'src/interceptor/auth.interceptor';
+import { AuthenticationGuard } from 'src/guard/authentication.guard';
+import { PublicModule } from './my-components/public/public.module';
+import { ErrorModule } from './my-components/error/error.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,//
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule,
     SharedModule,
     RouterModule.forRoot([]),
+    PublicModule,
     HomeModule,
     InstrumentModule,
-    InstrumentSeriesModule
+    InstrumentSeriesModule,
+    ErrorModule,
+    AppRoutingModule
   ],
   providers: [
-    DatePipe,
+    DatePipe, AuthenticationGuard, AuthenticationService, UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

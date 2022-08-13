@@ -1,7 +1,9 @@
-<app-header (onSendIsSidebarOpened)="onGetIsSideBarOpened($event)"></app-header>
+<app-header *ngIf="router.url !== '/login' && !router.url.includes('register') && router.url !== '/notfound'"
+  (onSendIsSidebarOpened)="onGetIsSideBarOpened($event)"></app-header>
 
 <mat-sidenav-container>
-  <mat-sidenav [opened]="router.url !=='/home' ? !isSidebarOpened: isSidebarOpened" mode="side">
+  <mat-sidenav *ngIf="router.url !== '/login' && !router.url.includes('register') && router.url !== '/notfound'"
+    [opened]="router.url !=='/home' ? !isSidebarOpened: isSidebarOpened" mode="side">
     <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
       <mat-list-item fxLayoutAlign="start center" menuToggleLink *ngFor="let menuitem of menuItems">
         <a menuToggle [routerLink]="menuitem.path" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>

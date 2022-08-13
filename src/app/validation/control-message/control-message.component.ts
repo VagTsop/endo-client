@@ -9,7 +9,7 @@ import { ValidationHelper } from '../validation.model';
 export class ControlMessageComponent {
   @Input() control: UntypedFormControl;
 
-  constructor() {}
+  constructor() { }
 
   get errorMessage() {
     for (const propertyName in this.control.errors) {
@@ -20,4 +20,3 @@ export class ControlMessageComponent {
     return null;
   }
 }
-//

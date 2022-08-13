@@ -12,7 +12,6 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
-
 import { PagingComponent } from "./my-components/paging/paging.component";
 import { SortingComponent } from "./my-components/sorting/sorting.component";
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -63,7 +62,7 @@ const MATERIAL_MODULES = [
     RouterModule,
     ReactiveFormsModule,
     MATERIAL_MODULES,
-   ZXingScannerModule,
+    ZXingScannerModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
@@ -84,7 +83,7 @@ const MATERIAL_MODULES = [
     SortingComponent,
     ScannerComponent,
     ControlMessageComponent,
-//  ZXingScannerModule,
+    //  ZXingScannerModule,
     HeaderComponent
   ],
   providers: [

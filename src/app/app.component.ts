@@ -10,6 +10,7 @@ import { instrumentSeriesRoutes } from './my-components/instrument-series/instru
   templateUrl: './app.component.html',
 })
 export class AppComponent implements DoCheck {
+  isUserLoggedIn = false;
   instrumentRoutes = instrumentRoutes;
   instrumentSeriesRoutes = instrumentSeriesRoutes;
   title = 'endofusion-client';
@@ -36,5 +37,8 @@ export class AppComponent implements DoCheck {
 
   onGetIsSideBarOpened(data: boolean) {
     this.isSidebarOpened = data;
+  }
+  onGetIsUserLoggedIn(data: boolean) {
+    this.isUserLoggedIn = data;
   }
 }
