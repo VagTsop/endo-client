@@ -5,19 +5,20 @@ import { Subscription } from 'rxjs';
 import { User } from 'src/model/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
+import { GenericComponent } from '../generic.component';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit, OnDestroy {
-  public isSuccessful = false;
-  private subscriptions: Subscription[] = [];
+export class RegisterComponent extends GenericComponent implements OnInit, OnDestroy {
+  isSuccessful = false;
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService) {
+    super();
+  }
 
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
@@ -25,21 +26,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onRegister(user: User): void {
-    this.subscriptions.push(
-      this.authenticationService.register(user).subscribe(
-        (response: User) => {
-          this.isSuccessful = true;
-        },
-        (errorResponse: HttpErrorResponse) => {
-          this.notificationService.showNotification(
-            { title: 'Error', type: 'ERROR', message: errorResponse.error.message, });
-        }
-      )
+  onRegister(user: User): void {
+    this.subscriptions.add(this.authenticationService.register(user).subscribe(
+      (response: User) => {
+        this.isSuccessful = true;
+      },
+      (errorResponse: HttpErrorResponse) => {
+        this.notificationService.showNotification(
+          { title: 'Error', type: 'ERROR', message: errorResponse.error.message, });
+      }
+    )
     );
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
