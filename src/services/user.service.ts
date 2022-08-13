@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { CustomHttpRespone } from '../model/custom-http-response';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UserService {
   private host = environment.BASE_URL;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}/user/list`);
@@ -29,9 +29,10 @@ export class UserService {
 
   public updateProfileImage(formData: FormData): Observable<HttpEvent<User>> {
     return this.http.post<User>(`${this.host}/user/updateProfileImage`, formData,
-    {reportProgress: true,
-      observe: 'events'
-    });
+      {
+        reportProgress: true,
+        observe: 'events'
+      });
   }
 
   public deleteUser(username: string): Observable<CustomHttpRespone> {
@@ -42,9 +43,9 @@ export class UserService {
     localStorage.setItem('users', JSON.stringify(users));
   }
 
-  public getUsersFromLocalCache(): User[]  {
+  public getUsersFromLocalCache(): User[] {
     if (localStorage.getItem('users')) {
-        return JSON.parse(localStorage.getItem('users') as any);
+      return JSON.parse(localStorage.getItem('users') as any);
     }
     return null as any;
   }

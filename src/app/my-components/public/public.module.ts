@@ -15,8 +15,8 @@ import { EmailVerificationComponent } from "../email-verification/email-verifica
     SharedModule
   ],
   declarations: [LoginComponent,
-  RegisterComponent,
-  EmailVerificationComponent
- ]
+    RegisterComponent,
+    EmailVerificationComponent
+  ]
 })
 export class PublicModule { }

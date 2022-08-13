@@ -1,151 +1,80 @@
 <div style="height: 100%" fxLayoutAlign="center center">
-  <mat-card-content>
-    <div
-      class="user_card"
-      fxLayout="column"
-      fxLayoutAlign="space-evenly center"
-    >
-      <div>
-        <img src="./assets/images/logo/Capture.PNG" style="width: 100px" />
-      </div>
-      <div>
-        <img src="./assets/images/logo/Capture2.PNG" style="width: 150px" />
-      </div>
-
-      <div fxLayoutAlign="center center" style="width: 100%"></div>
-      <div  *ngIf="!isSuccessful"  style="width: 100%">
-        <form
-          #registerForm="ngForm"
-          (ngSubmit)="onRegister(registerForm.value)"
-        >
-          <div fxLayout="column" fxLayoutAlign="start center">
-            <div>
-              <mat-form-field fxLayout="row" appearance="fill">
-                <mat-icon style="color: #305446" fxFlex="20">person</mat-icon>
-                <input
-                  fxFlex="80"
-                  type="text"
-                  class="form-control"
-                  name="firstName"
-                  placeholder="First name"
-                  required
-                  ngModel
-                  #firstNameInput="ngModel"
-                  matInput
-                />
-              </mat-form-field>
-            </div>
-            <span
-              class="help-block"
-              *ngIf="firstNameInput.invalid && firstNameInput.touched"
-              style="color: red"
-              >Please enter a first name</span
-            >
-
-            <div>
-              <mat-form-field fxLayout="row" appearance="fill">
-                <mat-icon style="color: #305446" fxFlex="20">person</mat-icon>
-                <input
-                  fxFlex="80"
-                  type="text"
-                  class="form-control"
-                  name="lastName"
-                  placeholder="Last name"
-                  required
-                  ngModel
-                  #lastNameInput="ngModel"
-                  matInput
-                />
-              </mat-form-field>
-            </div>
-            <span
-              class="help-block"
-              *ngIf="lastNameInput.invalid && lastNameInput.touched"
-              style="color: red"
-              >Please enter a last name</span
-            >
-
-            <div>
-              <mat-form-field fxLayout="row" appearance="fill">
-                <mat-icon style="color: #305446" fxFlex="20">account_box</mat-icon>
-                <input
-                  fxFlex="80"
-                  type="text"
-                  class="form-control"
-                  name="username"
-                  placeholder="Username"
-                  required
-                  ngModel
-                  #usernameInput="ngModel"
-                  matInput
-                />
-              </mat-form-field>
-            </div>
-            <span
-              class="help-block"
-              *ngIf="usernameInput.invalid && usernameInput.touched"
-              style="color: red"
-              >Please enter a username</span
-            >
-
-            <div>
-              <mat-form-field fxLayout="row" appearance="fill">
-                <mat-icon style="color: #305446" fxFlex="20">email</mat-icon>
-                <input
-                  fxFlex="80"
-                  type="text"
-                  class="form-control"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  ngModel
-                  #emailInput="ngModel"
-                  matInput
-                />
-              </mat-form-field>
-            </div>
-            <span
-              class="help-block"
-              *ngIf="emailInput.invalid && emailInput.touched"
-              style="color: red"
-              >Please enter an email.</span
-            >
-          </div>
+  <mat-card-content fxFlex="25" *ngIf="!isSuccessful" class="user_card">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <img src="./assets/images/logo/Capture.PNG" style="width: 100px" />
+      <img src="./assets/images/logo/Capture2.PNG" style="width: 150px" />
+      <form #registerForm="ngForm" style="margin-top:15px;margin-bottom:15px" (ngSubmit)="onRegister(registerForm.value)">
+        <div fxLayout="column" fxLayoutAlign="start center">
           <div>
-            <mat-dialog-actions fxLayoutAlign="center center">
-              <button
-                [disabled]="registerForm.invalid || showLoading"
-                type="submit"
-                name="button"
-                style="
+            <mat-form-field fxLayout="row" appearance="fill">
+              <mat-icon style="color: #305446" fxFlex="20">person</mat-icon>
+              <input fxFlex="80" type="text" class="form-control" name="firstName" placeholder="First name" required
+                ngModel #firstNameInput="ngModel" matInput />
+            </mat-form-field>
+          </div>
+          <span class="help-block" *ngIf="firstNameInput.invalid && firstNameInput.touched" style="color: red">Please
+            enter a first name</span>
+
+          <div>
+            <mat-form-field fxLayout="row" appearance="fill">
+              <mat-icon style="color: #305446" fxFlex="20">person</mat-icon>
+              <input fxFlex="80" type="text" class="form-control" name="lastName" placeholder="Last name" required
+                ngModel #lastNameInput="ngModel" matInput />
+            </mat-form-field>
+          </div>
+          <span class="help-block" *ngIf="lastNameInput.invalid && lastNameInput.touched" style="color: red">Please
+            enter a last name</span>
+
+          <div>
+            <mat-form-field fxLayout="row" appearance="fill">
+              <mat-icon style="color: #305446" fxFlex="20">account_box</mat-icon>
+              <input fxFlex="80" type="text" class="form-control" name="username" placeholder="Username" required
+                ngModel #usernameInput="ngModel" matInput />
+            </mat-form-field>
+          </div>
+          <span class="help-block" *ngIf="usernameInput.invalid && usernameInput.touched" style="color: red">Please
+            enter a username</span>
+
+          <div>
+            <mat-form-field fxLayout="row" appearance="fill">
+              <mat-icon style="color: #305446" fxFlex="20">email</mat-icon>
+              <input fxFlex="80" type="text" class="form-control" name="email" placeholder="Email" required ngModel
+                #emailInput="ngModel" matInput />
+            </mat-form-field>
+          </div>
+          <span class="help-block" *ngIf="emailInput.invalid && emailInput.touched" style="color: red">Please enter an
+            email.</span>
+        </div>
+        <div style="padding-top:10px;">
+          <mat-dialog-actions fxLayoutAlign="center center">
+            <button [disabled]="registerForm.invalid || showLoading" type="submit" name="button" style="
                   text-align: center;
                   background-color: #305446;
                   width: 100px;
                   height: 35px;
-                "
-                class="mat-raised-button mat-primary"
-              >
-                <mat-icon *ngIf="showLoading" fxFlex="20">spinner</mat-icon>
-
-                <div *ngIf="showLoading">Loading...</div>
-                <div *ngIf="!showLoading">Register</div>
-              </button>
-            </mat-dialog-actions>
-          </div>
-        </form>
-      </div>
-
-      <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful! We've sent you a verification mail to your email account. Validate your account and try to login.
-        <a routerLink="/login" class="ml-2" style="color: #2c3e50; padding-left: 5px">Go back to Login</a>
-      </div>
-
-      <div *ngIf="!isSuccessful">
-        <div style="color: #305446">
-          Already have an account?
-          <a routerLink="/login" class="ml-2" style="color: #2c3e50; padding-left: 5px">Log In</a>
+                " class="mat-raised-button mat-primary">
+              <mat-icon *ngIf="showLoading" fxFlex="20">spinner</mat-icon>
+              <div>Register</div>
+            </button>
+          </mat-dialog-actions>
         </div>
+      </form>
+    </div>
+    <div fxLayoutAlign="center center">
+      <div style="color: #305446">
+        Already have an account?
+        <a routerLink="/login" class="ml-2" style="color: #2c3e50; padding-left: 5px">Log In</a>
       </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="isSuccessful" class="user-card">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <img src="./assets/images/logo/Capture.PNG" style="width: 100px" />
+      <img src="./assets/images/logo/Capture2.PNG" style="width: 150px" />
+      Your registration is successful! We've sent you a verification mail to your email account. Validate your account
+      and try to login.
+      <a routerLink="/login" class="ml-2" style="color: #2c3e50; padding-left: 5px">Go back to Login</a>
     </div>
   </mat-card-content>
 </div>

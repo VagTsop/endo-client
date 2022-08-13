@@ -62,7 +62,7 @@ const MATERIAL_MODULES = [
     RouterModule,
     ReactiveFormsModule,
     MATERIAL_MODULES,
-   ZXingScannerModule,
+    ZXingScannerModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
@@ -83,7 +83,7 @@ const MATERIAL_MODULES = [
     SortingComponent,
     ScannerComponent,
     ControlMessageComponent,
-//  ZXingScannerModule,
+    //  ZXingScannerModule,
     HeaderComponent
   ],
   providers: [

@@ -1,10 +1,8 @@
 import { Paging } from "./helper/paging.helper";
 
 export class InstrumentSeriesRequest {
-  
+
   private paging: Paging = new Paging();
-
-
 
   /**
  * Getter $paging
@@ -21,5 +19,4 @@ export class InstrumentSeriesRequest {
   public set $paging(value: Paging) {
     this.paging = value;
   }
-
 }

@@ -5,7 +5,7 @@ import { ManageInstrumentComponent } from "./manage-instrument.component";
 
 export const instrumentRoutes: Routes = [
   {
-    path: 'manage-instrument',  canActivate: [AuthenticationGuard], component: ManageInstrumentComponent, data: {
+    path: 'manage-instrument', canActivate: [AuthenticationGuard], component: ManageInstrumentComponent, data: {
       label: 'Manage Instruments'
     }
   }

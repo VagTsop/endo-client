@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { User } from '../model/user';
-import { UserService } from '../service/user.service';
-import { NotificationService } from '../service/notification.service';
-import { NotificationType } from '../enum/notification-type.enum';
+import { User } from '../../../model/user';
+import { NotificationType } from '../../../enum/notification-type.enum';
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { CustomHttpRespone } from '../model/custom-http-response';
-import { AuthenticationService } from '../service/authentication.service';
+import { CustomHttpRespone } from '../../../model/custom-http-response';
 import { Router } from '@angular/router';
-import { FileUploadStatus } from '../model/file-upload.status';
-import { Role } from '../enum/role.enum';
+import { FileUploadStatus } from '../../../model/file-upload.status';
+import { Role } from '../../../enum/role.enum';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { UserService } from 'src/services/user.service';
+import { NotificationService } from 'src/services/notification.service';
 
 @Component({
   selector: 'app-user',
@@ -32,7 +32,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public fileStatus = new FileUploadStatus();
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
-              private userService: UserService, private notificationService: NotificationService) {}
+    private userService: UserService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserFromLocalCache();
@@ -70,7 +70,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onProfileImageChange(fileName: string, profileImage: File): void {
-    this.fileName =  fileName;
+    this.fileName = fileName;
     this.profileImage = profileImage;
   }
 
@@ -95,7 +95,7 @@ export class UserComponent implements OnInit, OnDestroy {
           this.profileImage = null;
         }
       )
-      );
+    );
   }
 
   public onUpdateUser(): void {
@@ -114,7 +114,7 @@ export class UserComponent implements OnInit, OnDestroy {
           this.profileImage = null;
         }
       )
-      );
+    );
   }
 
   public onUpdateCurrentUser(user: User): void {
@@ -136,7 +136,7 @@ export class UserComponent implements OnInit, OnDestroy {
           this.profileImage = null;
         }
       )
-      );
+    );
   }
 
   public onUpdateProfileImage(): void {
@@ -229,10 +229,10 @@ export class UserComponent implements OnInit, OnDestroy {
     const results: User[] = [];
     for (const user of this.userService.getUsersFromLocalCache()) {
       if (user.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
-          user.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
-          user.username.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
-          user.userId.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-          results.push(user);
+        user.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        user.username.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        user.userId.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+        results.push(user);
       }
     }
     this.users = results;

@@ -3,5 +3,4 @@ export interface CustomHttpRespone {
   httpStatus: string;
   reson: string;
   message: string;
-
 }
