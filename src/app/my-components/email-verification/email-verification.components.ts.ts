@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 
 })
 export class EmailVerificationComponent {
-  public code:string|null= '';
+  public code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get('code');
@@ -17,7 +17,7 @@ export class EmailVerificationComponent {
       console.log(this.code)
       this.authService.verifyCode(this.code).subscribe(
         data => {
-         console.log(data)
+          console.log(data)
         }
         ,
         err => {

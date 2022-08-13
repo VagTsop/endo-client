@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { map, Observable } from 'rxjs';
 import { User } from '../model/user';
@@ -54,11 +54,7 @@ export class AuthenticationService {
   }
 
   verifyCode(code: string): Observable<any> {
-    return this.http.get(
-      this.baseUrl + `/verify?code=${code}`
-    ).pipe(map((response: any) => {
-      return response;
-    }));
+    return this.http.post<User>(`${this.host}/user/verify?code=${code}`, code);
   }
 
   // verifyToken(token): Observable<any> {
