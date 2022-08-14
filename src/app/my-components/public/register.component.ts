@@ -13,7 +13,7 @@ import { GenericComponent } from '../generic.component';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent extends GenericComponent implements OnInit, OnDestroy {
-  isSuccessful = false;
+  isSuccessful: boolean = false;
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
     private notificationService: NotificationService) {
@@ -33,7 +33,7 @@ export class RegisterComponent extends GenericComponent implements OnInit, OnDes
       },
       (errorResponse: HttpErrorResponse) => {
         this.notificationService.showNotification(
-          { title: 'Error', type: 'ERROR', message: errorResponse.error.message, });
+          { title: 'Error', type: 'ERROR', message: errorResponse.error.message });
       }
     )
     );

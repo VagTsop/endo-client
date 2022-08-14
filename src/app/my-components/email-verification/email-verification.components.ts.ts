@@ -5,11 +5,10 @@ import { AuthenticationService } from 'src/services/authentication.service';
 @Component({
   selector: 'app-home',
   templateUrl: './email-verification.component.html',
-  styleUrls: ['./email-verification.component.scss']
 
 })
 export class EmailVerificationComponent {
-  public code: string | null = '';
+  code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get('code');
