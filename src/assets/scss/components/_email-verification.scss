@@ -66,3 +66,37 @@
   height: 100px;
   width: 100px;
 }
+
+
+
+// div {
+//   height: 100px;
+//   width: 100px;
+//   background-color: #FA6900;
+//   border-radius: 5px;
+//   position: relative;
+// }
+
+
+#cross-mark {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+#cross-mark:after {
+  content: '';
+  height: 60px;
+  border-left: 6px solid #fff;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 28px;
+}
+
+#cross-mark:before {
+  content: '';
+  height: 60px;
+  border-left: 6px solid #fff;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 28px;
+}

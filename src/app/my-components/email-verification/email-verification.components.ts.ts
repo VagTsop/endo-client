@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 
 })
 export class EmailVerificationComponent {
+  linkExpired: boolean = true;
   code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {

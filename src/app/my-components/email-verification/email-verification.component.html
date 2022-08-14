@@ -1,4 +1,4 @@
-<div style="height: 100%" class="email-verification" fxLayoutAlign="center center">
+<div style="height: 100%" *ngIf="!linkExpired" class="email-verification" fxLayoutAlign="center center">
 
   <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
 
@@ -19,6 +19,32 @@
 
       <mat-dialog-actions style="height:45px;border-radius:22px;width:350px" fxLayoutAlign="center center">
         <a routerLink="/login">Continue to Login</a>
+      </mat-dialog-actions>
+    </div>
+  </mat-card-content>
+</div>
+
+<div style="height: 100%" *ngIf="linkExpired" class="email-verification" fxLayoutAlign="center center">
+
+  <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+
+    <div class="upper" fxLayout="column" fxLayoutAlign="center center">
+
+      <div fxLayoutAlign="center center" class="doughnut">
+        <div id="cross-mark"></div>
+      </div>
+
+      <p style="padding-top:20px">FAILED</p>
+    </div>
+
+    <div class="bottom" fxLayout="column" fxLayoutAlign="space-around center">
+
+      <p style="text-align: center;width:60%">
+        Link expired!.
+      </p>
+
+      <mat-dialog-actions style="height:45px;border-radius:22px;width:350px" fxLayoutAlign="center center">
+        <a routerLink="/login">Re-send Verification Email</a>
       </mat-dialog-actions>
     </div>
   </mat-card-content>
