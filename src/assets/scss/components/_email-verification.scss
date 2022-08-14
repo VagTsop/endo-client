@@ -6,6 +6,9 @@
       height: 250px;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
+      p {
+        color: #ffffff;
+      }
     }
 
     .bottom {
@@ -14,6 +17,13 @@
       height: 220px;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
+      p {
+        color: #000000;
+      }
+    }
+
+    .mat-dialog-actions{
+      background-color: #afbfd8;
     }
   }
 }
@@ -33,7 +43,7 @@
   top: 50%;
   height: 50%;
   width: 3px;
-  background-color: #336699;
+  background-color: white;
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
@@ -45,7 +55,7 @@
   bottom: 0;
   height: 3px;
   width: 100%;
-  background-color: #336699;
+  background-color: white;
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
