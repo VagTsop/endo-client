@@ -1,6 +1,6 @@
 .register-login {
   .mat-card-content {
-    background: #afbfd8;
+    background: $publicCardBackgroundColor;
     border-radius: 5px;
     padding: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -8,30 +8,30 @@
     text-align: center;
 
     span {
-      color: red;
+      color: $publicCardHelpTextColor;
     }
 
     mat-icon {
-      color: #305446;
+      color: $publicCardSecondaryColor;
     }
 
     .mat-raised-button {
-      background-color: #305446;
+      background-color: $publicCardSecondaryColor;
       text-align: center;
       height: 35px;
     }
 
     a {
-      color: #2c3e50;
+      color: $publicCardSecondaryColor;
     }
 
     .reminder {
-      color: #305446;
+      color: $publicCardSecondaryColor;
     }
   }
 
   .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: #afbfd8;
+    background-color: $publicCardBackgroundColor;
   }
 
   .mat-form-field {

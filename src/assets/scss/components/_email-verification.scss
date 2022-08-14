@@ -1,29 +1,29 @@
 .email-verification {
   .mat-card-content {
     .upper {
-      background-color: #afbfd8;
+      background-color: $publicCardBackgroundColor;
       width: 50%;
       height: 250px;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
       p {
-        color: #ffffff;
+        color: $secondaryColor;
       }
     }
 
     .bottom {
-      background-color: white;
+      background-color: $secondaryColor;
       width: 50%;
       height: 220px;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
       p {
-        color: #000000;
+        color: $publicCardTextColor;
       }
     }
 
     .mat-dialog-actions{
-      background-color: #afbfd8;
+      background-color: $publicCardBackgroundColor;
     }
   }
 }
@@ -43,7 +43,7 @@
   top: 50%;
   height: 50%;
   width: 3px;
-  background-color: white;
+  background-color: $secondaryColor;
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
@@ -55,13 +55,13 @@
   bottom: 0;
   height: 3px;
   width: 100%;
-  background-color: white;
+  background-color: $secondaryColor;
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
 }
 .doughnut {
-  border: 7px solid #ffffff;
+  border: 7px solid $secondaryColor;
   border-radius: 100px;
   height: 100px;
   width: 100px;
