@@ -9,7 +9,9 @@ import { AuthenticationService } from 'src/services/authentication.service';
 })
 export class EmailVerificationComponent {
   isLinkValid: boolean;
-  isLoadingResult:boolean;
+  isLoadingResult: boolean;
+  emailAlreadyConfirmed: boolean;
+
   code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {
@@ -19,10 +21,13 @@ export class EmailVerificationComponent {
       this.authService.verifyCode(this.code).subscribe(
         data => {
           this.isLoadingResult = false;
-          this.isLinkValid = data
+          this.isLinkValid = data.body
         }
         ,
         err => {
+          if (err.error.message.startsWith('email already confirmed')) {
+          this.emailAlreadyConfirmed = true;
+          }
           this.isLinkValid = false
           this.isLoadingResult = false;
         }

@@ -35,6 +35,7 @@ export class LoginComponent extends GenericComponent implements OnInit, OnDestro
         this.router.navigateByUrl('/home');
       },
       (errorResponse: HttpErrorResponse) => {
+        console.log(errorResponse)
         this.notificationService.showNotification(
           { title: 'Error', type: 'ERROR', message: errorResponse.error.message });
       }

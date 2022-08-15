@@ -1,8 +1,8 @@
 <div style="height: 100%" *ngIf="isLoadingResult" class="email-verification" fxLayoutAlign="center center">
-  <mat-spinner  diameter="150"></mat-spinner>
+  <mat-spinner diameter="150"></mat-spinner>
 </div>
 
-<div style="height: 100%" *ngIf="isLinkValid && !isLoadingResult" class="email-verification"
+<div style="height: 100%" *ngIf="isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" class="email-verification"
   fxLayoutAlign="center center">
 
   <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
@@ -29,7 +29,29 @@
   </mat-card-content>
 </div>
 
-<div style="height: 100%" *ngIf="!isLinkValid && !isLoadingResult" class="email-verification"
+<div style="height: 100%" *ngIf="emailAlreadyConfirmed && !isLoadingResult " class="email-verification" fxLayoutAlign="center center">
+
+  <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+
+    <div class="upper" fxLayout="column" fxLayoutAlign="center center">
+
+      <div fxLayoutAlign="center center" class="doughnut">
+        <div id="tick-mark"></div>
+      </div>
+
+      <p style="padding-top:20px">EMAIL ALREADY CONFIRMED</p>
+    </div>
+
+    <div class="bottom" fxLayout="column" fxLayoutAlign="space-around center">
+
+      <mat-dialog-actions style="height:45px;border-radius:22px;width:350px" fxLayoutAlign="center center">
+        <a routerLink="/login">Continue to Login</a>
+      </mat-dialog-actions>
+    </div>
+  </mat-card-content>
+</div>
+
+<div style="height: 100%" *ngIf="!isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" class="email-verification"
   fxLayoutAlign="center center">
 
   <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">

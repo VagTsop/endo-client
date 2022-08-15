@@ -54,7 +54,7 @@ export class AuthenticationService {
   }
 
   verifyCode(code: string): Observable<any> {
-    return this.http.post<any>(`${this.host}/user/verify?code=${code}`, code);
+    return this.http.post<any>(`${this.host}/user/verify?code=${code}`, code, { observe: 'response' });
   }
 
   // verifyToken(token): Observable<any> {
