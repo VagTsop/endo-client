@@ -1,4 +1,9 @@
-<div style="height: 100%" *ngIf="isLinkValid" class="email-verification" fxLayoutAlign="center center">
+<div style="height: 100%" *ngIf="isLoadingResult" class="email-verification" fxLayoutAlign="center center">
+  <mat-spinner  diameter="150"></mat-spinner>
+</div>
+
+<div style="height: 100%" *ngIf="isLinkValid && !isLoadingResult" class="email-verification"
+  fxLayoutAlign="center center">
 
   <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
 
@@ -24,7 +29,8 @@
   </mat-card-content>
 </div>
 
-<div style="height: 100%" *ngIf="!isLinkValid" class="email-verification" fxLayoutAlign="center center">
+<div style="height: 100%" *ngIf="!isLinkValid && !isLoadingResult" class="email-verification"
+  fxLayoutAlign="center center">
 
   <mat-card-content fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
 

@@ -9,19 +9,22 @@ import { AuthenticationService } from 'src/services/authentication.service';
 })
 export class EmailVerificationComponent {
   isLinkValid: boolean;
+  isLoadingResult:boolean;
   code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {
+    this.isLoadingResult = true;
     this.code = this.route.snapshot.paramMap.get('code');
     if (this.code) {
-      console.log(this.code)
       this.authService.verifyCode(this.code).subscribe(
         data => {
+          this.isLoadingResult = false;
           this.isLinkValid = data
         }
         ,
         err => {
           this.isLinkValid = false
+          this.isLoadingResult = false;
         }
       );
     }

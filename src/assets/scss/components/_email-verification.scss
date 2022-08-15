@@ -1,3 +1,6 @@
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: $publicCardBackgroundColor;
+}
 .email-verification {
   .mat-card-content {
     .upper {
@@ -10,7 +13,6 @@
         color: $secondaryColor;
       }
     }
-
     .bottom {
       background-color: $secondaryColor;
       width: 50%;
@@ -66,17 +68,6 @@
   height: 100px;
   width: 100px;
 }
-
-
-
-// div {
-//   height: 100px;
-//   width: 100px;
-//   background-color: #FA6900;
-//   border-radius: 5px;
-//   position: relative;
-// }
-
 
 #cross-mark {
   width: 60px;
