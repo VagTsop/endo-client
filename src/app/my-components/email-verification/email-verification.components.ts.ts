@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 
 })
 export class EmailVerificationComponent {
-  linkExpired: boolean = true;
+  isLinkValid: boolean;
   code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {
@@ -17,11 +17,11 @@ export class EmailVerificationComponent {
       console.log(this.code)
       this.authService.verifyCode(this.code).subscribe(
         data => {
-          console.log(data)
+          this.isLinkValid = data
         }
         ,
         err => {
-          console.log(err)
+          this.isLinkValid = false
         }
       );
     }
