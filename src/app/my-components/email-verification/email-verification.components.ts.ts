@@ -37,9 +37,11 @@ export class EmailVerificationComponent {
   }
 
   onResendVerificationEmail() {
+    this.isLoadingResult = true;
     if (this.code) {
       this.authService.resendToken(this.code).subscribe(
         data => {
+          this.isLoadingResult = false;
           this.router.navigateByUrl('/login');
           console.log(data)
           this.notificationService.showNotification(
@@ -47,6 +49,7 @@ export class EmailVerificationComponent {
         }
         ,
         err => {
+          this.isLoadingResult = false;
           console.log(err)
         }
       );
