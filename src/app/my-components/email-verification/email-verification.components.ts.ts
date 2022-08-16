@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
+import { NotificationService } from 'src/services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class EmailVerificationComponent {
   isLoadingResult: boolean;
   emailAlreadyConfirmed: boolean;
   code: string | null = '';
-  constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private authService: AuthenticationService, private route: ActivatedRoute,
+    private notificationService: NotificationService) { }
   ngOnInit(): void {
     this.isLoadingResult = true;
     this.code = this.route.snapshot.paramMap.get('code');
@@ -25,7 +27,7 @@ export class EmailVerificationComponent {
         ,
         err => {
           if (err.error.message.startsWith('email already confirmed')) {
-          this.emailAlreadyConfirmed = true;
+            this.emailAlreadyConfirmed = true;
           }
           this.isLinkValid = false
           this.isLoadingResult = false;
@@ -38,7 +40,10 @@ export class EmailVerificationComponent {
     if (this.code) {
       this.authService.resendToken(this.code).subscribe(
         data => {
+          this.router.navigateByUrl('/login');
           console.log(data)
+          this.notificationService.showNotification(
+            { title: 'Success', type: 'SUCCESS', message: 'A New Verification Email has been sent to your Email Account' });
         }
         ,
         err => {
