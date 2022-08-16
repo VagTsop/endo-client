@@ -43,7 +43,7 @@ export class EmailVerificationComponent {
           this.router.navigateByUrl('/login');
           console.log(data)
           this.notificationService.showNotification(
-            { title: 'Success', type: 'SUCCESS', message: 'A New Verification Email has been sent to your Email Account' });
+            { title: 'Success', type: 'SUCCESS', message: data.body.message });
         }
         ,
         err => {
