@@ -11,7 +11,6 @@ export class EmailVerificationComponent {
   isLinkValid: boolean;
   isLoadingResult: boolean;
   emailAlreadyConfirmed: boolean;
-
   code: string | null = '';
   constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
   ngOnInit(): void {
@@ -30,6 +29,20 @@ export class EmailVerificationComponent {
           }
           this.isLinkValid = false
           this.isLoadingResult = false;
+        }
+      );
+    }
+  }
+
+  onResendVerificationEmail() {
+    if (this.code) {
+      this.authService.resendToken(this.code).subscribe(
+        data => {
+          console.log(data)
+        }
+        ,
+        err => {
+          console.log(err)
         }
       );
     }
