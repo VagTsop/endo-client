@@ -14,6 +14,7 @@ import { GenericComponent } from '../generic.component';
 })
 export class RegisterComponent extends GenericComponent implements OnInit, OnDestroy {
   isSuccessful: boolean = false;
+  isLoadingResult: boolean;
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
     private notificationService: NotificationService) {
@@ -27,11 +28,14 @@ export class RegisterComponent extends GenericComponent implements OnInit, OnDes
   }
 
   onRegister(user: User): void {
+    this.isLoadingResult = true;
     this.subscriptions.add(this.authenticationService.register(user).subscribe(
       (response: User) => {
+        this.isLoadingResult = false;
         this.isSuccessful = true;
       },
       (errorResponse: HttpErrorResponse) => {
+        this.isLoadingResult = false;
         this.notificationService.showNotification(
           { title: 'Error', type: 'ERROR', message: errorResponse.error.message });
       }

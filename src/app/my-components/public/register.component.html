@@ -1,3 +1,8 @@
+<div style="height: 100%" *ngIf="isLoadingResult" fxLayoutAlign="center center">
+  <mat-spinner diameter="150"></mat-spinner>
+</div>
+
+
 <div style="height: 100%" class="register-login" fxLayoutAlign="center center">
 
   <mat-card-content fxFlex="25" *ngIf="!isSuccessful">
