@@ -3,15 +3,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
 
+
+export enum TokenStatus {
+  VALID,
+  ALREADY_CONFIRMED,
+  EXPIRED,
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './email-verification.component.html',
 
 })
 export class EmailVerificationComponent {
-  isLinkValid: boolean;
+  tokenStatus = TokenStatus;
+  status : TokenStatus;
   isLoadingResult: boolean;
-  emailAlreadyConfirmed: boolean;
   code: string | null = '';
   constructor(private router: Router, private authService: AuthenticationService, private route: ActivatedRoute,
     private notificationService: NotificationService) { }
@@ -22,14 +29,10 @@ export class EmailVerificationComponent {
       this.authService.verifyCode(this.code).subscribe(
         data => {
           this.isLoadingResult = false;
-          this.isLinkValid = data.body
+          this.status = TokenStatus[data.body.message as keyof TokenStatus];
         }
         ,
         err => {
-          if (err.error.message.startsWith('email already confirmed')) {
-            this.emailAlreadyConfirmed = true;
-          }
-          this.isLinkValid = false
           this.isLoadingResult = false;
         }
       );
@@ -43,14 +46,12 @@ export class EmailVerificationComponent {
         data => {
           this.isLoadingResult = false;
           this.router.navigateByUrl('/login');
-          console.log(data)
           this.notificationService.showNotification(
             { title: 'Success', type: 'SUCCESS', message: data.body.message });
         }
         ,
         err => {
           this.isLoadingResult = false;
-          console.log(err)
         }
       );
     }

@@ -8,41 +8,31 @@
 
     <div class="upper" fxLayout="column" fxLayoutAlign="center center">
 
-      <div
-        *ngIf="isLinkValid && !isLoadingResult && !emailAlreadyConfirmed || emailAlreadyConfirmed && !isLoadingResult"
-        fxLayoutAlign="center center" class="doughnut">
-        <div id="tick-mark"></div>
+      <div fxLayoutAlign="center center" class="doughnut">
+        <div
+          [ngClass]="status == tokenStatus.VALID || status ==  tokenStatus.ALREADY_CONFIRMED ? 'tick-mark': 'cross-mark'">
+        </div>
       </div>
 
-      <div *ngIf="!isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" fxLayoutAlign="center center"
-        class="doughnut">
-        <div id="cross-mark"></div>
-      </div>
-
-      <p *ngIf="isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" style="padding-top:20px">SUCCESS</p>
-      <p *ngIf="emailAlreadyConfirmed && !isLoadingResult" style="padding-top:20px">EMAIL ALREADY CONFIRMED</p>
-      <p *ngIf="!isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" style="padding-top:20px">FAILED</p>
+      <p *ngIf="status == tokenStatus.VALID" style="padding-top:20px">SUCCESS</p>
+      <p *ngIf="status == tokenStatus.ALREADY_CONFIRMED" style="padding-top:20px">EMAIL ALREADY CONFIRMED</p>
+      <p *ngIf="status == tokenStatus.EXPIRED" style="padding-top:20px">FAILED</p>
     </div>
 
     <div class="bottom" fxLayout="column" fxLayoutAlign="space-around center">
 
-      <p *ngIf="isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" style="text-align: center;width:60%">
+      <p *ngIf="status == tokenStatus.VALID" style="text-align: center;width:60%">
         Congratulations, your account has been succesfully created.
       </p>
 
-      <p *ngIf="!isLinkValid && !isLoadingResult && !emailAlreadyConfirmed" style="text-align: center;width:60%">
+      <p *ngIf="status == tokenStatus.EXPIRED" style="text-align: center;width:60%">
         Link expired!
       </p>
 
-      <mat-dialog-actions
-        *ngIf="isLinkValid && !isLoadingResult && !emailAlreadyConfirmed || emailAlreadyConfirmed && !isLoadingResult"
-        style="height:45px;border-radius:22px;width:350px" fxLayoutAlign="center center">
-        <a routerLink="/login">Continue to Login</a>
-      </mat-dialog-actions>
-
-      <mat-dialog-actions *ngIf="!isLinkValid && !isLoadingResult && !emailAlreadyConfirmed"
-        style="height:45px;border-radius:22px;width:350px" fxLayoutAlign="center center">
-        <a (click)="onResendVerificationEmail()">Re-send Verification Email</a>
+      <mat-dialog-actions style="height:45px;border-radius:22px;width:350px" fxLayoutAlign="center center">
+        <a *ngIf="status !== tokenStatus.EXPIRED" routerLink="/login">Continue to Login</a>
+        <a *ngIf="status == tokenStatus.EXPIRED" style="cursor:pointer" (click)="onResendVerificationEmail()">Re-send
+          Verification Email</a>
       </mat-dialog-actions>
     </div>
   </mat-card-content>

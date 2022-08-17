@@ -30,7 +30,7 @@
   }
 }
 
-#tick-mark {
+.tick-mark {
   position: relative;
   transform: rotate(6deg);
   display: inline-block;
@@ -39,7 +39,7 @@
   height: 55px;
 }
 
-#tick-mark::before {
+.tick-mark::before {
   position: absolute;
   left: 0;
   top: 50%;
@@ -51,7 +51,7 @@
   transform-origin: left bottom;
 }
 
-#tick-mark::after {
+.tick-mark::after {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -69,12 +69,12 @@
   width: 100px;
 }
 
-#cross-mark {
+.cross-mark {
   width: 60px;
   height: 60px;
   position: relative;
 }
-#cross-mark:after {
+.cross-mark:after {
   content: '';
   height: 60px;
   border-left: 6px solid #fff;
@@ -83,7 +83,7 @@
   left: 28px;
 }
 
-#cross-mark:before {
+.cross-mark:before {
   content: '';
   height: 60px;
   border-left: 6px solid #fff;
