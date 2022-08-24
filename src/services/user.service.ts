@@ -9,7 +9,7 @@ import { UserRequest } from 'src/transport/user-request';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private host = environment.BASE_URL;
-  private baseUrl = environment.BASE_URL + '/instruments'
+  private baseUrl = environment.BASE_URL + '/user'
 
   constructor(protected http: HttpClient) { }
 
@@ -68,9 +68,39 @@ export class UserService {
 
   ////////////////////////
 
-  fetchUsers(): Observable<any> {
+  fetchUsernames(): Observable<any> {
     return this.http
-      .get(this.baseUrl + '/fetch-users')
+      .get(this.baseUrl + '/fetch-usernames')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  fetchFirstNames(): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-firstnames')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  fetchLastNames(): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-lastnames')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  fetchEmails(): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-emails')
       .pipe(
         map((response: any) => {
           return response;

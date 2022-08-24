@@ -28,8 +28,19 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
 
   // my fields
   filterOpened = false;
+
   usernameList: any = [];
   filteredUsernameList: any = [];
+
+  firstNameList: any = [];
+  filteredFirstNameList: any = [];
+
+  lastNameList: any = [];
+  filteredLastNameList: any = [];
+
+  emailList: any = [];
+  filteredEmailList: any = [];
+
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
     private userService: UserService, private notificationService: NotificationService) {
@@ -37,13 +48,27 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(this.userService.fetchUsers().subscribe((data) => {
+    this.subscriptions.add(this.userService.fetchFirstNames().subscribe((data) => {
+      this.firstNameList = data;
+      this.filteredFirstNameList = data;
+    }));
+    this.subscriptions.add(this.userService.fetchLastNames().subscribe((data) => {
+      this.lastNameList = data;
+      this.filteredLastNameList = data;
+    }));
+    this.subscriptions.add(this.userService.fetchUsernames().subscribe((data) => {
       this.usernameList = data;
       this.filteredUsernameList = data;
     }));
+    this.subscriptions.add(this.userService.fetchEmails().subscribe((data) => {
+      this.emailList = data;
+      this.filteredEmailList = data;
+    }));
+    this.onList();
   }
 
   onList(): void {
+    this.userReq.$paging.$orderField = Field.USERNAME;
     this.subscriptions.add(this.userService.getUsersList(this.userReq)
       .subscribe(res => {
         this.modelList = res.content;
@@ -57,6 +82,9 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
 
   onReset() {
     this.filteredUsernameList = this.usernameList;
+    this.filteredFirstNameList = this.firstNameList;
+    this.filteredLastNameList = this.lastNameList;
+    this.filteredEmailList = this.emailList;
     this.userReq = new UserRequest();
     this.userReq.$paging.$pageSize = 10;
     this.userReq.$paging.$orderField = Field.USERNAME;
@@ -64,8 +92,20 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
     this.onList();
   }
 
+  filterFirstNameList(search: any) {
+    this.filteredFirstNameList = this.firstNameList.filter((item: any) => item.firstName.toLowerCase().includes(search.toLowerCase().toString()));
+  }
+
+  filterLastNameList(search: any) {
+    this.filteredLastNameList = this.lastNameList.filter((item: any) => item.lastName.toLowerCase().includes(search.toLowerCase().toString()));
+  }
+
   filterUsernameList(search: any) {
     this.filteredUsernameList = this.usernameList.filter((item: any) => item.username.toLowerCase().includes(search.toLowerCase().toString()));
+  }
+
+  filterEmailList(search: any) {
+    this.filteredEmailList = this.emailList.filter((item: any) => item.email.toLowerCase().includes(search.toLowerCase().toString()));
   }
 
   onChangePaging(changePaging: any): void {
