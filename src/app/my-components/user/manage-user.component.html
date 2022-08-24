@@ -18,7 +18,7 @@
         <label>Search First Name</label>
 
         <mat-form-field>
-          <mat-select [(ngModel)]="userReq.$firstName" panelClass="scroll">
+          <mat-select [(ngModel)]="req.$firstName" panelClass="scroll">
             <mat-option style="color:black">
 
               <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
@@ -38,7 +38,7 @@
         <label>Search Last Name</label>
 
         <mat-form-field>
-          <mat-select [(ngModel)]="userReq.$lastName" panelClass="scroll">
+          <mat-select [(ngModel)]="req.$lastName" panelClass="scroll">
             <mat-option style="color:black">
 
               <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
@@ -58,7 +58,7 @@
         <label>Search Username</label>
 
         <mat-form-field>
-          <mat-select [(ngModel)]="userReq.$username" panelClass="scroll">
+          <mat-select [(ngModel)]="req.$username" panelClass="scroll">
             <mat-option style="color:black">
 
               <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
@@ -78,7 +78,7 @@
         <label>Search Email</label>
 
         <mat-form-field>
-          <mat-select [(ngModel)]="userReq.$email" panelClass="scroll">
+          <mat-select [(ngModel)]="req.$email" panelClass="scroll">
             <mat-option style="color:black">
 
               <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
@@ -118,39 +118,38 @@
         <th [style.width.%]="5"></th>
 
         <th [style.width.%]="12.5">
-          <app-sorting [paging]="userReq.$paging" [label]="'Photo'" [sortField]="''"
-            (emitSorting)="onChangePaging($event)">
+          <app-sorting [paging]="req.$paging" [label]="'Photo'" [sortField]="''" (emitSorting)="onChangePaging($event)">
           </app-sorting>
         </th>
 
         <th [style.width.%]="17">
-          <app-sorting [paging]="userReq.$paging" [label]="'User ID'" [sortField]="'ID'"
+          <app-sorting [paging]="req.$paging" [label]="'User ID'" [sortField]="'ID'"
             (emitSorting)="onChangePaging($event)">
           </app-sorting>
         </th>
 
         <th [style.width.%]="8">
-          <app-sorting [paging]="userReq.$paging" [label]="'First Name'" [sortField]="'FIRST_NAME'"
+          <app-sorting [paging]="req.$paging" [label]="'First Name'" [sortField]="'FIRST_NAME'"
             (emitSorting)="onChangePaging($event)"></app-sorting>
         </th>
 
         <th [style.width.%]="8">
-          <app-sorting [paging]="userReq.$paging" [label]="'Last Name'" [sortField]="'LAST_NAME'"
+          <app-sorting [paging]="req.$paging" [label]="'Last Name'" [sortField]="'LAST_NAME'"
             (emitSorting)="onChangePaging($event)"></app-sorting>
         </th>
 
         <th [style.width.%]="12.5">
-          <app-sorting [paging]="userReq.$paging" [label]="'Username'" [sortField]="'USERNAME'"
+          <app-sorting [paging]="req.$paging" [label]="'Username'" [sortField]="'USERNAME'"
             (emitSorting)="onChangePaging($event)"></app-sorting>
         </th>
 
         <th [style.width.%]="12.5">
-          <app-sorting [paging]="userReq.$paging" [label]="'Email'" [sortField]="'EMAIL'"
+          <app-sorting [paging]="req.$paging" [label]="'Email'" [sortField]="'EMAIL'"
             (emitSorting)="onChangePaging($event)"></app-sorting>
         </th>
 
         <th [style.width.%]="12.5">
-          <app-sorting [paging]="userReq.$paging" [label]="'Status'" [sortField]="'STATUS'"
+          <app-sorting [paging]="req.$paging" [label]="'Status'" [sortField]="'STATUS'"
             (emitSorting)="onChangePaging($event)">
           </app-sorting>
         </th>
@@ -192,7 +191,7 @@
   </table>
 
   <div style="margin-top:25px" fxLayoutAlign="center center">
-    <app-paging [paging]="userReq.$paging" (emitPaging)="onChangePaging($event)"></app-paging>
+    <app-paging [paging]="req.$paging" (emitPaging)="onChangePaging($event)"></app-paging>
   </div>
 </mat-card>
 

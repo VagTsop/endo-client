@@ -1,8 +1,7 @@
-import { Paging } from "./helper/paging.helper";
+import { GenericRequest } from "./generic.request";
 
-export class InstrumentRequest {
+export class InstrumentRequest extends GenericRequest {
 
-  private paging: Paging = new Paging();
   private instrumentId: number;
   private userPhoto: any;
   private instrumentName: string;
@@ -15,22 +14,6 @@ export class InstrumentRequest {
   private purchaseDateFrom: string;
   private purchaseDateTo: string;
   private instrumentSeriesCodesList: number[];
-
-  /**
-   * Getter $paging
-   * @return {Paging }
-   */
-  public get $paging(): Paging {
-    return this.paging;
-  }
-
-  /**
-   * Setter $paging
-   * @param {Paging } value
-   */
-  public set $paging(value: Paging) {
-    this.paging = value;
-  }
 
   /**
  * Getter $instrumentId

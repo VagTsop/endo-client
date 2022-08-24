@@ -32,9 +32,7 @@ export class ManageInstrumentComponent extends GenericComponent implements OnIni
     private notificationService: NotificationService
   ) {
     super();
-    this.req.$paging.$pageSize = 10;
-    // this.dateFrom = this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd') as any;
-    // this.dateTo = this.datePipe.transform(this.dateTo, 'yyyy-MM-dd') as any;
+    this.onReset();
   }
 
   ngOnInit(): void {

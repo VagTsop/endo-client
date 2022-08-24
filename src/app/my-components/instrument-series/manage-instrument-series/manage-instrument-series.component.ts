@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { InstrumentSeriesService } from 'src/services/instrument-series.service';
+import { InstrumentSeriesRequest } from 'src/transport/instrument-series.request';
 import { GenericComponent } from '../../generic.component';
 import { InstrumentSeriesFormPopupComponent } from '../instrument-series-form-popup/instrument-series-form-popup.component';
 
@@ -15,7 +16,8 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
     private instrumentSeriesService: InstrumentSeriesService
   ) {
     super();
-    this.instrumentSeriesReq.$paging.$pageSize = 10;
+    this.req = new InstrumentSeriesRequest();
+    this.req.$paging.$pageSize = 10;
   }
 
   ngOnInit() {
@@ -23,10 +25,10 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
   }
 
   onList(): void {
-    this.subscriptions.add(this.instrumentSeriesService.getInstrumentSeriesList(this.instrumentSeriesReq)
+    this.subscriptions.add(this.instrumentSeriesService.getInstrumentSeriesList(this.req)
       .subscribe(res => {
         this.modelList = res;
-        this.instrumentSeriesReq.$paging.$totalSize = res.totalElements;
+        this.req.$paging.$totalSize = res.totalElements;
       }));
   }
 
@@ -34,7 +36,7 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
     this.subscriptions.unsubscribe();
   }
   onChangePaging(changePaging: any): void {
-    this.instrumentSeriesReq.$paging = changePaging;
+    this.req.$paging = changePaging;
     this.onList();
   }
 

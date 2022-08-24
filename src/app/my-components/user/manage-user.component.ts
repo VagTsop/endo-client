@@ -45,6 +45,7 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   constructor(private router: Router, private authenticationService: AuthenticationService,
     private userService: UserService, private notificationService: NotificationService) {
     super()
+    this.onReset();
   }
 
   ngOnInit(): void {
@@ -68,11 +69,11 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   }
 
   onList(): void {
-    this.userReq.$paging.$orderField = Field.USERNAME;
-    this.subscriptions.add(this.userService.getUsersList(this.userReq)
+    this.req.$paging.$orderField = Field.USERNAME;
+    this.subscriptions.add(this.userService.getUsersList(this.req)
       .subscribe(res => {
         this.modelList = res.content;
-        this.userReq.$paging.$totalSize = res.totalElements;
+        this.req.$paging.$totalSize = res.totalElements;
       }));
   }
 
@@ -85,10 +86,10 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
     this.filteredFirstNameList = this.firstNameList;
     this.filteredLastNameList = this.lastNameList;
     this.filteredEmailList = this.emailList;
-    this.userReq = new UserRequest();
-    this.userReq.$paging.$pageSize = 10;
-    this.userReq.$paging.$orderField = Field.USERNAME;
-    this.userReq.$paging.$orderDirection = 'DESC';
+    this.req = new UserRequest();
+    this.req.$paging.$pageSize = 10;
+    this.req.$paging.$orderField = Field.USERNAME;
+    this.req.$paging.$orderDirection = 'DESC';
     this.onList();
   }
 
@@ -109,7 +110,7 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   }
 
   onChangePaging(changePaging: any): void {
-    this.userReq.$paging = changePaging;
+    this.req.$paging = changePaging;
     this.onList();
   }
 
