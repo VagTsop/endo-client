@@ -1,10 +1,10 @@
 <mat-card>
 
-  <div>
+  <div fxLayoutAlign="space-between center">
 
-    <div fxFlex="5" fxFlex>
+    <div>
 
-      <div fxLayoutAlign="start center" (click)="filterOpened = !filterOpened">
+      <div (click)="filterOpened = !filterOpened">
 
         <mat-icon matTooltip="expand less" *ngIf="filterOpened" style="color:green;">expand_less</mat-icon>
         <mat-icon matTooltip="expand more" *ngIf="!filterOpened" style="color: red;">expand_more</mat-icon>
@@ -13,43 +13,100 @@
 
     <div fxFlex="90" *ngIf="filterOpened">
 
-      <div fxLayoutAlign="space-between center" fxFlex>
+      <div fxLayoutAlign="start center" fxFlex="22.5">
 
-        <div fxLayoutAlign="start center" fxFlex="20">
+        <label>Search First Name</label>
 
-          <label>Select User</label>
+        <mat-form-field>
+          <mat-select [(ngModel)]="userReq.$firstName" panelClass="scroll">
+            <mat-option style="color:black">
 
-          <mat-form-field>
-            <mat-select [(ngModel)]="userReq.$username" panelClass="scroll">
-              <mat-option style="color:black">
+              <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
+                noEntriesFoundLabel="no entries" (ngModelChange)="filterFirstNameList($event)">
+              </ngx-mat-select-search>
+            </mat-option>
 
-                <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
-                  noEntriesFoundLabel="no entries" (ngModelChange)="filterUsernameList($event)">
-                </ngx-mat-select-search>
-              </mat-option>
+            <mat-option *ngFor="let item of filteredFirstNameList" [value]="item.firstName">
+              {{item.firstName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-              <mat-option *ngFor="let item of filteredUsernameList" [value]="item.username">
-                {{item.username}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+      <div fxLayoutAlign="start center" fxFlex="22.5">
 
-        <div style="padding-right:5px" fxFlex="20" fxLayoutAlign="end center">
+        <label>Search Last Name</label>
 
-          <button mat-icon-button (click)="onSearch()">
-            <mat-icon matTooltip="search">search</mat-icon>
-          </button>
+        <mat-form-field>
+          <mat-select [(ngModel)]="userReq.$lastName" panelClass="scroll">
+            <mat-option style="color:black">
 
-          <button mat-icon-button (click)="onReset()">
-            <mat-icon matTooltip="reset">refresh</mat-icon>
-          </button>
-        </div>
+              <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
+                noEntriesFoundLabel="no entries" (ngModelChange)="filterLastNameList($event)">
+              </ngx-mat-select-search>
+            </mat-option>
+
+            <mat-option *ngFor="let item of filteredLastNameList" [value]="item.lastName">
+              {{item.lastName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayoutAlign="start center" fxFlex="22.5">
+
+        <label>Search Username</label>
+
+        <mat-form-field>
+          <mat-select [(ngModel)]="userReq.$username" panelClass="scroll">
+            <mat-option style="color:black">
+
+              <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
+                noEntriesFoundLabel="no entries" (ngModelChange)="filterUsernameList($event)">
+              </ngx-mat-select-search>
+            </mat-option>
+
+            <mat-option *ngFor="let item of filteredUsernameList" [value]="item.username">
+              {{item.username}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayoutAlign="start center" fxFlex="22.5">
+
+        <label>Search Email</label>
+
+        <mat-form-field>
+          <mat-select [(ngModel)]="userReq.$email" panelClass="scroll">
+            <mat-option style="color:black">
+
+              <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
+                noEntriesFoundLabel="no entries" (ngModelChange)="filterEmailList($event)">
+              </ngx-mat-select-search>
+            </mat-option>
+
+            <mat-option *ngFor="let item of filteredEmailList" [value]="item.email">
+              {{item.email}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div style="padding-right:5px" fxFlex="10" fxLayoutAlign="end center">
+
+        <button mat-icon-button (click)="onSearch()">
+          <mat-icon matTooltip="search">search</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="onReset()">
+          <mat-icon matTooltip="reset">refresh</mat-icon>
+        </button>
       </div>
     </div>
 
-    <div fxFlex="5" style="padding-right:10px" fxLayoutAlign="end center">
-      <mat-icon matTooltip="create user">add
+    <div fxLayoutAlign="center center">
+      <mat-icon style="height:30px" matTooltip="create user">add
       </mat-icon>
     </div>
   </div>
@@ -124,7 +181,7 @@
           </mat-menu>
         </td>
         <td>{{item.photo ? item.photo : '-' }}</td>
-        <td>{{item.userID ? item.userID : '-' }}</td>
+        <td>{{item.userId ? item.userId : '-' }}</td>
         <td>{{item.firstName ? item.firstName : '-' }}</td>
         <td>{{item.lastName ? item.lastName : '-' }}</td>
         <td>{{item.username ? item.username : '-' }}</td>
