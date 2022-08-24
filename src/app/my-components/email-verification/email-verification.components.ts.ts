@@ -17,11 +17,13 @@ export enum TokenStatus {
 })
 export class EmailVerificationComponent {
   tokenStatus = TokenStatus;
-  status : TokenStatus;
+  status: TokenStatus;
   isLoadingResult: boolean;
   code: string | null = '';
+
   constructor(private router: Router, private authService: AuthenticationService, private route: ActivatedRoute,
     private notificationService: NotificationService) { }
+    
   ngOnInit(): void {
     this.isLoadingResult = true;
     this.code = this.route.snapshot.paramMap.get('code');
@@ -30,10 +32,6 @@ export class EmailVerificationComponent {
         data => {
           this.isLoadingResult = false;
           this.status = TokenStatus[data.body.message as keyof TokenStatus];
-        }
-        ,
-        err => {
-          this.isLoadingResult = false;
         }
       );
     }
@@ -48,10 +46,6 @@ export class EmailVerificationComponent {
           this.router.navigateByUrl('/login');
           this.notificationService.showNotification(
             { title: 'Success', type: 'SUCCESS', message: data.body.message });
-        }
-        ,
-        err => {
-          this.isLoadingResult = false;
         }
       );
     }

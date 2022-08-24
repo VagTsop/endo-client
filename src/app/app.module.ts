@@ -5,6 +5,7 @@ import { SharedModule } from './shared.module';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './my-components/home/home.module';
+import { UserModule } from './my-components/user/user.module';
 import { InstrumentModule } from './my-components/instrument/instrument.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +31,7 @@ import { ErrorModule } from './my-components/error/error.module';
     RouterModule.forRoot([]),
     PublicModule,
     HomeModule,
+    UserModule,
     InstrumentModule,
     InstrumentSeriesModule,
     ErrorModule,
