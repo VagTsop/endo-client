@@ -1,0 +1,40 @@
+.register-login {
+  .mat-card-content {
+    background: $publicCardBackgroundColor;
+    border-radius: 5px;
+    padding: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+
+    span {
+      color: $publicCardHelpTextColor;
+    }
+
+    mat-icon {
+      color: $publicCardSecondaryColor;
+    }
+
+    .mat-raised-button {
+      background-color: $publicCardSecondaryColor;
+      text-align: center;
+      height: 35px;
+    }
+
+    a {
+      color: $publicCardSecondaryColor;
+    }
+
+    .reminder {
+      color: $publicCardSecondaryColor;
+    }
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: $publicCardBackgroundColor;
+  }
+
+  .mat-form-field {
+    padding-right: 0;
+  }
+}

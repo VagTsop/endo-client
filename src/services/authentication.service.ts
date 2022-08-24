@@ -54,14 +54,13 @@ export class AuthenticationService {
   }
 
   verifyCode(code: string): Observable<any> {
-    return this.http.post<User>(`${this.host}/user/verify?code=${code}`, code);
+    return this.http.post<any>(`${this.host}/user/verify?code=${code}`, code, { observe: 'response' });
   }
 
-  // verifyToken(token): Observable<any> {
-  //   return this.http.post(AppConstants.AUTH_API + 'token/verify', token, {
-  //         headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
-  //   });
-  // }
+  resendToken(code: string): Observable<any> {
+    return this.http.post<any>(`${this.host}/user/resend?code=${code}`, code, { observe: 'response' });
+  }
+
 
   public isUserLoggedIn(): boolean {
     this.loadToken();

@@ -1,4 +1,160 @@
-<div class="container">
+<mat-card>
+
+  <div>
+
+    <div fxFlex="5" fxFlex>
+
+      <div fxLayoutAlign="start center" (click)="filterOpened = !filterOpened">
+
+        <mat-icon matTooltip="expand less" *ngIf="filterOpened" style="color:green;">expand_less</mat-icon>
+        <mat-icon matTooltip="expand more" *ngIf="!filterOpened" style="color: red;">expand_more</mat-icon>
+      </div>
+    </div>
+
+    <div fxFlex="90" *ngIf="filterOpened">
+
+      <div fxLayoutAlign="space-between center" fxFlex>
+
+        <div fxLayoutAlign="start center" fxFlex="20">
+
+          <label>Select User</label>
+
+          <mat-form-field>
+            <mat-select [(ngModel)]="userReq.$username" panelClass="scroll">
+              <mat-option style="color:black">
+
+                <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
+                  noEntriesFoundLabel="no entries" (ngModelChange)="filterUsernameList($event)">
+                </ngx-mat-select-search>
+              </mat-option>
+
+              <mat-option *ngFor="let item of filteredUsernameList" [value]="item.username">
+                {{item.username}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div style="padding-right:5px" fxFlex="20" fxLayoutAlign="end center">
+
+          <button mat-icon-button (click)="onSearch()">
+            <mat-icon matTooltip="search">search</mat-icon>
+          </button>
+
+          <button mat-icon-button (click)="onReset()">
+            <mat-icon matTooltip="reset">refresh</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="5" style="padding-right:10px" fxLayoutAlign="end center">
+      <mat-icon matTooltip="create user">add
+      </mat-icon>
+    </div>
+  </div>
+
+  <table border=1 frame=void rules=rows>
+    <thead>
+      <tr>
+
+        <th [style.width.%]="5"></th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="userReq.$paging" [label]="'Photo'" [sortField]="''"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+
+        <th [style.width.%]="17">
+          <app-sorting [paging]="userReq.$paging" [label]="'User ID'" [sortField]="'ID'"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+
+        <th [style.width.%]="8">
+          <app-sorting [paging]="userReq.$paging" [label]="'First Name'" [sortField]="'FIRST_NAME'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="8">
+          <app-sorting [paging]="userReq.$paging" [label]="'Last Name'" [sortField]="'LAST_NAME'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="userReq.$paging" [label]="'Username'" [sortField]="'USERNAME'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="userReq.$paging" [label]="'Email'" [sortField]="'EMAIL'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="userReq.$paging" [label]="'Status'" [sortField]="'STATUS'"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let item of modelList">
+
+        <td>
+
+          <button mat-icon-button [matMenuTriggerFor]="ol">
+            <mat-icon matTooltip="Action">more_vert</mat-icon>
+          </button>
+
+          <mat-menu #ol="matMenu">
+
+            <button mat-menu-item>
+              <span>Edit</span>
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-menu-item>
+              <span>Delete</span>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-menu>
+        </td>
+        <td>{{item.photo ? item.photo : '-' }}</td>
+        <td>{{item.userID ? item.userID : '-' }}</td>
+        <td>{{item.firstName ? item.firstName : '-' }}</td>
+        <td>{{item.lastName ? item.lastName : '-' }}</td>
+        <td>{{item.username ? item.username : '-' }}</td>
+        <td>{{item.email ? item.email : '-' }}</td>
+        <td>{{item.status ? item.status : '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:25px" fxLayoutAlign="center center">
+    <app-paging [paging]="userReq.$paging" (emitPaging)="onChangePaging($event)"></app-paging>
+  </div>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
   <div class="row mb-2 mt-2 text-center">
     <div class="col-md-4">
     </div>
@@ -10,7 +166,6 @@
     </div>
   </div>
 
-  <!-- nav bar -->
   <nav class="navbar navbar-expand-md breadcrumb">
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="nav nav-pills">
@@ -31,9 +186,9 @@
     </div>
   </nav>
 
-  <!-- main content -->
+
   <div class="tab-content mt-3" id="myTabContent">
-    <!-- user table -->
+
     <div class="tab-pane fade show active" id="users">
       <div class="mb-3 float-right">
         <div class="btn-group mr-2">
@@ -97,7 +252,6 @@
     <button [hidden]="true" type="button" id="openUserEdit" data-toggle="modal" data-target="#editUserModal">
     </button>
 
-    <!-- change password  -->
     <div [hidden]="!isAdmin" class="tab-pane fade" id="reset-password">
       <form #resetPasswordForm="ngForm" (ngSubmit)="onResetPassword(resetPasswordForm)">
         <fieldset>
@@ -117,7 +271,6 @@
       </form>
     </div>
 
-    <!-- user profile -->
     <div class="tab-pane fade" id="profile">
       <div class="container">
         <div class="row flex-lg-nowrap">
@@ -275,7 +428,6 @@
       </div>
     </div>
 
-    <!-- modal user info -->
     <div class="modal fade bd-example-modal-lg" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby=""
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -355,7 +507,6 @@
       </div>
     </div>
 
-    <!-- model add user -->
     <div [hidden]="!isAdmin" class="modal draggable fade bd-example-modal-lg" id="addUserModal" tabindex="-1"
       role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -439,7 +590,6 @@
       </div>
     </div>
 
-    <!-- modal edit user -->
     <div class="modal draggable fade bd-example-modal-lg" id="editUserModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -528,7 +678,6 @@
       </div>
     </div>
 
-    <!-- modal edit user -->
     <div class="modal draggable fade bd-example-modal-lg" id="editUserModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -609,11 +758,10 @@
       </div>
     </div>
 
-    <!-- profile image change form -->
     <form enctype="multipart/form-data" style="display:none;">
       <input type="file"
         (change)="onProfileImageChange($event.target.files[0].name, $event.target.files[0]); onUpdateProfileImage()"
         name="profile-image-input" id="profile-image-input" placeholder="file" accept="image/*" />
     </form>
 
-  </div>
+  </div> -->

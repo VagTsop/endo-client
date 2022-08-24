@@ -10,15 +10,24 @@
       </button>
 
       <img src="./assets/images/logo/endofusion.jpg" style="margin-left:20px;width:150px">
+
+      <!-- <h1 style="font-weight:550;">Βαγγέλης Τσοπάνος</h1> -->
+      <h3 style="padding: 12px 20px 0px 18px">{{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
+        currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
+      </h3>
     </div>
 
     <div class="header__header-items" fxLayoutAlign="center center">
-      <a class="header__header-items--header-item" routerLink="/home"><img matTooltip="home"
+      <a class="header__header-items--header-item" [routerLink]="['/home']"><img matTooltip="home"
           src="./assets/images/icons/home.png"></a>
-      <a class="header__header-items--header-item" routerLink="/manage-instrument"><img matTooltip="instrument"
+      <a class="header__header-items--header-item" [routerLink]="['/manage-user']"><img matTooltip="User"
+          src="./assets/images/icons/user-module.png"></a>
+      <a class="header__header-items--header-item" [routerLink]="['/manage-instrument']"><img matTooltip="instrument"
           src="./assets/images/icons/stethoscope.png"></a>
-      <a class="header__header-items--header-item" routerLink="/manage-instrument-series"><img
+      <a class="header__header-items--header-item" [routerLink]="['/manage-instrument-series']"><img
           matTooltip="scan instruments series" src="./assets/images/icons/qr-code.png"></a>
+      <a class="header__header-items--header-item" [routerLink]="['/manage-instrument-series']"><img
+          matTooltip="scan instruments series" src="./assets/images/icons/user.png"></a>
     </div>
   </mat-toolbar>
 </div>

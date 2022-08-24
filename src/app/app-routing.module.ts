@@ -13,6 +13,11 @@ export const routes: Routes = [
     loadChildren: () => import('./my-components/home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'user',
+    canActivate: [AuthenticationGuard],
+    loadChildren: () => import('./my-components/user/user.module').then(m => m.UserModule)
+  },
+  {
     path: 'instrument',
     canActivate: [AuthenticationGuard],
     loadChildren: () => import('./my-components/instrument/instrument.module').then(m => m.InstrumentModule)

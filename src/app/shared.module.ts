@@ -16,6 +16,7 @@ import { PagingComponent } from "./my-components/paging/paging.component";
 import { SortingComponent } from "./my-components/sorting/sorting.component";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatNativeDateModule } from "@angular/material/core";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
@@ -41,7 +42,7 @@ const MATERIAL_MODULES = [
   MatNativeDateModule,
   MatSelectModule,
   MatSidenavModule,
-
+  MatProgressSpinnerModule,
   NgxMatSelectSearchModule,
   MatToolbarModule
 ];

@@ -1,27 +1,51 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
+import { NotificationService } from 'src/services/notification.service';
+
+
+export enum TokenStatus {
+  VALID,
+  ALREADY_CONFIRMED,
+  EXPIRED,
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: './email-verification.component.html',
-  styleUrls: ['./email-verification.component.scss']
 
 })
 export class EmailVerificationComponent {
-  public code: string | null = '';
-  constructor(private authService: AuthenticationService, private route: ActivatedRoute) { }
+  tokenStatus = TokenStatus;
+  status: TokenStatus;
+  isLoadingResult: boolean;
+  code: string | null = '';
+
+  constructor(private router: Router, private authService: AuthenticationService, private route: ActivatedRoute,
+    private notificationService: NotificationService) { }
+    
   ngOnInit(): void {
+    this.isLoadingResult = true;
     this.code = this.route.snapshot.paramMap.get('code');
     if (this.code) {
-      console.log(this.code)
       this.authService.verifyCode(this.code).subscribe(
         data => {
-          console.log(data)
+          this.isLoadingResult = false;
+          this.status = TokenStatus[data.body.message as keyof TokenStatus];
         }
-        ,
-        err => {
-          console.log(err)
+      );
+    }
+  }
+
+  onResendVerificationEmail() {
+    this.isLoadingResult = true;
+    if (this.code) {
+      this.authService.resendToken(this.code).subscribe(
+        data => {
+          this.isLoadingResult = false;
+          this.router.navigateByUrl('/login');
+          this.notificationService.showNotification(
+            { title: 'Success', type: 'SUCCESS', message: data.body.message });
         }
       );
     }

@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from '../model/user';
 import { CustomHttpRespone } from '../model/custom-http-response';
+import { UserRequest } from 'src/transport/user-request';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private host = environment.BASE_URL;
+  private baseUrl = environment.BASE_URL + '/instruments'
 
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}/user/list`);
@@ -62,5 +64,53 @@ export class UserService {
     formData.append('isActive', JSON.stringify(user.active));
     formData.append('isNonLocked', JSON.stringify(user.notLocked));
     return formData;
+  }
+
+  ////////////////////////
+
+  fetchUsers(): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-users')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  getUsersList(request: UserRequest) {
+    return this.http.get(
+      this.baseUrl + '/get-users-list',
+      {
+        params: this.constructParams(request, 'userId,username,firstName,lastName,email,status')
+      }
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
+  public constructParams(
+    req: UserRequest,
+    searchKeys: any
+  ): HttpParams {
+
+    let params: HttpParams = new HttpParams();
+    // paging params
+    params = params.append('page', (req.$paging.$pageNumber - 1).toString());
+    params = params.append('size', req.$paging.$pageSize.toString());
+    params = params.append(
+      'sort',
+      req.$paging.$orderField + ',' + req.$paging.$orderDirection
+    );
+
+    // search params
+    if (searchKeys) {
+      searchKeys.split(',').forEach((key) => {
+        if (req[key] != null) {
+          params = params.append(key, req[key]);
+        }
+      });
+    }
+    return params;
   }
 }
