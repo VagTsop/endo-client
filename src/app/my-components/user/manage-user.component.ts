@@ -69,7 +69,6 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   }
 
   onList(): void {
-    this.req.$paging.$orderField = Field.USERNAME;
     this.subscriptions.add(this.userService.getUsersList(this.req)
       .subscribe(res => {
         this.modelList = res.content;
