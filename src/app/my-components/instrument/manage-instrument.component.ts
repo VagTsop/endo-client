@@ -123,7 +123,7 @@ export class ManageInstrumentComponent extends GenericComponent implements OnIni
   }
 
   filterInstrumentList(search: any) {
-    this.filteredInstrumentList = this.instrumentList.filter((item: any) => item.instrumentName.toLowerCase().includes(search.toLowerCase().toString()));
+    this.filteredInstrumentList = this.instrumentList.filter((item: any) => item.name.toLowerCase().includes(search.toLowerCase().toString()));
   }
 
 

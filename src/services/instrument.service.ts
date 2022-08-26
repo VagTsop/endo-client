@@ -4,10 +4,10 @@ import { InstrumentRequest } from "src/transport/instrument.request";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from "src/environments/environment";
+import { CommonService } from './common.service';
 
 @Injectable()
-export class InstrumentService {
-  constructor(protected http: HttpClient) { }
+export class InstrumentService extends CommonService {
 
   private baseUrl = environment.BASE_URL + '/instruments'
 
@@ -33,7 +33,7 @@ export class InstrumentService {
 
   updateInstrument(request: InstrumentRequest): Observable<any> {
     return this.http.put(
-      this.baseUrl + '/update-instrument?id=' + request.$instrumentId,
+      this.baseUrl + '/update-instrument?id=' + request.$id,
       request)
       .pipe(map((response: any) => {
         return response;
@@ -72,7 +72,7 @@ export class InstrumentService {
     return this.http.get(
       this.baseUrl + '/get-instruments-list',
       {
-        params: this.constructParams(request, 'instrumentName,purchaseDateFrom,purchaseDateTo,instrumentSeriesCodesList')
+        params: this.constructParams(request, 'name,purchaseDateFrom,purchaseDateTo,instrumentSeriesCodesList')
       }
     ).pipe(map((response: any) => {
       return response;
@@ -90,28 +90,4 @@ export class InstrumentService {
     }));
   }
 
-  public constructParams(
-    req: InstrumentRequest,
-    searchKeys: any
-  ): HttpParams {
-
-    let params: HttpParams = new HttpParams();
-    // paging params
-    params = params.append('page', (req.$paging.$pageNumber - 1).toString());
-    params = params.append('size', req.$paging.$pageSize.toString());
-    params = params.append(
-      'sort',
-      req.$paging.$orderField + ',' + req.$paging.$orderDirection
-    );
-
-    // search params
-    if (searchKeys) {
-      searchKeys.split(',').forEach((key) => {
-        if (req[key] != null) {
-          params = params.append(key, req[key]);
-        }
-      });
-    }
-    return params;
-  }
 }

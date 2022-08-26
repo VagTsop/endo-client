@@ -47,8 +47,8 @@ export class InstrumentFormPopupComponent extends GenericComponent implements On
         .subscribe(res => {
           if (res) {
             this.form = this.formBuilder.group({
-              instrumentName: [res.instrumentName, Validators.required],
-              instrumentDescription: [res.instrumentDescription],
+              instrumentName: [res.name, Validators.required],
+              instrumentDescription: [res.description],
               instrumentRef: [res.instrumentRef, Validators.required],
               instrumentLot: [res.instrumentLot, Validators.required],
               instrumentManufacturer: [res.instrumentManufacturer, Validators.required],
@@ -95,9 +95,9 @@ export class InstrumentFormPopupComponent extends GenericComponent implements On
     this.dialogRef.close();
   }
   onSaveInstrument() {
-    this.req.$instrumentId = this.id;
-    this.req.$instrumentName = this.form.value.instrumentName;
-    this.req.$instrumentDescription = this.form.value.instrumentDescription;
+    this.req.$id = this.id;
+    this.req.$name = this.form.value.instrumentName;
+    this.req.$description = this.form.value.instrumentDescription;
     this.req.$instrumentRef = this.form.value.instrumentRef;
     this.req.$instrumentLot = this.form.value.instrumentLot;
     this.req.$instrumentManufacturer = this.form.value.instrumentManufacturer;
