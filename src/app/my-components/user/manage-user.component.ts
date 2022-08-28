@@ -9,6 +9,9 @@ import { NotificationService } from 'src/services/notification.service';
 import { GenericComponent } from '../generic.component';
 import { Field } from 'src/transport/helper/table-fields.helper';
 import { UserRequest } from 'src/transport/user-request';
+import { UserFormPopupComponent } from './user-form-popup/user-form-popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { VerificationPopupComponent } from '../verification-popup/verification-popup.component';
 
 @Component({
   selector: 'app-user',
@@ -42,7 +45,8 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   filteredEmailList: any = [];
 
 
-  constructor(private router: Router, private authenticationService: AuthenticationService,
+  constructor(private dialog: MatDialog,
+    private router: Router, private authenticationService: AuthenticationService,
     private userService: UserService, private notificationService: NotificationService) {
     super()
     this.onReset();
@@ -90,6 +94,85 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
     this.req.$paging.$orderField = Field.USERNAME;
     this.req.$paging.$orderDirection = 'DESC';
     this.onList();
+  }
+
+  onForm(id?: any) {
+    const dialogRef = this.dialog.open(UserFormPopupComponent, { disableClose: true, panelClass: 'custom-dialog-container' },);
+    dialogRef.componentInstance.id = id;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.add(this.userService.fetchFirstNames().subscribe((data) => {
+          this.firstNameList = data;
+          this.filteredFirstNameList = data;
+        }));
+        this.subscriptions.add(this.userService.fetchLastNames().subscribe((data) => {
+          this.lastNameList = data;
+          this.filteredLastNameList = data;
+        }));
+        this.subscriptions.add(this.userService.fetchUsernames().subscribe((data) => {
+          this.usernameList = data;
+          this.filteredUsernameList = data;
+        }));
+        this.subscriptions.add(this.userService.fetchEmails().subscribe((data) => {
+          this.emailList = data;
+          this.filteredEmailList = data;
+        }));
+        this.onList();
+        this.notificationService.showNotification(
+          {
+            title: 'Save',
+            type: 'SUCCESS',
+            message: 'User has been saved',
+          });
+      }
+    });
+  }
+
+  onSelectRow(item: any): void {
+    this.selectedRow = item;
+  }
+
+  onDeleteUser(id: number) {
+    const dialogRef = this.dialog.open(VerificationPopupComponent, {
+      panelClass: 'custom-verification-dialog-container',
+      data:
+      {
+        item: "Are you sure you want to delete " +
+          ' "' + this.selectedRow.username + '" ?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.add(this.userService.deleteUser(id)
+        .subscribe(res => {
+          if (res) {
+            this.subscriptions.add(this.userService.fetchFirstNames().subscribe((data) => {
+              this.firstNameList = data;
+              this.filteredFirstNameList = data;
+            }));
+            this.subscriptions.add(this.userService.fetchLastNames().subscribe((data) => {
+              this.lastNameList = data;
+              this.filteredLastNameList = data;
+            }));
+            this.subscriptions.add(this.userService.fetchUsernames().subscribe((data) => {
+              this.usernameList = data;
+              this.filteredUsernameList = data;
+            }));
+            this.subscriptions.add(this.userService.fetchEmails().subscribe((data) => {
+              this.emailList = data;
+              this.filteredEmailList = data;
+            }));
+            this.onList();
+            this.notificationService.showNotification(
+              {
+                title: 'Delete',
+                type: 'SUCCESS',
+                message: 'User has been deleted',
+              });
+          }
+        }));
+      }
+    });
   }
 
   filterFirstNameList(search: any) {

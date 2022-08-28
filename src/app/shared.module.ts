@@ -27,6 +27,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { ControlMessageComponent } from './validation/control-message/control-message.component';
 import { NotificationService } from "src/services/notification.service";
 import { ToastrModule } from "ngx-toastr";
+import { VerificationPopupComponent } from "./my-components/verification-popup/verification-popup.component";
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -54,7 +55,8 @@ const MATERIAL_MODULES = [
     SortingComponent,
     ScannerComponent,
     HeaderComponent,
-    ControlMessageComponent
+    ControlMessageComponent,
+    VerificationPopupComponent
   ],
   imports: [
     FlexLayoutModule,

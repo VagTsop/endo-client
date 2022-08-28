@@ -1,0 +1,75 @@
+<div>
+
+  <div fxLayoutAlign="space-between center">
+
+    <h2 mat-dialog-title>{{id ? 'Edit User' : 'Create User'}}</h2>
+
+    <button mat-icon-button tabindex="-1" (click)="onClose()">
+      <mat-icon matTooltip="close">close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="form">
+
+    <mat-dialog-content style="max-height: 80vh" fxLayout='column'>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input [formControl]="form.controls.userId" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.userId">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input [formControl]="form.controls.firstName" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.firstName">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input [formControl]="form.controls.lastName" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.lastName">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input [formControl]="form.controls.username" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.username">
+      </control-message>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input [formControl]="form.controls.email" matInput>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.email">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select [formControl]="form.controls.status" panelClass="scroll">
+          <mat-option [value]="true">active</mat-option>
+          <mat-option [value]="false">disabled</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <control-message [control]="form.controls.status">
+      </control-message>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions fxLayoutAlign="center center">
+      <button (click)="onSaveUser()" [disabled]="!form.valid" type="submit"
+        class="mat-raised-button mat-primary">Save</button>
+    </mat-dialog-actions>
+  </form>
+</div>

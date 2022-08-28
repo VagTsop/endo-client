@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
+import { HttpEvent, HttpParams } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { map, Observable } from 'rxjs';
 import { User } from '../model/user';
 import { CustomHttpRespone } from '../model/custom-http-response';
 import { UserRequest } from 'src/transport/user-request';
+import { CommonService } from './common.service';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class UserService extends CommonService {
   private host = environment.BASE_URL;
   private baseUrl = environment.BASE_URL + '/user'
-
-  constructor(protected http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}/user/list`);
@@ -19,10 +18,6 @@ export class UserService {
 
   public addUser(formData: FormData): Observable<User> {
     return this.http.post<User>(`${this.host}/user/add`, formData);
-  }
-
-  public updateUser(formData: FormData): Observable<User> {
-    return this.http.post<User>(`${this.host}/user/update`, formData);
   }
 
   public resetPassword(email: string): Observable<CustomHttpRespone> {
@@ -35,10 +30,6 @@ export class UserService {
         reportProgress: true,
         observe: 'events'
       });
-  }
-
-  public deleteUser(username: string): Observable<CustomHttpRespone> {
-    return this.http.delete<CustomHttpRespone>(`${this.host}/user/delete/${username}`);
   }
 
   public addUsersToLocalCache(users: User[]): void {
@@ -119,28 +110,39 @@ export class UserService {
     }));
   }
 
-  public constructParams(
-    req: UserRequest,
-    searchKeys: any
-  ): HttpParams {
+  createUser(request: UserRequest): Observable<any> {
+    return this.http.post(
+      this.baseUrl + '/create-user', request
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
 
-    let params: HttpParams = new HttpParams();
-    // paging params
-    params = params.append('page', (req.$paging.$pageNumber - 1).toString());
-    params = params.append('size', req.$paging.$pageSize.toString());
-    params = params.append(
-      'sort',
-      req.$paging.$orderField + ',' + req.$paging.$orderDirection
-    );
+  updateUser(request: UserRequest): Observable<any> {
+    return this.http.put(
+      this.baseUrl + '/update-user?id=' + request.$id,
+      request)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 
-    // search params
-    if (searchKeys) {
-      searchKeys.split(',').forEach((key) => {
-        if (req[key] != null) {
-          params = params.append(key, req[key]);
-        }
-      });
-    }
-    return params;
+  getUserById(id: number): Observable<any> {
+    return this.http.get(
+      this.baseUrl + '/get-user-by-id',
+      {
+        params: new HttpParams().set('id', id.toString())
+      }
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.post(
+      this.baseUrl + '/delete-user', id
+    ).pipe(map((response: any) => {
+      return response;
+    }));
   }
 }

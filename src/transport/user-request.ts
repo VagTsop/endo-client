@@ -2,7 +2,6 @@ import { GenericRequest } from "./generic.request";
 
 export class UserRequest extends GenericRequest {
   private userId: number;
-  private userPhoto: any;
   private username: string;
   private firstName: string;
   private lastName: string;
