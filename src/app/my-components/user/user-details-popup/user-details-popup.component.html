@@ -102,6 +102,37 @@
           </div>
         </div>
       </div>
+
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <mat-icon matTooltip="Role" style="font-size: 22px">visibility</mat-icon>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+          <div style="padding-left:10px">
+            <span>{{user.role}}</span>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <mat-icon matTooltip="Join Date" style="font-size: 22px">date_range</mat-icon>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+          <div style="padding-left:10px">
+            <span>{{user.joinDate | date: "dd/MM/yyyy"}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
