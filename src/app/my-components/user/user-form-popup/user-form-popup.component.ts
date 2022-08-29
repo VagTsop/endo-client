@@ -12,6 +12,8 @@ import { GenericComponent } from '../../generic.component';
 export class UserFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
   id: any;
   form: UntypedFormGroup;
+  public url: string | null;
+
 
   constructor(
     private userService: UserService,
@@ -30,6 +32,12 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
       username: [null, Validators.required],
       email: [null, Validators.required],
       status: [null, Validators.required],
+      profileImage: [null],
+      profileImageName: [null],
+      profileImageBytes: [null],
+      profileImageSize: [null],
+      profileImageType: [null],
+
     });
 
     if (this.id) {
@@ -79,5 +87,50 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  onSelectFile(event: any) {
+    const reader = new FileReader();
+    const file = event.target.files[0] as File;
+    reader.readAsDataURL(file);
+    if (file.type !== '' && file.type !== 'application/x-msdownload') {
+      reader.onload = () => {
+        const res: any = reader.result;
+        this.form.controls['profileImageBytes'].patchValue(res.split(',')[1], {
+          onlySelf: true,
+        });
+        this.form.controls['profileImageType'].patchValue(
+          file.type ? file.type : 'application/octet-stream',
+          { onlySelf: true }
+        );
+        this.form.controls['profileImageSize'].patchValue(file.size, {
+          onlySelf: true,
+        });
+        this.form.controls['profileImageName'].patchValue(file.name, {
+          onlySelf: true,
+        });
+        this.form.markAsTouched();
+        this.form.updateValueAndValidity();
+        this.form.controls.profileImage.patchValue(
+          this.form.value.profileImageBytes
+        );
+        this.form.updateValueAndValidity();
+        // imagePreview
+        this.url =
+          'data:' +
+          'image/jpeg' +
+          ';base64,' +
+          this.form.controls.profileImage.value;
+      };
+    }
+  }
+
+  public remove() {
+    this.url = null;
+    this.form.controls['profileImage'].patchValue(null);
+    this.form.controls['profileImageName'].patchValue(null);
+    this.form.controls['profileImageBytes'].patchValue(null);
+    this.form.controls['profileImageType'].patchValue(null);
+    this.form.controls['profileImageSize'].patchValue(null);
   }
 }

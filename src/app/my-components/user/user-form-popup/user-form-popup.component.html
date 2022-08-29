@@ -13,6 +13,38 @@
 
     <mat-dialog-content style="max-height: 80vh" fxLayout='column'>
 
+      <div fxLayout="row">
+
+        <label style="padding:0;text-align: center;font-size: 12px" fxLayoutAlign="center center"
+          [ngStyle]="{'border': url ?  '1px solid #fff' :  '1px dashed #fff'}" class="hoverable" for="fileInput">
+
+          <img [ngStyle]="{'display': url ?  'block' :  'none'}" *ngIf="form.controls.profileImage.value" [src]="url">
+
+          <p style="color:#ffffff;margin:0" *ngIf="!url">Click To Upload Preview Image</p>
+
+          <div style="color:#ffffff" style="width:100%;text-align:center" *ngIf="url" class="hover-text">Click
+            To Change Preview
+            Image
+          </div>
+
+          <div class="background"></div>
+        </label>
+
+        <input id="fileInput" type='file' (change)="onSelectFile($event)">
+
+        <mat-card-actions style="margin-left:25px" fxLayoutAlign="center center"
+          *ngIf="form.controls.profileImage.value ">
+
+          <button style="margin: 0 8px" mat-raised-button color="primary" (click)="remove()">Remove
+            Image
+          </button>
+        </mat-card-actions>
+      </div>
+
+      <mat-form-field style="display:none">
+        <input readonly [formControl]="form.controls.profileImageName" matInput>
+      </mat-form-field>
+
       <mat-form-field appearance="fill">
         <mat-label>ID</mat-label>
         <input [formControl]="form.controls.userId" matInput>
