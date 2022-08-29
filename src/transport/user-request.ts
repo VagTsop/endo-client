@@ -1,30 +1,12 @@
-import { Paging } from "./helper/paging.helper";
+import { GenericRequest } from "./generic.request";
 
-export class UserRequest {
-  private paging: Paging = new Paging();
+export class UserRequest extends GenericRequest {
   private userId: number;
-  private userPhoto: any;
   private username: string;
   private firstName: string;
   private lastName: string;
   private email: string;
   private status: boolean;
-
-  /**
-   * Getter $paging
-   * @return {Paging }
-   */
-  public get $paging(): Paging {
-    return this.paging;
-  }
-
-  /**
-  * Setter $paging
-  * @param {Paging } value
-  */
-  public set $paging(value: Paging) {
-    this.paging = value;
-  }
 
   /**
   * Getter $userId

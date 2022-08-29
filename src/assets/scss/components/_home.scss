@@ -1,0 +1,28 @@
+.user-manager {
+  background-image: url(../../../assets/images/manage-users.png);
+}
+
+.instrument-manager {
+  background-image: url(../../../assets/images/manage-instruments.png);
+}
+
+.instrument-series-manager {
+  background-image: url(../../../assets/images/manage-instrument-series.png);
+}
+
+.content {
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 250px;
+  height: 200px;
+  background-color: #0c2538;
+  border-radius: 10px;
+  padding:25px;
+  border: 2px solid #293e68;
+  cursor:pointer;
+}
+.content:hover {
+  border: 2px solid#344d81;
+}

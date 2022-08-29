@@ -11,7 +11,7 @@ export enum TokenStatus {
 }
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-email-verification',
   templateUrl: './email-verification.component.html',
 
 })
@@ -23,7 +23,7 @@ export class EmailVerificationComponent {
 
   constructor(private router: Router, private authService: AuthenticationService, private route: ActivatedRoute,
     private notificationService: NotificationService) { }
-    
+
   ngOnInit(): void {
     this.isLoadingResult = true;
     this.code = this.route.snapshot.paramMap.get('code');

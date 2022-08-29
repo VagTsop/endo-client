@@ -20,7 +20,7 @@
           <label>Select Instrument</label>
 
           <mat-form-field>
-            <mat-select [(ngModel)]="req.$instrumentName" panelClass="scroll">
+            <mat-select [(ngModel)]="req.$name" panelClass="scroll">
               <mat-option style="color:black">
 
                 <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
@@ -28,8 +28,8 @@
                 </ngx-mat-select-search>
               </mat-option>
 
-              <mat-option *ngFor="let item of filteredInstrumentList" [value]="item.instrumentName">
-                {{item.instrumentName}}
+              <mat-option *ngFor="let item of filteredInstrumentList" [value]="item.name">
+                {{item.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -148,7 +148,7 @@
 
     <tbody>
 
-      <tr *ngFor="let item of modelList">
+      <tr *ngFor="let item of modelList" (click)="onSelectRow(item)">
 
         <td>
 
@@ -158,20 +158,20 @@
 
           <mat-menu #ol="matMenu">
 
-            <button (click)="onForm(item.instrumentId)" mat-menu-item>
+            <button (click)="onForm(item.id)" mat-menu-item>
               <span>Edit</span>
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button (click)="onDeleteInstrument(item.instrumentId)" mat-menu-item>
+            <button (click)="onDeleteInstrument(item.id)" mat-menu-item>
               <span>Delete</span>
               <mat-icon>delete</mat-icon>
             </button>
           </mat-menu>
         </td>
 
-        <td>{{item.instrumentName ? item.instrumentName : '-' }}</td>
-        <td>{{item.instrumentDescription ? item.instrumentDescription : '-' }}</td>
+        <td>{{item.name ? item.name : '-' }}</td>
+        <td>{{item.description ? item.description : '-' }}</td>
         <td>{{item.instrumentRef ? item.instrumentRef : '-' }}</td>
         <td>{{item.instrumentLot ? item.instrumentLot : '-' }}</td>
         <td>{{item.instrumentManufacturer ? item.instrumentManufacturer : '-' }}</td>

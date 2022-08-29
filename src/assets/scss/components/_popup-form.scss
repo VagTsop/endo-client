@@ -17,3 +17,25 @@
 .text-warn {
   color: #ff0505;
 }
+
+.custom-verification-dialog-container .mat-dialog-container {
+  padding: 0;
+  height: 200px;
+  width: 400px;
+  border: 8px solid #33383a;
+  background-color: $borderColor;
+}
+
+.verification-popup {
+  background-color: rgba(31, 33, 36, 0.9882352941) !important;
+  height: 100%;
+
+
+  .mat-raised-button {
+    color:white;
+    background-color: #33383a;
+  }
+  .mat-raised-button:hover {
+    background-color: #446674;
+  }
+}

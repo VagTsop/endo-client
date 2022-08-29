@@ -1,12 +1,8 @@
-import { Paging } from "./helper/paging.helper";
+import { GenericRequest } from "./generic.request";
 
-export class InstrumentRequest {
+export class InstrumentRequest extends GenericRequest {
 
-  private paging: Paging = new Paging();
-  private instrumentId: number;
   private userPhoto: any;
-  private instrumentName: string;
-  private instrumentDescription: string;
   private instrumentRef: string;
   private instrumentLot: string;
   private instrumentManufacturer: string;
@@ -15,38 +11,6 @@ export class InstrumentRequest {
   private purchaseDateFrom: string;
   private purchaseDateTo: string;
   private instrumentSeriesCodesList: number[];
-
-  /**
-   * Getter $paging
-   * @return {Paging }
-   */
-  public get $paging(): Paging {
-    return this.paging;
-  }
-
-  /**
-   * Setter $paging
-   * @param {Paging } value
-   */
-  public set $paging(value: Paging) {
-    this.paging = value;
-  }
-
-  /**
- * Getter $instrumentId
- * @return {number}
- */
-  public get $instrumentId(): number {
-    return this.instrumentId;
-  }
-
-  /**
-   * Setter $instrumentId
-   * @param {number[]} value
-   */
-  public set $instrumentId(value: number) {
-    this.instrumentId = value;
-  }
 
   /**
 * Getter $userPhoto
@@ -62,38 +26,6 @@ export class InstrumentRequest {
    */
   public set $userPhoto(value: any) {
     this.userPhoto = value;
-  }
-
-  /**
-* Getter $instrumentName
-* @return {string}
-*/
-  public get $instrumentName(): string {
-    return this.instrumentName;
-  }
-
-  /**
-   * Setter $instrumentName
-   * @param {string} value
-   */
-  public set $instrumentName(value: string) {
-    this.instrumentName = value;
-  }
-
-  /**
-* Getter $instrumentDescription
-* @return {string}
-*/
-  public get $instrumentDescription(): string {
-    return this.instrumentDescription;
-  }
-
-  /**
-   * Setter $instrumentDescription
-   * @param {string} value
-   */
-  public set $instrumentDescription(value: string) {
-    this.instrumentDescription = value;
   }
 
   /**

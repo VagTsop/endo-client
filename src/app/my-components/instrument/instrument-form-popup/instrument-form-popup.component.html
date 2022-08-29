@@ -2,7 +2,7 @@
 
   <div fxLayoutAlign="space-between center">
 
-    <h2 mat-dialog-title>Create Instrument</h2>
+    <h2 mat-dialog-title>{{id ? 'Edit Instrument' : 'Create Instrument'}}</h2>
 
     <button mat-icon-button tabindex="-1" (click)="onClose()">
       <mat-icon matTooltip="close">close</mat-icon>

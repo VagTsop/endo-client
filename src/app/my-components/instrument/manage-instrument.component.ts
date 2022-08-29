@@ -7,6 +7,7 @@ import { GenericComponent } from '../generic.component';
 import { MatDialog } from '@angular/material/dialog';
 import { InstrumentFormPopupComponent } from './instrument-form-popup/instrument-form-popup.component';
 import { NotificationService } from 'src/services/notification.service';
+import { VerificationPopupComponent } from '../verification-popup/verification-popup.component';
 
 
 @Component({
@@ -32,9 +33,7 @@ export class ManageInstrumentComponent extends GenericComponent implements OnIni
     private notificationService: NotificationService
   ) {
     super();
-    this.req.$paging.$pageSize = 10;
-    // this.dateFrom = this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd') as any;
-    // this.dateTo = this.datePipe.transform(this.dateTo, 'yyyy-MM-dd') as any;
+    this.onReset();
   }
 
   ngOnInit(): void {
@@ -105,27 +104,43 @@ export class ManageInstrumentComponent extends GenericComponent implements OnIni
     });
   }
 
+  onSelectRow(item: any): void {
+    this.selectedRow = item;
+  }
+
   onDeleteInstrument(id: number) {
-    this.subscriptions.add(this.instrumentService.deleteInstrument(id)
-      .subscribe(res => {
-        if (res) {
-          this.subscriptions.add(this.instrumentService.fetchInstruments().subscribe((data) => {
-            this.instrumentList = data;
-            this.filteredInstrumentList = data;
+    const dialogRef = this.dialog.open(VerificationPopupComponent, {
+      panelClass: 'custom-verification-dialog-container',
+      data:
+      {
+        item: "Are you sure you want to delete" +
+          ' "' + this.selectedRow.name + '" ?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.add(this.instrumentService.deleteInstrument(id)
+          .subscribe(res => {
+            if (res) {
+              this.subscriptions.add(this.instrumentService.fetchInstruments().subscribe((data) => {
+                this.instrumentList = data;
+                this.filteredInstrumentList = data;
+              }));
+              this.onList();
+              this.notificationService.showNotification(
+                {
+                  title: 'Delete',
+                  type: 'SUCCESS',
+                  message: 'Your instrument has been deleted',
+                });
+            }
           }));
-          this.onList();
-          this.notificationService.showNotification(
-            {
-              title: 'Delete',
-              type: 'SUCCESS',
-              message: 'Your instrument has been deleted',
-            });
-        }
-      }));
+      }
+    });
   }
 
   filterInstrumentList(search: any) {
-    this.filteredInstrumentList = this.instrumentList.filter((item: any) => item.instrumentName.toLowerCase().includes(search.toLowerCase().toString()));
+    this.filteredInstrumentList = this.instrumentList.filter((item: any) => item.name.toLowerCase().includes(search.toLowerCase().toString()));
   }
 
 

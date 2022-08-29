@@ -1,0 +1,32 @@
+<div fxLayout="column" class="verification-popup">
+
+  <div style="padding-right:10px" fxFlex="25" fxLayoutAlign="end center">
+    <!-- <label *ngIf="!message || !messageTitle">delete</label>
+    <label *ngIf="messageTitle">{{ messageTitle }}</label> -->
+    <button mat-icon-button (click)="onClose(false)">
+      <mat-icon style="font-size:1.7rem" matTooltip="close">close</mat-icon>
+    </button>
+  </div>
+
+  <div fxFlex="75" fxLayout="column" fxLayoutAlign="space-evenly center">
+
+    <div style="text-align:center;width:90%">
+
+      <!-- <mat-icon>question_mark</mat-icon> -->
+      <label *ngIf="!message">{{data.item}}</label>
+      <label *ngIf="message">{{ message }}</label>
+    </div>
+
+
+    <mat-dialog-actions style="margin:0">
+      <button (click)="onClose(false)" class="mat-raised-button mat-primary">No</button>
+      <div style="margin:8px"></div>
+      <button (click)="onClose(true)" class="mat-raised-button mat-primary" cdkFocusInitial>Yes</button>
+    </mat-dialog-actions>
+
+    <!-- <div fxLayoutAlign="center center">
+      <button mat-raised-button (click)="onClose(false)">No</button>
+      <button mat-raised-button (click)="onClose(true)" cdkFocusInitial>Yes</button>
+    </div> -->
+  </div>
+</div>
