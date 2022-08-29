@@ -1,0 +1,107 @@
+<div style="color:white" class="profile-details-popup">
+  <div style="padding-top: 6px" class="gene-card-title">
+
+    <div fxFlex fxLayoutAlign="start center">
+
+      <div style="padding-left:10px">
+        <mat-icon style="font-size: 22px">account_circle</mat-icon>
+      </div>
+
+      <div style="padding-left:10px">
+        <h4 style="margin:0">User Details</h4>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider style="margin-top: 4px;margin-bottom: 10px;background-color: #33383a;"></mat-divider>
+
+  <div class="scrollable-content" style="height:75%">
+
+    <div fxLayout="column" class="identity-card-data">
+
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <mat-icon matTooltip="User ID" style="font-size: 22px">assignment_ind</mat-icon>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <span>{{user.userId}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <mat-icon matTooltip="Full Name" style="font-size: 22px">perm_identity</mat-icon>
+          </div>
+
+        </div>
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <span>{{user.firstName + ' ' + user.lastName }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+          <div style="padding-left:10px">
+            <mat-icon matTooltip="Username" style="font-size: 22px">perm_identity</mat-icon>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+          <div style="padding-left:10px">
+            <span>{{user.username}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <mat-icon matTooltip="Email" style="font-size: 22px">email</mat-icon>
+          </div>
+        </div>
+
+
+        <div fxLayout="column">
+          <div style="padding-left:10px">
+            <span>{{user.email}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+
+        <div fxLayout="column">
+
+          <div style="padding-left:10px">
+            <!-- <mat-icon style="font-size: 22px">lock</mat-icon> -->
+            <mat-icon matTooltip="Status" style="font-size: 22px">lock_open</mat-icon>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+          <div style="padding-left:10px">
+            <span>{{user.active ? 'active' : 'not-active'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

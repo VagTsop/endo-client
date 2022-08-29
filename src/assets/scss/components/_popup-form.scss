@@ -39,3 +39,24 @@
     background-color: #446674;
   }
 }
+
+.custom-profile-details-dialog-container .mat-dialog-container {
+  padding: 0;
+  width: 250px;
+  border: 8px solid #33383a;
+  background-color: $borderColor;
+}
+
+.profile-details-popup {
+  background-color: rgba(31, 33, 36, 0.9882352941) !important;
+  height: 100%;
+
+
+  .mat-raised-button {
+    color:white;
+    background-color: #33383a;
+  }
+  .mat-raised-button:hover {
+    background-color: #446674;
+  }
+}
