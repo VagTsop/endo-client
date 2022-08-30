@@ -1,49 +1,17 @@
-// Desktops
-label {
-  color: $secondaryColor;
-  padding-right: 15px;
-}
 table {
-  width: 100%;
-  thead {
-    line-height: 3em;
-    tr {
-      color: $secondaryColor;
-      opacity: 0.5;
-    }
-  }
   tbody {
+    tr:nth-child(odd) {
+      background: #d3d3d0;
+    }
     line-height: 4em;
-    tr {
+    td {
       text-align: center;
-      color: $secondaryColor;
     }
   }
 }
-.mat-menu-content:not(:empty) {
-  display: flex;
-  flex-direction: column;
-  button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.manage-instrument-table-row {
+  tr:nth-child(odd) {
+    background: #d3d3d0;
   }
-}
-@media only screen and (min-width: $desktop) {
-}
-
-// Laptops, Desktops
-@media only screen and (min-width: $desktop-laptop-breakpoint-min) and (max-width: $desktop-laptop-breakpoint-max) {
-}
-
-// Tablets, Ipads
-@media only screen and (min-width: $tablet-ipad-breakpoint-min) and (max-width: $tablet-ipad-breakpoint-max) {
-}
-
-// Low Resolution Tablets, Mobiles
-@media only screen and (min-width: $low-res-tablet-mobiles-breakpoint-min) and (max-width: $low-res-tablet-mobiles-breakpoint-max) {
-}
-
-// Most of the Smartphones Mobiles
-@media only screen and (max-width: $mobile-breakpoint-max) {
 }

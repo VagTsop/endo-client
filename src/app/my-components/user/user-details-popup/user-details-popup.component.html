@@ -1,5 +1,5 @@
-<div style="color:white" class="profile-details-popup">
-  <div style="padding-top: 6px" class="gene-card-title">
+<div style="color:black" class="profile-details-popup">
+  <div class="gene-card-title">
 
     <div fxFlex fxLayoutAlign="start center">
 
@@ -15,135 +15,29 @@
 
   <mat-divider style="margin-top: 4px;margin-bottom: 10px;background-color: #33383a;"></mat-divider>
 
-  <div class="scrollable-content" style="height:75%">
+  <div style="margin-top:20px" class="scrollable-content">
 
-    <div fxLayout="column" class="identity-card-data">
-
-
-      <!-- <div fxLayout="row">
+    <div fxLayoutAlign="space-between start" fxLayout="row">
 
 
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <img src="{{user.profileImage}}">
-          </div>
-        </div>
-      </div> -->
-
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <mat-icon matTooltip="User ID" style="font-size: 22px">assignment_ind</mat-icon>
-          </div>
-        </div>
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <span>{{user.userId}}</span>
-          </div>
-        </div>
+      <div fxLayout="column">
+        <mat-icon matTooltip="User ID" style="font-size: 22px">assignment_ind</mat-icon>
+        <mat-icon matTooltip="Full Name" style="font-size: 22px">perm_identity</mat-icon>
+        <mat-icon matTooltip="Username" style="font-size: 22px">perm_identity</mat-icon>
+        <mat-icon matTooltip="Email" style="font-size: 22px">email</mat-icon>
+        <mat-icon matTooltip="Status" style="font-size: 22px">lock_open</mat-icon>
+        <mat-icon matTooltip="Role" style="font-size: 22px">visibility</mat-icon>
+        <mat-icon matTooltip="Join Date" style="font-size: 22px">date_range</mat-icon>
       </div>
 
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <mat-icon matTooltip="Full Name" style="font-size: 22px">perm_identity</mat-icon>
-          </div>
-
-        </div>
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <span>{{user.firstName + ' ' + user.lastName }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-          <div style="padding-left:10px">
-            <mat-icon matTooltip="Username" style="font-size: 22px">perm_identity</mat-icon>
-          </div>
-        </div>
-
-        <div fxLayout="column">
-          <div style="padding-left:10px">
-            <span>{{user.username}}</span>
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <mat-icon matTooltip="Email" style="font-size: 22px">email</mat-icon>
-          </div>
-        </div>
-
-
-        <div fxLayout="column">
-          <div style="padding-left:10px">
-            <span>{{user.email}}</span>
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <!-- <mat-icon style="font-size: 22px">lock</mat-icon> -->
-            <mat-icon matTooltip="Status" style="font-size: 22px">lock_open</mat-icon>
-          </div>
-        </div>
-
-        <div fxLayout="column">
-          <div style="padding-left:10px">
-            <span>{{user.active ? 'active' : 'not-active'}}</span>
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <mat-icon matTooltip="Role" style="font-size: 22px">visibility</mat-icon>
-          </div>
-        </div>
-
-        <div fxLayout="column">
-          <div style="padding-left:10px">
-            <span>{{user.role}}</span>
-          </div>
-        </div>
-      </div>
-      <div fxLayout="row">
-
-        <div fxLayout="column">
-
-          <div style="padding-left:10px">
-            <mat-icon matTooltip="Join Date" style="font-size: 22px">date_range</mat-icon>
-          </div>
-        </div>
-
-        <div fxLayout="column">
-          <div style="padding-left:10px">
-            <span>{{user.joinDate | date: "dd/MM/yyyy"}}</span>
-          </div>
-        </div>
+      <div fxLayout="column" style="line-height: 1.77">
+        <span>{{user.userId}}</span>
+        <span>{{user.firstName + ' ' + user.lastName }}</span>
+        <span>{{user.username}}</span>
+        <span>{{user.email}}</span>
+        <span>{{user.active ? 'active' : 'not-active'}}</span>
+        <span>{{user.role}}</span>
+        <span>{{user.joinDate | date: "dd/MM/yyyy"}}</span>
       </div>
     </div>
   </div>

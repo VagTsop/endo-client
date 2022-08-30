@@ -3,21 +3,18 @@
 // 1.0 Colors
 
 $primaryColor: #0c2538;
-$backgroundColor: #373c3c;
+//$backgroundColor: #373c3c;
 $secondaryColor: #ffff;
 
 $borderColor: #293e68;
-$borderHoverColor: #344d81;
 $selectionHoverColor: #6183fd99;
 
 $sidenavColor: #1f2124fc;
-$mat-menu: #3c3936;
-$lightGrey: rgb(219, 219, 219);
 
 $publicCardBackgroundColor: #afbfd8;
-$publicCardTextColor:#000000;
-$publicCardHelpTextColor:red;
-$publicCardSecondaryColor:#305446;
+$publicCardTextColor: #000000;
+$publicCardHelpTextColor: red;
+$publicCardSecondaryColor: #305446;
 
 //  2.0 media queries breakpoints
 $desktop: 1281px;
@@ -28,6 +25,14 @@ $tablet-ipad-breakpoint-min: 768px;
 $low-res-tablet-mobiles-breakpoint-max: 767px;
 $low-res-tablet-mobiles-breakpoint-min: 481px;
 $mobile-breakpoint-max: 480px;
+
+$headerColor: #29529c;
+$backgroundColor: #ffff;
+$bodyColor: "";
+$buttonColor: "";
+$listCardColor: "#FFFFFF";
+$listCardHeaderColor: "#F4F4F4";
+$iconColor: "";
 
 /*
 // Desktops

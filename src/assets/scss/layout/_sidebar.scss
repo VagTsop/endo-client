@@ -1,15 +1,17 @@
 mat-sidenav-container {
   height: 100%;
-  background-color: inherit !important;
 }
 
 mat-sidenav,
 mat-sidenav-content {
-  padding: 25px !important;
+  padding: 25px;
 }
 
 mat-sidenav {
   width: 300px;
-  color: $secondaryColor !important;
-  background-color: $sidenavColor !important;
+  color: black !important;
+}
+.mat-drawer{
+    background-color: rgb(6 205 237 / 99%);
+
 }
