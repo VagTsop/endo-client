@@ -45,7 +45,7 @@
   top: 50%;
   height: 50%;
   width: 3px;
-  background-color: $secondaryColor;
+  background-color: green;
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
@@ -57,7 +57,7 @@
   bottom: 0;
   height: 3px;
   width: 100%;
-  background-color: $secondaryColor;
+  background-color: green;
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
@@ -73,6 +73,7 @@
   width: 60px;
   height: 60px;
   position: relative;
+  background-color: red;
 }
 .cross-mark:after {
   content: '';
