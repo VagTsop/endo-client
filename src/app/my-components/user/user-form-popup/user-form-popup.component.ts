@@ -12,7 +12,7 @@ import { GenericComponent } from '../../generic.component';
 export class UserFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
   id: any;
   form: UntypedFormGroup;
-  public url: string | null;
+  url: string | null;
 
 
   constructor(
@@ -37,7 +37,6 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
       profileImageBytes: [null],
       profileImageSize: [null],
       profileImageType: [null],
-
     });
 
     if (this.id) {
@@ -51,7 +50,17 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
               username: [res.username, Validators.required],
               email: [res.email, Validators.required],
               status: [res.status, Validators.required],
+              profileImage: [res.profileImage],
+              profileImageName: [null],
+              profileImageBytes: [null],
+              profileImageSize: [null],
+              profileImageType: [null]
             });
+            this.url =
+              'data:' +
+              'image/jpeg' +
+              ';base64,' +
+              this.form.controls.profileImage.value;
           }
         }));
     }
@@ -69,7 +78,7 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
     this.req.$userId = this.form.value.userId;
     this.req.$email = this.form.value.email;
     this.req.$status = this.form.value.status;
-
+    this.req.$profileImage = this.form.value.profileImage;
     if (this.id) {
       this.subscriptions.add(this.userService.updateUser(this.req).subscribe(
         res => {

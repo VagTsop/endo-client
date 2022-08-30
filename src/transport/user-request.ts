@@ -7,6 +7,7 @@ export class UserRequest extends GenericRequest {
   private lastName: string;
   private email: string;
   private status: boolean;
+  private profileImage: any;
 
   /**
   * Getter $userId
@@ -103,5 +104,21 @@ export class UserRequest extends GenericRequest {
   */
   public set $status(value: boolean) {
     this.status = value;
+  }
+
+  /**
+* Getter $profileImage
+* @return {any}
+*/
+  public get $profileImage(): any {
+    return this.profileImage;
+  }
+
+  /**
+  * Setter $status
+  * @param {any} value
+  */
+  public set $profileImage(value: any) {
+    this.profileImage = value;
   }
 }
