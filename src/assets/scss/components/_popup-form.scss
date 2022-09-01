@@ -1,112 +1,92 @@
-.custom-dialog-container .mat-dialog-container {
+.custom-form-dialog-container .mat-dialog-container {
   width: 700px;
-  border: 1px solid #394e7a;
-  h2 {
-    color: black;
-  }
-  textarea {
-    min-height: 60px;
-    max-height: 60px;
-  }
-  .mat-raised-button {
-    color: white;
-    background-color: #108ec1;
-  }
-  .mat-raised-button:hover {
-    background-color: #05719d;
-  }
-}
+  border: 1px solid $popupBorderColor;
+  .form-popup {
+    background-color: $popupBackgroundColor;
+    color: $popupColor;
+    .gene-block {
+      display: block;
+    }
+    .text-warn {
+      color: $popupErrorMessageColor;
+    }
+    textarea {
+      min-height: 60px;
+      max-height: 60px;
+    }
+    .mat-raised-button {
+      color: $popupButtonTextColor;
+      background-color: $popupButtonColor;
+    }
+    .mat-raised-button:hover {
+      background-color: $popupHoverButtonColor;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      max-height: 190px;
+    }
+    .hoverable {
+      position: relative;
+      display: block;
+      cursor: pointer;
+      height: 120px;
+      width: 120px;
+      min-width: 120px;
+    }
 
-.gene-block {
-  display: block !important;
-}
-.text-warn {
-  color: #ff0505;
+    .hoverable .hover-text {
+      position: absolute;
+      display: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    .hoverable .background {
+      position: absolute;
+      display: none;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: #ffffff80;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hoverable:hover .hover-text {
+      display: block;
+    }
+    .hoverable:hover .background {
+      display: block;
+    }
+    #fileInput {
+      display: none;
+    }
+  }
 }
 
 .custom-verification-dialog-container .mat-dialog-container {
   padding: 0;
   height: 200px;
   width: 400px;
-  border: 8px solid #33383a;
-  background-color: $borderColor;
-}
-
-.verification-popup {
-  background-color: rgba(31, 33, 36, 0.9882352941) !important;
-  height: 100%;
-
-  .mat-raised-button {
-    color: white;
-    background-color: #33383a;
-  }
-  .mat-raised-button:hover {
-    background-color: #446674;
+  border: 1px solid $popupBorderColor;
+  .verification-popup {
+    background-color: $popupBackgroundColor;
+    height: 100%;
+    .mat-raised-button {
+      color: $popupButtonTextColor;
+      background-color: $popupButtonColor;
+    }
+    .mat-raised-button:hover {
+      background-color: $popupHoverButtonColor;
+    }
   }
 }
 
 .custom-profile-details-dialog-container .mat-dialog-container {
   width: 350px;
-  border: 1px solid #33383a;
-  background-color:  rgba(6, 205, 237, 0.99);
-}
-
-.profile-details-popup {
-  background-color: rgba(6, 205, 237, 0.99) !important;
-  height: 100%;
-
-  .mat-raised-button {
-    color: white;
-    background-color: #33383a;
-  }
-  .mat-raised-button:hover {
-    background-color: #446674;
-  }
-}
-
-img {
-  height: 100%;
-  width: 100%;
-  max-height: 190px;
-}
-.hoverable {
-  position: relative;
-  display: block;
-  cursor: pointer;
-  height: 120px;
-  width: 120px;
-  min-width: 120px;
-}
-
-.hoverable .hover-text {
-  position: absolute;
-  display: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.hoverable .background {
-  position: absolute;
-  display: none;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hoverable:hover .hover-text {
-  display: block;
-}
-
-.hoverable:hover .background {
-  display: block;
-}
-
-#fileInput {
-  display: none;
+  border: 1px solid $popupBorderColor;
+  background-color: $popupBackgroundColor;
+  color: $popupColor;
 }

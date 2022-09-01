@@ -1,17 +1,13 @@
-table {
-  tbody {
-    tr:nth-child(odd) {
-      background: #d3d3d0;
-    }
+.list_card_header {
+  background-color: #cdcecf;
+  .table_body {
     line-height: 4em;
-    td {
+    .table_row {
+      background-color: $listBackgroundPrimaryColor;
       text-align: center;
     }
-  }
-}
-
-.manage-instrument-table-row {
-  tr:nth-child(odd) {
-    background: #d3d3d0;
+    .table_row:nth-child(odd) {
+      background: $listBackgroundSecondaryColor;
+    }
   }
 }

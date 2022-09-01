@@ -1,25 +1,22 @@
-.far {
-  font-size: 8.5rem;
-  color: #ffffff;
+.err .msg {
+  color: black;
 }
 
 .err {
-  color: #ffffff;
   font-size: 11rem;
 }
 
 .msg {
-  color:#ffffff;
   text-align: center;
   font-size: 1.4rem;
   line-height: 30px;
 }
 
-a {
+.go_login {
   text-decoration: none;
-  color: white;
+  color: #10629d;
 }
 
-a:hover {
+.go_login:hover {
   text-decoration: underline;
 }

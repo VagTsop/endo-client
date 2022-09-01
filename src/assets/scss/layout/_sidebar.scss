@@ -1,17 +1,19 @@
-mat-sidenav-container {
+.sidenav_container {
   height: 100%;
-}
-
-mat-sidenav,
-mat-sidenav-content {
-  padding: 25px;
-}
-
-mat-sidenav {
-  width: 300px;
-  color: black !important;
-}
-.mat-drawer{
-    background-color: rgb(6 205 237 / 99%);
-
+  .sidenav {
+    padding: 25px;
+    width: 300px;
+    color: $sidebarColor;
+    background-color: $sidebarBackgroundColor;
+    .sidenav_item {
+      font-size: 1.2rem;
+      line-height: 25px;
+      text-decoration: none;
+      color: $sidebarColor;
+      &.active {
+        color: $sidebarActiveColor;
+        text-decoration: none;
+      }
+    }
+  }
 }

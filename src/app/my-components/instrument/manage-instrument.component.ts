@@ -85,7 +85,7 @@ export class ManageInstrumentComponent extends GenericComponent implements OnIni
     }
   }
   onForm(id?: any) {
-    const dialogRef = this.dialog.open(InstrumentFormPopupComponent, { disableClose: true, panelClass: 'custom-dialog-container' },);
+    const dialogRef = this.dialog.open(InstrumentFormPopupComponent, { disableClose: true, panelClass: 'custom-form-dialog-container' },);
     dialogRef.componentInstance.id = id;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

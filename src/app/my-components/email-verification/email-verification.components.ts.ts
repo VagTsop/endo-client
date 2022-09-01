@@ -13,7 +13,6 @@ export enum TokenStatus {
 @Component({
   selector: 'app-email-verification',
   templateUrl: './email-verification.component.html',
-
 })
 export class EmailVerificationComponent {
   tokenStatus = TokenStatus;

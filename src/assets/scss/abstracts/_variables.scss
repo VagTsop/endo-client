@@ -1,20 +1,39 @@
 // Variables
 
+// Header
+$headerBackgroundColor: #ffffff;
+$headerColor: #000000;
+
+// Sidebar
+$sidebarBackgroundColor: #4e5a60fc;
+$sidebarColor: #ffffff;
+$sidebarActiveColor: #25d1ff;
+
+// List
+$listBackgroundPrimaryColor: #ffffff;
+$listBackgroundSecondaryColor: #d3d3d0;
+$listColor: #000000;
+
+// Popup
+$popupBackgroundColor: #ffffff;
+$popupBorderColor: #33383a;
+$popupColor: #000000;
+$popupErrorMessageColor: #ff0505;
+$popupButtonTextColor: #ffffff;
+$popupButtonColor: #108ec1;
+$popupHoverButtonColor: #05719d;
+
 // 1.0 Colors
 
-$primaryColor: #0c2538;
-//$backgroundColor: #373c3c;
 $secondaryColor: #ffff;
-
-$borderColor: #293e68;
 $selectionHoverColor: #6183fd99;
 
-$sidenavColor: #1f2124fc;
-
 $publicCardBackgroundColor: #afbfd8;
+$publicCardShadowColor: #00000033;
 $publicCardTextColor: #000000;
-$publicCardHelpTextColor: red;
+$publicCardHelpTextColor: #ff0505;
 $publicCardSecondaryColor: #305446;
+$publicCardSecondaryHoverColor: #1c7854;
 
 //  2.0 media queries breakpoints
 $desktop: 1281px;
@@ -26,7 +45,6 @@ $low-res-tablet-mobiles-breakpoint-max: 767px;
 $low-res-tablet-mobiles-breakpoint-min: 481px;
 $mobile-breakpoint-max: 480px;
 
-$headerColor: #29529c;
 $backgroundColor: #ffff;
 $bodyColor: "";
 $buttonColor: "";

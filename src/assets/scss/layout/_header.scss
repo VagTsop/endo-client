@@ -1,4 +1,6 @@
 .header {
+  background: $headerBackgroundColor;
+  color: $headerColor;
   &__header-items {
     img {
       width: 35px;
@@ -7,8 +9,4 @@
       margin-right: 20px;
     }
   }
-}
-.mat-toolbar {
-  background: #ffff;
-  color: rgba(0,0,0,.87);
 }
