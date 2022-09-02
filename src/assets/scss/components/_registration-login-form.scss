@@ -1,29 +1,29 @@
 .register-login {
   .mat-card-content {
-    background: white;
+    background: $registerLoginPrimaryColor;
     border-radius: 5px;
     padding: 25px;
-    box-shadow: 0 4px 8px 0 $publicCardShadowColor, 0 6px 20px 0 $publicCardShadowColor;
+    box-shadow: 0 4px 8px 0 $registerLoginShadowColor, 0 6px 20px 0 $registerLoginShadowColor;
     text-align: center;
     span {
-      color: $publicCardHelpTextColor;
+      color: $registerLoginHelpTextColor;
     }
     mat-icon {
-      color: $publicCardSecondaryColor;
+      color: $registerLoginSecondaryColor;
     }
     .mat-raised-button {
-      background-color: $publicCardSecondaryColor;
+      background-color: $registerLoginSecondaryColor;
       text-align: center;
       height: 35px;
     }
     .mat-raised-button:hover {
-      background-color: $publicCardSecondaryHoverColor;
+      background-color: $registerLoginHoverColor;
     }
     a {
-      color: $publicCardSecondaryColor;
+      color: $registerLoginSecondaryColor;
     }
     .reminder {
-      color: $publicCardSecondaryColor;
+      color: $registerLoginSecondaryColor;
     }
     .mat-form-field-appearance-fill .mat-form-field-flex {
       background-color: white;

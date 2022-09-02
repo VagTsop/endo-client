@@ -1,21 +1,3 @@
-ol {
-  padding: 0;
-  width: 50%;
-  display: inline-block;
-  color: $secondaryColor;
-}
-
-ol li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-li:hover:not(.selected) {
-  cursor: pointer;
-  background-color: lighten($color: $selectionHoverColor, $amount: 2);
-}
-
 [disabled].mat-raised-button {
   box-shadow: none;
   opacity: 0.5;
@@ -34,10 +16,6 @@ li:hover:not(.selected) {
 
 .custom-scroll::-webkit-scrollbar-track {
   background: #f0f2f7;
-}
-
-.dark-theme-active .custom-scroll::-webkit-scrollbar-track {
-  background: #272727;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {

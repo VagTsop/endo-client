@@ -89,4 +89,10 @@
   border: 1px solid $popupBorderColor;
   background-color: $popupBackgroundColor;
   color: $popupColor;
+
+  .divider {
+    margin-top: 4px;
+    margin-bottom: 10px;
+    background-color: $divider;
+  }
 }

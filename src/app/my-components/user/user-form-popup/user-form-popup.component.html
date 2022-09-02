@@ -24,9 +24,9 @@
 
           <img [ngStyle]="{'display': url ?  'block' :  'none'}" *ngIf="form.controls.profileImage.value" [src]="url">
 
-          <p style="color:black;margin:0" *ngIf="!url">Click To Upload Preview Image</p>
+          <p style="margin:0" *ngIf="!url">Click To Upload Preview Image</p>
 
-          <div style="color:black" style="width:100%;text-align:center" *ngIf="url" class="hover-text">Click
+          <div style="width:100%;text-align:center" *ngIf="url" class="hover-text">Click
             To Change Preview
             Image
           </div>
