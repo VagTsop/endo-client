@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { User } from 'src/model/user';
+import { AuthenticationService } from 'src/services/authentication.service';
 import { UserDetailsPopupComponent } from '../../user/user-details-popup/user-details-popup.component';
 
 
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   currentRoute: any = 'Home';
   user: any;
 
-  constructor(private dialog: MatDialog,
+  constructor(private dialog: MatDialog, private authenticationService: AuthenticationService,
     public router: Router
   ) { }
 
@@ -38,5 +39,10 @@ export class HeaderComponent implements OnInit {
       },
       position: { right: '50px', top: '50px' }
     });
+  }
+
+  onLogout() {
+    this.authenticationService.logOut();
+    this.router.navigate(['/login'])
   }
 }

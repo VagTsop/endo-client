@@ -25,8 +25,7 @@
         <mat-icon matTooltip="Full Name">perm_identity</mat-icon>
         <mat-icon matTooltip="Username">perm_identity</mat-icon>
         <mat-icon matTooltip="Email">email</mat-icon>
-        <mat-icon matTooltip="Status">lock_open</mat-icon>
-        <mat-icon matTooltip="Role">visibility</mat-icon>
+        <mat-icon matTooltip="Role">security</mat-icon>
         <mat-icon matTooltip="Join Date">date_range</mat-icon>
       </div>
 
@@ -35,8 +34,7 @@
         <span>{{user.firstName + ' ' + user.lastName }}</span>
         <span>{{user.username}}</span>
         <span>{{user.email}}</span>
-        <span>{{user.active ? 'active' : 'not-active'}}</span>
-        <span>{{user.role}}</span>
+        <span>{{user.role.substring(5)}}</span>
         <span>{{user.joinDate | date: "dd/MM/yyyy"}}</span>
       </div>
     </div>
