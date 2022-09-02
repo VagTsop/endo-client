@@ -87,19 +87,16 @@
         <input [formControl]="form.controls.email" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.email">
-      </control-message>
-
-      <mat-form-field appearance="fill">
+      <div fxLayout="row" style="width:15%" fxLayoutAlign="space-between center">
         <mat-label>Status</mat-label>
-        <mat-select [formControl]="form.controls.status" panelClass="scroll">
-          <mat-option [value]="true">active</mat-option>
-          <mat-option [value]="false">disabled</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-checkbox [formControl]="form.controls.status">
+        </mat-checkbox>
+      </div>
 
-      <control-message [control]="form.controls.status">
-      </control-message>
+      <div fxLayout="row" style="width:15%;margin-top:10px" fxLayoutAlign="space-between center">
+        <mat-label>Locked</mat-label>
+        <mat-checkbox [formControl]="form.controls.locked"></mat-checkbox>
+      </div>
 
     </mat-dialog-content>
 
