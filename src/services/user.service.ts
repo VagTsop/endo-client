@@ -103,7 +103,7 @@ export class UserService extends CommonService {
     return this.http.get(
       this.baseUrl + '/get-users-list',
       {
-        params: this.constructParams(request, 'userId,username,firstName,lastName,email,status')
+        params: this.constructParams(request, 'userId,username,firstName,lastName,email,status,locked')
       }
     ).pipe(map((response: any) => {
       return response;

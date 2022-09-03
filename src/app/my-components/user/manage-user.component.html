@@ -153,6 +153,12 @@
             (emitSorting)="onChangePaging($event)">
           </app-sorting>
         </th>
+
+        <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Account Locked'" [sortField]="'LOCKED'"
+            (emitSorting)="onChangePaging($event)">
+          </app-sorting>
+        </th>
       </tr>
     </thead>
 
@@ -186,8 +192,12 @@
         <td>{{item.username ? item.username : '-' }}</td>
         <td>{{item.email ? item.email : '-' }}</td>
         <td>
-          <mat-icon matTooltip="active" *ngIf="item.status" style="color:green;">check</mat-icon>
-          <mat-icon matTooltip="not active" *ngIf="!item.status" style="color: red;">close</mat-icon>
+          <mat-icon matTooltip="account active" *ngIf="item.status" style="color:green;">check</mat-icon>
+          <mat-icon matTooltip="account not active" *ngIf="!item.status" style="color: red;">close</mat-icon>
+        </td>
+        <td>
+          <mat-icon matTooltip="account unlocked" *ngIf="item.locked" style="color:green;">lock_open</mat-icon>
+          <mat-icon matTooltip="account locked" *ngIf="!item.locked" style="color: red;">lock</mat-icon>
         </td>
       </tr>
     </tbody>
