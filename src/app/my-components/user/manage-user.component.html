@@ -117,11 +117,6 @@
 
         <th [style.width.%]="5"></th>
 
-        <th [style.width.%]="12.5">
-          <app-sorting [paging]="req.$paging" [label]="'Photo'" [sortField]="''" (emitSorting)="onChangePaging($event)">
-          </app-sorting>
-        </th>
-
         <th [style.width.%]="17">
           <app-sorting [paging]="req.$paging" [label]="'User ID'" [sortField]="'ID'"
             (emitSorting)="onChangePaging($event)">
@@ -185,7 +180,6 @@
             </button>
           </mat-menu>
         </td>
-        <td>{{item.photo ? item.photo : '-' }}</td>
         <td>{{item.userId ? item.userId : '-' }}</td>
         <td>{{item.firstName ? item.firstName : '-' }}</td>
         <td>{{item.lastName ? item.lastName : '-' }}</td>
