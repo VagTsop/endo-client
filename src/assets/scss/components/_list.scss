@@ -1,3 +1,22 @@
+.custom-scroll {
+  max-height: 473px;
+  overflow-y: scroll;
+}
+
+.custom-scroll-table::-webkit-scrollbar-track {
+  background: #dbd5d5;
+}
+
+.custom-scroll-table::-webkit-scrollbar-thumb {
+  background: #949494;
+  border-radius: 30px;
+}
+
+.custom-scroll-table::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+}
+
 [disabled].mat-raised-button {
   box-shadow: none;
   opacity: 0.5;
@@ -7,36 +26,4 @@
   border-radius: 4.5px;
   border: none;
   cursor: pointer;
-}
-
-.custom-scroll {
-  max-height: 473px;
-  overflow-y: scroll;
-}
-
-.custom-scroll::-webkit-scrollbar-track {
-  background: #f0f2f7;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 148);
-  border-radius: 30px;
-}
-
-.custom-scroll-table::-webkit-scrollbar {
-  width: 5px;
-  height: 6px;
-}
-
-.custom-scroll-table::-webkit-scrollbar-track {
-  background: #f0f2f7;
-}
-
-.custom-scroll-table::-webkit-scrollbar-track {
-  background: #272727;
-}
-
-.custom-scroll-table::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 148);
-  border-radius: 30px;
 }
