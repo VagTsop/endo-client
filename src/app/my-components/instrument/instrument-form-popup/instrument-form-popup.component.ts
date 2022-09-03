@@ -56,6 +56,7 @@ export class InstrumentFormPopupComponent extends GenericComponent implements On
   onClose() {
     this.dialogRef.close();
   }
+
   onSaveInstrument() {
     this.req.$id = this.id;
     this.req.$name = this.form.value.instrumentName;

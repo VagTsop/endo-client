@@ -14,4 +14,7 @@ export class InstrumentSeriesDetailsPopupComponent implements OnInit {
     console.log(this.data.item)
   }
 
+  onClose() {
+    this.dialogRef.close();
+  }
 }
