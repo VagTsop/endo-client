@@ -1,0 +1,14 @@
+<table style="width:100%" border=1 frame=void rules=rows>
+  <thead>
+    <tr>
+      <th [style.width.%]="33.3">Name</th>
+    </tr>
+  </thead>
+
+  <tbody class="table_body">
+
+    <tr class="table_row" *ngFor="let item of data.item">
+      <td>{{item.name}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -5,12 +5,14 @@ import { InstrumentSeriesScannerRoutingModule } from "./instrument-series-routin
 import { InstrumentSeriesScannerComponent } from "./instrument-series-scanner/instrument-series-scanner.component";
 import { ManageInstrumentSeriesComponent } from './manage-instrument-series/manage-instrument-series.component';
 import { InstrumentSeriesFormPopupComponent } from './instrument-series-form-popup/instrument-series-form-popup.component';
+import { InstrumentSeriesDetailsPopupComponent } from "./instrument-series-scanner/instrument-series-detaills-popup/instrument-series-details-popup.component";
 
 @NgModule({
   declarations: [
     ManageInstrumentSeriesComponent,
     InstrumentSeriesScannerComponent,
     InstrumentSeriesFormPopupComponent,
+    InstrumentSeriesDetailsPopupComponent
    ],
   imports: [
     CommonModule,
