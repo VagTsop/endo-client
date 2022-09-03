@@ -1,9 +1,7 @@
-<div fxLayoutAlign="center center">
+<app-scanner (qrCodeScanned)="onFetchInstrumentsByInstrumentSeriesCode($event)"></app-scanner>
 
-  <app-scanner (qrCodeScanned)="onFetchInstrumentsByInstrumentSeriesCode($event)" fxFlex="40"></app-scanner>
+<!-- <mat-card style="min-height:565px">
 
-  <mat-card style="min-height:565px">
-    
     <div class="title">
       <h1>Scan Instrument Series Qr Code to Display Data</h1>
     </div>
@@ -15,5 +13,4 @@
         </li>
       </ol>
     </div>
-  </mat-card>
-</div>
+  </mat-card> -->

@@ -1,5 +1,12 @@
-:host zxing-scanner::ng-deep video {
+zxing-scanner video {
+  width: 270px !important;
+  height: 450px !important;
 }
-:host zxing-scanner::ng-deep {
-  width: 300px;
+
+.scanner-button {
+  color: $popupButtonTextColor;
+  background-color: $popupButtonColor !important;
+}
+.scanner-button:hover {
+  background-color: $popupHoverButtonColor !important;
 }
