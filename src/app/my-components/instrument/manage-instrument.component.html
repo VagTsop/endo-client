@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="list_card_header">
 
   <div>
 
@@ -21,10 +21,10 @@
 
           <mat-form-field>
             <mat-select [(ngModel)]="req.$name" panelClass="scroll">
-              <mat-option style="color:black">
+              <mat-option>
 
-                <ngx-mat-select-search style="color:black" placeholderLabel="Search" ngModel
-                  noEntriesFoundLabel="no entries" (ngModelChange)="filterInstrumentList($event)">
+                <ngx-mat-select-search placeholderLabel="Search" ngModel noEntriesFoundLabel="no entries"
+                  (ngModelChange)="filterInstrumentList($event)">
                 </ngx-mat-select-search>
               </mat-option>
 
@@ -95,7 +95,7 @@
     </div>
   </div>
 
-  <table border=1 frame=void rules=rows>
+  <table style="width:100%" border=1 frame=void rules=rows>
     <thead>
       <tr>
 
@@ -146,9 +146,9 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody class="table_body">
 
-      <tr *ngFor="let item of modelList" (click)="onSelectRow(item)">
+      <tr class="table_row" *ngFor="let item of modelList" (click)="onSelectRow(item)">
 
         <td>
 

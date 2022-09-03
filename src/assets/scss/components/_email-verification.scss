@@ -1,93 +1,85 @@
-.mat-progress-spinner circle, .mat-spinner circle {
-  stroke: $publicCardBackgroundColor;
-}
 .email-verification {
-  .mat-card-content {
-    .upper {
-      background-color: $publicCardBackgroundColor;
-      width: 50%;
-      height: 250px;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      p {
-        color: $secondaryColor;
+  .upper {
+    background-color: $emailVerificationCardPrimaryBackgroundColor;
+    width: 50%;
+    height: 250px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    .doughnut {
+      border-radius: 100px;
+      height: 100px;
+      width: 100px;
+      .tick-mark {
+        position: relative;
+        transform: rotate(6deg);
+        display: inline-block;
+        width: 60px;
+        left: 7px;
+        height: 55px;
+        &::before {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          height: 50%;
+          width: 3px;
+          background-color: green;
+          content: "";
+          transform: translateX(10px) rotate(-45deg);
+          transform-origin: left bottom;
+        }
+        &::after {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 3px;
+          width: 100%;
+          background-color: green;
+          content: "";
+          transform: translateX(10px) rotate(-45deg);
+          transform-origin: left bottom;
+        }
       }
-    }
-    .bottom {
-      background-color: $secondaryColor;
-      width: 50%;
-      height: 220px;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      p {
-        color: $publicCardTextColor;
-      }
-    }
 
-    .mat-dialog-actions{
-      background-color: $publicCardBackgroundColor;
+      .cross-mark {
+        width: 60px;
+        height: 60px;
+        position: relative;
+        &:after {
+          content: "";
+          height: 60px;
+          border-left: 6px solid #e54141;
+          position: absolute;
+          transform: rotate(45deg);
+          left: 28px;
+        }
+        &:before {
+          content: "";
+          height: 60px;
+          border-left: 6px solid #e54141;
+          position: absolute;
+          transform: rotate(-45deg);
+          left: 28px;
+        }
+      }
     }
   }
-}
-
-.tick-mark {
-  position: relative;
-  transform: rotate(6deg);
-  display: inline-block;
-  width: 60px;
-  left: 7px;
-  height: 55px;
-}
-
-.tick-mark::before {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  height: 50%;
-  width: 3px;
-  background-color: $secondaryColor;
-  content: "";
-  transform: translateX(10px) rotate(-45deg);
-  transform-origin: left bottom;
-}
-
-.tick-mark::after {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 100%;
-  background-color: $secondaryColor;
-  content: "";
-  transform: translateX(10px) rotate(-45deg);
-  transform-origin: left bottom;
-}
-.doughnut {
-  border: 7px solid $secondaryColor;
-  border-radius: 100px;
-  height: 100px;
-  width: 100px;
-}
-
-.cross-mark {
-  width: 60px;
-  height: 60px;
-  position: relative;
-}
-.cross-mark:after {
-  content: '';
-  height: 60px;
-  border-left: 6px solid #fff;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 28px;
-}
-
-.cross-mark:before {
-  content: '';
-  height: 60px;
-  border-left: 6px solid #fff;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 28px;
+  .bottom {
+    background-color: $emailVerificationCardSecondaryBackgroundColor;
+    width: 50%;
+    height: 220px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    p {
+      color: $registerLoginTextColor;
+    }
+    .mat-dialog-actions {
+      background-color: $emailVerificationCardPrimaryBackgroundColor;
+      .email_verification_button {
+        font-size: 1.2rem;
+        line-height: 25px;
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
 }

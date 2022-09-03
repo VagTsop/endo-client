@@ -31,7 +31,8 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
       lastName: [null, Validators.required],
       username: [null, Validators.required],
       email: [null, Validators.required],
-      status: [null, Validators.required],
+      status: [false],
+      locked: [false],
       profileImage: [null],
       profileImageName: [null],
       profileImageBytes: [null],
@@ -49,7 +50,8 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
               lastName: [res.lastName, Validators.required],
               username: [res.username, Validators.required],
               email: [res.email, Validators.required],
-              status: [res.status, Validators.required],
+              status: [res.status],
+              locked: [res.locked],
               profileImage: [res.profileImage],
               profileImageName: [null],
               profileImageBytes: [null],
@@ -78,6 +80,7 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
     this.req.$userId = this.form.value.userId;
     this.req.$email = this.form.value.email;
     this.req.$status = this.form.value.status;
+    this.req.$locked = this.form.value.locked;
     this.req.$profileImage = this.form.value.profileImage;
     if (this.id) {
       this.subscriptions.add(this.userService.updateUser(this.req).subscribe(

@@ -5,24 +5,15 @@
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* make browser scrollbar disappear */
+
 }
 
 body {
-  padding: 0;
-  margin: 0;
-  background-color: $backgroundColor;
-  color: $secondaryColor;
+  background-color: $bodyBackgroundColor;
+  color: $bodyColor;
 }
 
-.active {
-  color: chocolate;
-  text-decoration: none;
-}
-
-a {
-  font-size: 1.2rem;
-  line-height: 25px;
-  text-decoration: none;
-  color: white;
-}
 

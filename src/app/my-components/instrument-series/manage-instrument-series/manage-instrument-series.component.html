@@ -1,17 +1,17 @@
 <mat-card fxLayout="column">
 
-  <div fxFlex style="padding-right:10px" fxLayoutAlign="end center">
+  <div fxFlex fxLayoutAlign="end center">
     <mat-icon matTooltip="create instrument series" (click)="onForm()">add
     </mat-icon>
   </div>
 
   <div fxLayout="row wrap">
-    <mat-card class="custom-scroll custom-scroll-table" fxFlex="47" style="margin:20px" *ngFor="let item of modelList">
-      <h2 style="color:white">Instrument Series Code: <span
-          style="padding-left:20px">{{item.instrumentSeriesCode}}</span>
+    <mat-card style="margin:15px;" class="list_card_header custom-scroll custom-scroll-table" fxFlex="48"
+      *ngFor="let item of modelList">
+      <h2>Instrument Series Code: <span style="padding-left:20px">{{item.instrumentSeriesCode}}</span>
       </h2>
       <mat-divider></mat-divider>
-      <table style="margin-top:10px" border=1 frame=void rules=rows>
+      <table style="width:100%;margin-top:30px" border=1 frame=void rules=rows>
         <thead>
           <tr>
             <th [style.width.%]="33.3">Name</th>
@@ -21,8 +21,8 @@
             <th [style.width.%]="33.3">Count</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let itemDetails of item.instrumentSeriesDetails">
+        <tbody class="table_body">
+          <tr class="table_row"  *ngFor="let itemDetails of item.instrumentSeriesDetails">
             <td>{{itemDetails.instrumentName ? itemDetails.instrumentName : '-' }}</td>
             <td>{{itemDetails.instrumentDescription ? itemDetails.instrumentDescription : '-' }}</td>
             <td>{{itemDetails.instrumentsCount ? itemDetails.instrumentsCount : '-' }}</td>

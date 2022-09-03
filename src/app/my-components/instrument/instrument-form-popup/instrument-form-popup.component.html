@@ -1,4 +1,4 @@
-<div>
+<div class="form-popup">
 
   <div fxLayoutAlign="space-between center">
 
@@ -12,31 +12,6 @@
   <form [formGroup]="form">
 
     <mat-dialog-content style="max-height: 80vh" fxLayout='column'>
-
-      <div fxLayout="row">
-        <mat-form-field>
-          <input [formControl]="form.controls.fileName" matInput>
-        </mat-form-field>
-        <img class="img-responsive img-circle" *ngIf="form.controls.userPhoto.value" [src]="anchorHref"
-          style="zoom: 0.2; margin-top: 40px;" alt="user image">
-      </div>
-
-      <div style="max-width: 700px; height:80%">
-        <div mat-dialog-content style="margin:0; padding:0;" fxLayout="row" flex fxLayoutAlign="space-between center">
-          <div fxLayout="column" style="margin-left:1%">
-            <h4>File Upload Test Pipeline</h4>
-          </div>
-          <span fxFlex></span>
-          <button (click)="onClose()" mat-icon-button>
-            <mat-icon class="cyb-en-cross"></mat-icon>
-          </button>
-        </div>
-        <input style="display: none;" #fileRef type="file" (change)="onFileChange($event)" />
-
-        <button mat-icon-button for="fileRef" (click)="fileRef.click()">
-          <mat-icon class="cyb-mi-folder_open" matTooltipPosition="below"></mat-icon>
-        </button>
-      </div>
 
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>

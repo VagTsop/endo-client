@@ -1,4 +1,6 @@
 .header {
+  background: $headerBackgroundColor;
+  color: $headerColor;
   &__header-items {
     img {
       width: 35px;

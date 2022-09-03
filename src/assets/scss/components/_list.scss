@@ -1,19 +1,20 @@
-ol {
-  padding: 0;
-  width: 50%;
-  display: inline-block;
-  color: $secondaryColor;
+.custom-scroll {
+  max-height: 473px;
+  overflow-y: scroll;
 }
 
-ol li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.custom-scroll-table::-webkit-scrollbar-track {
+  background: #dbd5d5;
 }
 
-li:hover:not(.selected) {
-  cursor: pointer;
-  background-color: lighten($color: $selectionHoverColor, $amount: 2);
+.custom-scroll-table::-webkit-scrollbar-thumb {
+  background: #949494;
+  border-radius: 30px;
+}
+
+.custom-scroll-table::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
 }
 
 [disabled].mat-raised-button {
@@ -25,40 +26,4 @@ li:hover:not(.selected) {
   border-radius: 4.5px;
   border: none;
   cursor: pointer;
-}
-
-.custom-scroll {
-  max-height: 473px;
-  overflow-y: scroll;
-}
-
-.custom-scroll::-webkit-scrollbar-track {
-  background: #f0f2f7;
-}
-
-.dark-theme-active .custom-scroll::-webkit-scrollbar-track {
-  background: #272727;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 148);
-  border-radius: 30px;
-}
-
-.custom-scroll-table::-webkit-scrollbar {
-  width: 5px;
-  height: 6px;
-}
-
-.custom-scroll-table::-webkit-scrollbar-track {
-  background: #f0f2f7;
-}
-
-.custom-scroll-table::-webkit-scrollbar-track {
-  background: #272727;
-}
-
-.custom-scroll-table::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 148);
-  border-radius: 30px;
 }

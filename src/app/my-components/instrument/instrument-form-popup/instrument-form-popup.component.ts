@@ -13,9 +13,7 @@ import { GenericComponent } from '../../generic.component';
 export class InstrumentFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
   id: any;
   instrumentPurchaseDate: Date;
-  public form: UntypedFormGroup;
-  public anchorHref: any = null;
-  public imagePreview: any = null;
+  form: UntypedFormGroup;
 
   constructor(
     private instrumentService: InstrumentService,
@@ -35,11 +33,6 @@ export class InstrumentFormPopupComponent extends GenericComponent implements On
       instrumentManufacturer: [null, Validators.required],
       instrumentPurchaseDate: [null, Validators.required],
       instrumentNotes: [null],
-      userPhoto: [null],
-      fileName: [null],
-      fileBytes: [null],
-      fileSize: [null],
-      fileType: [null],
     });
 
     if (this.id) {
@@ -53,41 +46,10 @@ export class InstrumentFormPopupComponent extends GenericComponent implements On
               instrumentLot: [res.instrumentLot, Validators.required],
               instrumentManufacturer: [res.instrumentManufacturer, Validators.required],
               instrumentPurchaseDate: [res.instrumentPurchaseDate, Validators.required],
-              instrumentNotes: [res.instrumentNotes],
-              userPhoto: [res.userPhoto],
-              fileName: [null],
-              fileBytes: [null],
-              fileSize: [null],
-              fileType: [null],
+              instrumentNotes: [res.instrumentNotes]
             });
-            const anchor = document.createElement('a');
-            anchor.href = 'data:' + 'image/jpeg' + ';base64,' + res.userPhoto;
-            this.anchorHref = anchor.href;
           }
         }));
-    }
-  }
-
-  onFileChange(event: any) {
-    const reader = new FileReader();
-    const file = event.target.files[0] as File;
-    reader.readAsDataURL(file);
-    if (file.type !== '' && file.type !== 'application/x-msdownload') {
-      reader.onload = () => {
-        const res: any = reader.result;
-        this.form.controls['fileBytes'].patchValue(res.split(',')[1], { onlySelf: true });
-        this.form.controls['fileType'].patchValue(file.type ? file.type : 'application/octet-stream', { onlySelf: true });
-        this.form.controls['fileSize'].patchValue(file.size, { onlySelf: true });
-        this.form.controls['fileName'].patchValue(file.name, { onlySelf: true });
-        this.form.markAsTouched();
-        this.form.updateValueAndValidity();
-        this.form.controls.userPhoto.patchValue(this.form.value.fileBytes);
-        this.form.updateValueAndValidity();
-        // imagePreview
-        const anchor = document.createElement('a');
-        anchor.href = 'data:' + 'image/jpeg' + ';base64,' + this.form.controls.userPhoto.value;
-        this.anchorHref = anchor.href;
-      };
     }
   }
 
@@ -103,7 +65,6 @@ export class InstrumentFormPopupComponent extends GenericComponent implements On
     this.req.$instrumentManufacturer = this.form.value.instrumentManufacturer;
     this.req.$instrumentPurchaseDate = this.form.value.instrumentPurchaseDate;
     this.req.$instrumentNotes = this.form.value.instrumentNotes;
-    this.req.$userPhoto = this.form.value.userPhoto;
     if (this.id) {
       this.subscriptions.add(this.instrumentService.updateInstrument(this.req).subscribe(
         res => {

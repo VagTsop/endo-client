@@ -97,7 +97,7 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
   }
 
   onForm(id?: any) {
-    const dialogRef = this.dialog.open(UserFormPopupComponent, { disableClose: true, panelClass: 'custom-dialog-container' },);
+    const dialogRef = this.dialog.open(UserFormPopupComponent, { disableClose: true, panelClass: 'custom-form-dialog-container' },);
     dialogRef.componentInstance.id = id;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

@@ -1,26 +1,26 @@
 <button [disabled]="!paging.$hasFirstPage" mat-icon-button matTooltip="first" matTooltipPosition="below"
   (click)="onFirstPage()">
-  <mat-icon [ngStyle]="{'color': !paging.$hasFirstPage ? 'grey' : 'white'}">first_page</mat-icon>
+  <mat-icon [ngStyle]="{'color': !paging.$hasFirstPage ? 'grey' : '#282525'}">first_page</mat-icon>
 </button>
 
 <button [disabled]="!paging.$hasPreviousPage" mat-icon-button matTooltip="previous" matTooltipPosition="below"
   (click)="onPreviousPage()">
-  <mat-icon [ngStyle]="{'color': !paging.$hasPreviousPage ? 'grey' : 'white'}">keyboard_arrow_left</mat-icon>
+  <mat-icon [ngStyle]="{'color': !paging.$hasPreviousPage ? 'grey' : '#282525'}">keyboard_arrow_left</mat-icon>
 </button>
 
 <button [disabled]="!paging.$hasNextPage" mat-icon-button matTooltip="next" matTooltipPosition="below"
   (click)="onNextPage()">
-  <mat-icon [ngStyle]="{'color': !paging.$hasNextPage ? 'grey' : 'white'}">keyboard_arrow_right</mat-icon>
+  <mat-icon [ngStyle]="{'color': !paging.$hasNextPage ? 'grey' : '#282525'}">keyboard_arrow_right</mat-icon>
 </button>
 
 <button [disabled]="!paging.$hasLastPage" mat-icon-button matTooltip="last" matTooltipPosition="below"
   (click)="onLastPage()">
-  <mat-icon [ngStyle]="{'color': !paging.$hasLastPage ? 'grey' : 'white'}">last_page</mat-icon>
+  <mat-icon [ngStyle]="{'color': !paging.$hasLastPage ? 'grey' : '#282525'}">last_page</mat-icon>
 </button>
 
-<span style="color:white;padding-left:25px">Results: {{paging.$results}}</span>
+<span style="padding-left:25px">Results: {{paging.$results}}</span>
 
-<span style="color:white;padding-left:25px" class="page-size">page size: {{paging.$pageSize}}</span>
+<span style="padding-left:25px" class="page-size">page size: {{paging.$pageSize}}</span>
 <button mat-icon-button [mat-menu-trigger-for]="menuicon" matTooltip="" aria-label="Open icon menu">
   <mat-icon>arrow_drop_down</mat-icon>
 </button>

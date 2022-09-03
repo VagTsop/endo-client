@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { PagingComponent } from "./my-components/paging/paging.component";
 import { SortingComponent } from "./my-components/sorting/sorting.component";
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -36,6 +37,7 @@ const MATERIAL_MODULES = [
   MatMenuModule,
   MatCardModule,
   MatFormFieldModule,
+  MatCheckboxModule,
   MatInputModule,
   MatDialogModule,
   MatTooltipModule,

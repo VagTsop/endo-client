@@ -1,23 +1,38 @@
 // Variables
-
-// 1.0 Colors
-
-$primaryColor: #0c2538;
-$backgroundColor: #373c3c;
-$secondaryColor: #ffff;
-
-$borderColor: #293e68;
-$borderHoverColor: #344d81;
-$selectionHoverColor: #6183fd99;
-
-$sidenavColor: #1f2124fc;
-$mat-menu: #3c3936;
-$lightGrey: rgb(219, 219, 219);
-
-$publicCardBackgroundColor: #afbfd8;
-$publicCardTextColor:#000000;
-$publicCardHelpTextColor:red;
-$publicCardSecondaryColor:#305446;
+// body
+$bodyBackgroundColor: #ffff;
+$bodyColor: #000000;
+// Header
+$headerBackgroundColor: #ffffff;
+$headerColor: #000000;
+// Sidebar
+$sidebarBackgroundColor: #4e5a60fc;
+$sidebarColor: #000000;
+$sidebarActiveColor: #ffffff;
+// List
+$listBackgroundPrimaryColor: #ffffff;
+$listBackgroundSecondaryColor: #d3d3d0;
+$listColor: #000000;
+// Popup
+$popupBackgroundColor: #ffffff;
+$popupBorderColor: #33383a;
+$popupColor: #000000;
+$popupErrorMessageColor: #ff0505;
+$popupButtonTextColor: #ffffff;
+$popupButtonColor: #108ec1;
+$popupHoverButtonColor: #05719d;
+// cards
+$emailVerificationCardPrimaryBackgroundColor: #afbfd8;
+$emailVerificationCardSecondaryBackgroundColor:#91a2a0;
+$registerLoginPrimaryColor: #ffffff;
+$registerLoginSecondaryColor: #305446;
+$registerLoginHoverColor: #1c7854;
+$registerLoginShadowColor: #00000033;
+$registerLoginTextColor: #000000;
+$registerLoginHelpTextColor: #ff0505;
+// various
+$spinnerColor: #afbfd8;
+$divider:#33383a;
 
 //  2.0 media queries breakpoints
 $desktop: 1281px;

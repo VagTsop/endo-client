@@ -41,6 +41,6 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
   }
 
   onForm(id?: any) {
-    const dialogRef = this.dialog.open(InstrumentSeriesFormPopupComponent, { disableClose: true, panelClass: 'custom-dialog-container' });
+    const dialogRef = this.dialog.open(InstrumentSeriesFormPopupComponent, { disableClose: true, panelClass: 'custom-form-dialog-container' });
   }
 }
