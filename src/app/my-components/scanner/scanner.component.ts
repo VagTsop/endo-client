@@ -15,7 +15,6 @@ export class ScannerComponent extends GenericComponent implements OnInit, OnDest
   }
   ngOnInit() {
   }
-  //
   onSendQrCode(code: any) {
     this.qrCodeScanned.emit(code);
   }
@@ -23,7 +22,7 @@ export class ScannerComponent extends GenericComponent implements OnInit, OnDest
     console.log('scanned')
     this.scannerEnabled = false;
     this.information = "Wait retrieving information... ";
-    this.onSendQrCode(code);
+    this.onSendQrCode(+code);
   }
 
   public enableScanner() {
