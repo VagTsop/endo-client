@@ -1,15 +1,18 @@
-<div style="height:100%">
-  <div fxLayout="column" fxFlex="33.3" fxLayoutAlign="center center">
+<div style="height:100%" fxLayoutAlign="center center" fxLayoutGap="20px">
+
+  <div *ngIf="role === 'ROLE_ADMIN'" fxLayout="column" fxFlex="33.3" fxLayoutAlign="center center">
     <div [routerLink]="['/manage-user']" class="content user-manager">
     </div>
     <h1>User Manager</h1>
   </div>
-  <div fxLayout="column" fxFlex="33.3" fxLayoutAlign="center center">
+  <div *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" fxLayout="column" fxFlex="33.3"
+    fxLayoutAlign="center center">
     <div [routerLink]="['/manage-instrument']" class="content instrument-manager">
     </div>
     <h1>Instrument Manager</h1>
   </div>
-  <div fxLayout="column" fxFlex="33.3" fxLayoutAlign="center center">
+  <div *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER' || role=== 'ROLE_USER'" fxLayout="column" fxFlex="33.3"
+    fxLayoutAlign="center center">
     <div [routerLink]="['/manage-instrument-series']" class="content instrument-series-manager">
     </div>
     <h1>Instrument Series Manager</h1>
