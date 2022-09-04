@@ -1,18 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InstrumentService } from 'src/services/instrument.service';
+import { InstrumentSeriesService } from 'src/services/instrument-series.service';
 import { GenericComponent } from '../../generic.component';
 import { InstrumentSeriesDetailsPopupComponent } from '../instrument-series-detaills-popup/instrument-series-details-popup.component';
 
 @Component({
   selector: 'app-instrument-series-scanner',
   templateUrl: './instrument-series-scanner.component.html',
-  providers: [InstrumentService]
+  providers: [InstrumentSeriesService]
 
 })
 export class InstrumentSeriesScannerComponent extends GenericComponent implements OnInit, OnDestroy {
 
-  constructor(private instrumentService: InstrumentService, private dialog: MatDialog,) {
+  constructor(private instrumentSeriesService: InstrumentSeriesService, private dialog: MatDialog) {
     super();
   }
 
@@ -20,10 +20,9 @@ export class InstrumentSeriesScannerComponent extends GenericComponent implement
   }
 
   onFetchInstrumentsByInstrumentSeriesCode(qrCode: any) {
-    this.subscriptions.add(this.instrumentService.fetchInstrumentsByInstrumentSeriesCode(qrCode)
+    this.subscriptions.add(this.instrumentSeriesService.fetchInstrumentsByInstrumentSeriesCode(qrCode)
       .subscribe(res => {
         this.modelList = res;
-        //this.req.$paging.$totalSize = res.totalElements;
         this.onInstrumentSeriesDetails()
       }
       )

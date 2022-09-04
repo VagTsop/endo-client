@@ -35,6 +35,7 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
+
   onChangePaging(changePaging: any): void {
     this.req.$paging = changePaging;
     this.onList();
