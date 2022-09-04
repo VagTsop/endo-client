@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { map } from "rxjs";
+import { map, Observable } from "rxjs";
 import { InstrumentSeriesRequest } from "src/transport/instrument-series.request";
 import { environment } from "src/environments/environment";
 import { CommonService } from "./common.service";
@@ -18,5 +18,15 @@ export class InstrumentSeriesService extends CommonService {
     ).pipe(map((response: any) => {
       return response;
     }));
+  }
+
+  fetchAvailableInstruments(): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-available-instruments')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
   }
 }

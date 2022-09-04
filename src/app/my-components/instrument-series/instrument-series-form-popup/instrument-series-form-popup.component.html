@@ -1,33 +1,51 @@
-<div fxLayout="row">
+<div fxLayout="column">
 
-  <div fxFlex="50" fxLayout="column">
-    <mat-card>
-      <h2 style="color:white">Available Instruments <span style="padding-left:20px"></span>
-      </h2>
-      <mat-divider></mat-divider>
-      <table style="margin-top:10px" border=1 frame=void rules=rows>
-        <tbody>
-          <tr>
-            <td>Stethoscope</td>
-            <td>Stethoscope description</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-
-    </mat-card>
+  <div fxLayoutAlign="end center">
+    <button mat-icon-button tabindex="-1" (click)="onClose()">
+      <mat-icon matTooltip="close">close</mat-icon>
+    </button>
   </div>
 
-  <div fxLayoutAlign="center center" fxLayout="column">
-    <mat-icon>arrow_left</mat-icon>
-    <mat-icon>arrow_right</mat-icon>
-  </div>
+  <div fxLayout="row">
 
-  <div fxFlex="50" fxLayout="column">
-    <mat-card>
-      <h2 style="color:white">Selected Instruments<span style="padding-left:20px"></span>
-      </h2>
-      <mat-divider></mat-divider>
-    </mat-card>
+    <div fxFlex="45" fxLayout="column">
+
+      <mat-card>
+
+        <h2 style="color:black">Available Instruments <span style="padding-left:20px"></span>
+        </h2>
+
+        <div class="custom-scroll custom-scroll-table">
+
+          <mat-divider></mat-divider>
+
+          <table style="margin-top:10px;" border=1 frame=void rules=rows>
+            <tbody>
+              <tr *ngFor="let item of availableInstrumentsList">
+                <td>{{item.name ? item.name : '-' }}</td>
+                <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-card>
+    </div>
+
+    <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
+      <mat-icon>arrow_left</mat-icon>
+      <mat-icon>arrow_right</mat-icon>
+    </div>
+
+    <div fxFlex="45" fxLayout="column">
+
+      <mat-card>
+
+        <h2 style="color:black">Selected Instruments<span style="padding-left:20px"></span>
+        </h2>
+
+        <mat-divider></mat-divider>
+      </mat-card>
+    </div>
   </div>
 </div>
