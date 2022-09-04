@@ -5,46 +5,67 @@
       <mat-icon matTooltip="close">close</mat-icon>
     </button>
   </div>
+  <form>
 
-  <div fxLayout="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Instrument Series Code</mat-label>
+      <input [formControl]="form.controls.instrumentSeriesCode" matInput>
+    </mat-form-field>
 
-    <div fxFlex="45" fxLayout="column">
+    <!-- <mat-dialog-actions *ngIf="form.controls.instrumentSeriesCode.value" fxLayoutAlign="center center">
+      <button (click)="showQrCode = true" class="mat-raised-button mat-primary scanner-button">Generate Qr
+        Code</button>
+    </mat-dialog-actions> -->
 
-      <mat-card>
+    <qrcode *ngIf="form.controls.instrumentSeriesCode.value" [qrdata]="form.controls.instrumentSeriesCode.value"
+      [width]="250" [errorCorrectionLevel]="'M'">
+    </qrcode>
 
-        <h2 style="color:black">Available Instruments <span style="padding-left:20px"></span>
-        </h2>
+    <div fxLayout="row">
 
-        <div class="custom-scroll custom-scroll-table">
+      <div fxFlex="45" fxLayout="column">
+
+        <mat-card>
+
+          <h2 style="color:black">Available Instruments <span style="padding-left:20px"></span>
+          </h2>
+
+          <div class="custom-scroll custom-scroll-table">
+
+            <mat-divider></mat-divider>
+
+            <table style="margin-top:10px;" border=1 frame=void rules=rows>
+              <tbody>
+                <tr *ngFor="let item of availableInstrumentsList">
+                  <td>{{item.name ? item.name : '-' }}</td>
+                  <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card>
+      </div>
+
+      <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
+        <mat-icon>arrow_left</mat-icon>
+        <mat-icon>arrow_right</mat-icon>
+      </div>
+
+      <div fxFlex="45" fxLayout="column">
+
+        <mat-card>
+
+          <h2 style="color:black">Selected Instruments<span style="padding-left:20px"></span>
+          </h2>
 
           <mat-divider></mat-divider>
-
-          <table style="margin-top:10px;" border=1 frame=void rules=rows>
-            <tbody>
-              <tr *ngFor="let item of availableInstrumentsList">
-                <td>{{item.name ? item.name : '-' }}</td>
-                <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </mat-card>
+        </mat-card>
+      </div>
     </div>
 
-    <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
-      <mat-icon>arrow_left</mat-icon>
-      <mat-icon>arrow_right</mat-icon>
-    </div>
-
-    <div fxFlex="45" fxLayout="column">
-
-      <mat-card>
-
-        <h2 style="color:black">Selected Instruments<span style="padding-left:20px"></span>
-        </h2>
-
-        <mat-divider></mat-divider>
-      </mat-card>
-    </div>
-  </div>
+    <mat-dialog-actions fxLayoutAlign="center center">
+      <button (click)="onSaveInstrumentSeries()" [disabled]="!form.valid" type="submit"
+        class="mat-raised-button mat-primary">Save</button>
+    </mat-dialog-actions>
+  </form>
 </div>
