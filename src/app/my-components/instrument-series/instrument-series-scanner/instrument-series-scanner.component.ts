@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { InstrumentService } from 'src/services/instrument.service';
 import { GenericComponent } from '../../generic.component';
-import { InstrumentSeriesDetailsPopupComponent } from './instrument-series-detaills-popup/instrument-series-details-popup.component';
+import { InstrumentSeriesDetailsPopupComponent } from '../instrument-series-detaills-popup/instrument-series-details-popup.component';
 
 @Component({
   selector: 'app-instrument-series-scanner',
@@ -25,7 +25,7 @@ export class InstrumentSeriesScannerComponent extends GenericComponent implement
         this.modelList = res;
         //this.req.$paging.$totalSize = res.totalElements;
         this.onInstrumentSeriesDetails()
-      } 
+      }
       )
     );
   }
