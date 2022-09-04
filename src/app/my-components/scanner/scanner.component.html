@@ -1,7 +1,22 @@
-<mat-card>
+<div fxLayout="column" fxLayoutAlign="space-between center" style="height:70%">
 
-  <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
-  </zxing-scanner>
-</mat-card>
-<button (click)="enableScanner()" *ngIf="!scannerEnabled" type="button">READ
-  OTHER</button>
+  <div fxLayoutAlign="center end" fxFlex="20">
+    <h1>Endofusion QR code Scanner</h1>
+  </div>
+
+  <div *ngIf="scannerEnabled" fxFlex="75" fxLayoutAlign="center start">
+    <zxing-scanner (scanSuccess)="scanSuccessHandler($event)" style="position:absolute" #scanner>
+    </zxing-scanner>
+
+    <!-- <button
+      style="z-index:1;position:relative;top:390px;border-radius:18px;cursor: pointer;background: none;height:39px;"
+      (click)="scanSuccessHandler($event)" type="button">
+      <mat-icon style="padding-top: 3px;padding-left: 0px;">camera_alt</mat-icon>
+    </button> -->
+  </div>
+
+  <mat-dialog-actions fxLayoutAlign="center center">
+    <button (click)="enableScanner()" *ngIf="!scannerEnabled" class="mat-raised-button mat-primary scanner-button">Read
+      Other</button>
+  </mat-dialog-actions>
+</div>
