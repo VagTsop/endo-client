@@ -22,10 +22,10 @@
 
     <tbody>
       <tr style="text-align: center" *ngFor="let item of data.item">
-        <td>{{item.name}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.instrumentLot}}</td>
-        <td>{{item.instrumentsCount}}</td>
+        <td>{{item.name ? item.name : '-'}}</td>
+        <td>{{item.description ? item.description : '-'}}</td>
+        <td>{{item.instrumentLot ? item.instrumentLot : '-'}}</td>
+        <td>{{item.instrumentsCount ? item.instrumentsCount : '-'}}</td>
       </tr>
     </tbody>
   </table>
