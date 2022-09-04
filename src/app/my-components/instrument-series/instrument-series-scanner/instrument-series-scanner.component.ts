@@ -25,7 +25,7 @@ export class InstrumentSeriesScannerComponent extends GenericComponent implement
         this.modelList = res;
         //this.req.$paging.$totalSize = res.totalElements;
         this.onInstrumentSeriesDetails()
-      } // here i will pass instrumentseries data to popup
+      } 
       )
     );
   }
