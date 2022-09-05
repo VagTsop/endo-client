@@ -13,8 +13,10 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   availableInstrumentsList: any = [];
   selectedInstrumentsList: any = [];
   form: UntypedFormGroup;
-  showQrCode: boolean = false;
 
+  showInput: boolean = true;
+  showGenerateQrButton = true;
+  showQrCode: boolean = false;
   constructor(private instrumentSeriesService: InstrumentSeriesService,
     private dialogRef: MatDialogRef<InstrumentSeriesFormPopupComponent>,
     private formBuilder: UntypedFormBuilder,
@@ -32,6 +34,18 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
     }));
   }
 
+  hideInputButtonShowQrCode() {
+    this.showInput = false;
+    this.showGenerateQrButton = false;
+    this.showQrCode = true;
+  }
+
+  hideQrCodeShowInputButton() {
+    this.showQrCode = false;
+    this.showInput = true;
+    this.showGenerateQrButton = true;
+    this.form.controls.instrumentSeriesCode.patchValue('');
+  }
 
   onSaveInstrumentSeries() {
     console.log(this.form.value.instrumentSeriesCode)

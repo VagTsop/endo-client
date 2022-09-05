@@ -5,21 +5,34 @@
       <mat-icon matTooltip="close">close</mat-icon>
     </button>
   </div>
+
   <form>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Enter Instrument Series Code</mat-label>
-      <input [formControl]="form.controls.instrumentSeriesCode" matInput>
-    </mat-form-field>
+    <div fxLayout="row">
 
-    <!-- <mat-dialog-actions *ngIf="form.controls.instrumentSeriesCode.value" fxLayoutAlign="center center">
-      <button (click)="showQrCode = true" class="mat-raised-button mat-primary scanner-button">Generate Qr
-        Code</button>
-    </mat-dialog-actions> -->
+      <mat-form-field *ngIf="showInput" fxFlex="45" appearance="fill">
+        <mat-label>Enter Instrument Series Code</mat-label>
+        <input [formControl]="form.controls.instrumentSeriesCode" matInput>
+      </mat-form-field>
 
-    <qrcode *ngIf="form.controls.instrumentSeriesCode.value" [qrdata]="form.controls.instrumentSeriesCode.value"
-      [width]="250" [errorCorrectionLevel]="'M'">
-    </qrcode>
+      <mat-dialog-actions *ngIf="showGenerateQrButton" style=" height:100%;margin-left:62px"
+        fxLayoutAlign="center center">
+        <button [disabled]="!form.controls.instrumentSeriesCode.value" (click)="hideInputButtonShowQrCode()"
+          class="mat-raised-button mat-primary scanner-button">Generate Qr
+          </button>
+      </mat-dialog-actions>
+
+      <div *ngIf="showQrCode" fxFlex>
+        <qrcode [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [errorCorrectionLevel]="'M'">
+        </qrcode>
+
+        <mat-dialog-actions fxFlex="45" style="height:100%">
+          <button (click)="hideQrCodeShowInputButton()"
+            class="mat-raised-button mat-primary scanner-button"><span>Generate
+              New Qr</span></button>
+        </mat-dialog-actions>
+      </div>
+    </div>
 
     <div fxLayout="row">
 
