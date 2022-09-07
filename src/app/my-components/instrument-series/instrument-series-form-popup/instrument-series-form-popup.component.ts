@@ -18,16 +18,14 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   lastSelected: number;
   start: number;
   end: number;
-  selected1AddressSet: Set<number> = new Set();
-  selected2AddressSet: Set<number> = new Set();
-  connectedAddressesIds: Array<any> = [];
-  filteredConnectedAddressesIds: Array<any> = [];
-  unconnectedAddressesIds: Array<any> = [];
-  filteredUnconnectedAddressesIds: Array<any> = [];
-  isAscUnconnectedGroupIds = false;
-  isAscConnectedGroupIds = false;
-  isAscUnconnectedAddressesIds = false;
-  isAscConnectedAddressesIds = false;
+  selected1InstrumentSet: Set<number> = new Set();
+  selected2InstrumentSet: Set<number> = new Set();
+  connectedInstrumentsIds: Array<any> = [];
+  filteredConnectedInstrumentsIds: Array<any> = [];
+  unconnectedInstrumentsIds: Array<any> = [];
+  filteredUnconnectedInstrumentsIds: Array<any> = [];
+  isAscUnconnectedInstrumentsIds = false;
+  isAscconnectedInstrumentsIds = false;
 
   showInput: boolean = true;
   showGenerateQrButton = true;
@@ -42,12 +40,12 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       instrumentSeriesCode: [null, Validators.required],
-      filteredUnConnectedAddress: [null],
-      filteredConnectedAddress: [null],
+      filteredUnConnectedInstrument: [null],
+      filteredConnectedInstrument: [null],
     });
     this.subscriptions.add(this.instrumentSeriesService.fetchAvailableInstruments().subscribe((data) => {
-      this.unconnectedAddressesIds = data;
-      this.filteredUnconnectedAddressesIds = data;
+      this.unconnectedInstrumentsIds = data;
+      this.filteredUnconnectedInstrumentsIds = data;
     }));
   }
 
@@ -64,18 +62,18 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
     this.form.controls.instrumentSeriesCode.patchValue('');
   }
 
-  onSelectRowAddress(recordId: number, list: number, index: number, event?: any): void {
+  onSelectRowInstrument(recordId: number, list: number, index: number, event?: any): void {
     // event ctrl +click
     if (event && event.ctrlKey) {
       this.lastSelected = index;
       if (list === 0) {
-        (!this.selected1AddressSet.has(recordId))
-          ? (this.selected1AddressSet.add(recordId))
-          : (this.selected1AddressSet.delete(recordId));
+        (!this.selected1InstrumentSet.has(recordId))
+          ? (this.selected1InstrumentSet.add(recordId))
+          : (this.selected1InstrumentSet.delete(recordId));
       } else {
-        (!this.selected2AddressSet.has(recordId))
-          ? (this.selected2AddressSet.add(recordId))
-          : (this.selected2AddressSet.delete(recordId));
+        (!this.selected2InstrumentSet.has(recordId))
+          ? (this.selected2InstrumentSet.add(recordId))
+          : (this.selected2InstrumentSet.delete(recordId));
       }
     }
     // event shift + click
@@ -88,15 +86,15 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
         this.end = index;
       }
       if (list === 0) {
-        for (let k = 0; k <= this.filteredUnconnectedAddressesIds.length; k++) {
+        for (let k = 0; k <= this.filteredUnconnectedInstrumentsIds.length; k++) {
           if (k <= this.end && k >= this.start) {
-            this.selected1AddressSet.add(this.filteredUnconnectedAddressesIds[k].id);
+            this.selected1InstrumentSet.add(this.filteredUnconnectedInstrumentsIds[k].id);
           }
         }
       } else {
-        for (let k = 0; k <= this.filteredConnectedAddressesIds.length; k++) {
+        for (let k = 0; k <= this.filteredConnectedInstrumentsIds.length; k++) {
           if (k <= this.end && k >= this.start) {
-            this.selected2AddressSet.add(this.filteredConnectedAddressesIds[k].id);
+            this.selected2InstrumentSet.add(this.filteredConnectedInstrumentsIds[k].id);
           }
         }
       }
@@ -104,32 +102,32 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
       // click event
       this.lastSelected = index;
       if (list === 0) {
-        if (this.selected1AddressSet.size === 0) {
-          if (!this.selected1AddressSet.has(recordId)) {
-            this.selected1AddressSet.add(recordId);
+        if (this.selected1InstrumentSet.size === 0) {
+          if (!this.selected1InstrumentSet.has(recordId)) {
+            this.selected1InstrumentSet.add(recordId);
           }
         } else {
           // if selected1RoutingSet has one value and click different value
-          this.selected1AddressSet.clear();
-          this.selected1AddressSet.add(recordId);
+          this.selected1InstrumentSet.clear();
+          this.selected1InstrumentSet.add(recordId);
         }
       } else {
         //  for  list 1
-        if (this.selected2AddressSet.size === 0) {
-          if (!this.selected2AddressSet.has(recordId)) {
-            this.selected2AddressSet.add(recordId);
+        if (this.selected2InstrumentSet.size === 0) {
+          if (!this.selected2InstrumentSet.has(recordId)) {
+            this.selected2InstrumentSet.add(recordId);
           }
         } else {
           // if selected1RoutingSet has one value and click different value
-          this.selected2AddressSet.clear();
-          this.selected2AddressSet.add(recordId);
+          this.selected2InstrumentSet.clear();
+          this.selected2InstrumentSet.add(recordId);
         }
       }
     }
   }
 
-  onMoveAddress(direction: string, event?: any) {
-    // because onMoveAddress is used without click event when edit pop up
+  onMoveInstrument(direction: string, event?: any) {
+    // because onMoveInstrument is used without click event when edit pop up
     // it runs only for user click.
     if (event != null && event.type === 'click') {
       this.form.markAsDirty();
@@ -140,38 +138,38 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
     const remainingsAddress: Array<any> = [];
 
     if (direction === 'RIGHT') {
-      this.unconnectedAddressesIds.forEach(rec => {
-        if (this.selected1AddressSet.has(rec.id) && !this.recordExists(this.connectedAddressesIds, rec.id)) {
-          this.connectedAddressesIds.push(rec);
-          this.selected1AddressSet.delete(rec.id);
+      this.unconnectedInstrumentsIds.forEach(rec => {
+        if (this.selected1InstrumentSet.has(rec.id) && !this.recordExists(this.connectedInstrumentsIds, rec.id)) {
+          this.connectedInstrumentsIds.push(rec);
+          this.selected1InstrumentSet.delete(rec.id);
         } else {
           remainingsAddress.push(rec);
         }
       });
-      this.unconnectedAddressesIds = remainingsAddress;
-      this.filteredUnconnectedAddressesIds = remainingsAddress;
-      this.filterUnconnectedAddressesIds(
-        this.form.value.filteredUnconnectedAddress ? this.form.value.filteredUnconnectedAddress : '');
-      this.filterConnectedAddressesIds(
-        this.form.value.filteredConnectedAddress ? this.form.value.filteredConnectedAddress : '');
+      this.unconnectedInstrumentsIds = remainingsAddress;
+      this.filteredUnconnectedInstrumentsIds = remainingsAddress;
+      this.filterUnconnectedInstrumentsIds(
+        this.form.value.filteredUnConnectedInstrument ? this.form.value.filteredUnConnectedInstrument : '');
+      this.filterConnectedInstrumentsIds(
+        this.form.value.filteredConnectedInstrument ? this.form.value.filteredConnectedInstrument : '');
     } else {
-      this.connectedAddressesIds.forEach(rec => {
-        if (this.selected2AddressSet.has(rec.id) && !this.recordExists(this.unconnectedAddressesIds, rec.id)) {
-          this.unconnectedAddressesIds.push(rec);
-          this.selected2AddressSet.delete(rec.id);
+      this.connectedInstrumentsIds.forEach(rec => {
+        if (this.selected2InstrumentSet.has(rec.id) && !this.recordExists(this.unconnectedInstrumentsIds, rec.id)) {
+          this.unconnectedInstrumentsIds.push(rec);
+          this.selected2InstrumentSet.delete(rec.id);
         } else {
           remainingsAddress.push(rec);
         }
       });
-      this.connectedAddressesIds = remainingsAddress;
-      this.filteredConnectedAddressesIds = remainingsAddress;
-      this.filterUnconnectedAddressesIds(
-        this.form.value.filteredUnconnectedAddress ? this.form.value.filteredUnconnectedAddress : '');
-      this.filterConnectedAddressesIds(
-        this.form.value.filteredConnectedAddress ? this.form.value.filteredConnectedAddress : '');
+      this.connectedInstrumentsIds = remainingsAddress;
+      this.filteredConnectedInstrumentsIds = remainingsAddress;
+      this.filterUnconnectedInstrumentsIds(
+        this.form.value.filteredUnConnectedInstrument ? this.form.value.filteredUnConnectedInstrument : '');
+      this.filterConnectedInstrumentsIds(
+        this.form.value.filteredConnectedInstrument ? this.form.value.filteredConnectedInstrument : '');
     }
-    this.sort(this.filteredConnectedAddressesIds, true);
-    this.sort(this.filteredUnconnectedAddressesIds, true);
+    this.sort(this.filteredConnectedInstrumentsIds, true);
+    this.sort(this.filteredUnconnectedInstrumentsIds, true);
   }
 
   private recordExists(list: any[], id: number): boolean {
@@ -192,24 +190,24 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
     }
   }
 
-  isSelectedAddress(record: any, list: number): boolean {
+  isSelectedInstrument(record: any, list: number): boolean {
     if (list === 0) {
-      return this.selected1AddressSet.has(record.id);
+      return this.selected1InstrumentSet.has(record.id);
     } else {
-      return this.selected2AddressSet.has(record.id);
+      return this.selected2InstrumentSet.has(record.id);
     }
   }
 
-  filterUnconnectedAddressesIds(search: any) {
-    this.selected1AddressSet.clear();
-    this.filteredUnconnectedAddressesIds = this.unconnectedAddressesIds.filter(
+  filterUnconnectedInstrumentsIds(search: any) {
+    this.selected1InstrumentSet.clear();
+    this.filteredUnconnectedInstrumentsIds = this.unconnectedInstrumentsIds.filter(
       (item: any) => item.name.toLowerCase().toString().includes(search.toLowerCase().toString())
     );
   }
 
-  filterConnectedAddressesIds(search: any) {
-    this.selected2AddressSet.clear();
-    this.filteredConnectedAddressesIds = this.connectedAddressesIds.filter(
+  filterConnectedInstrumentsIds(search: any) {
+    this.selected2InstrumentSet.clear();
+    this.filteredConnectedInstrumentsIds = this.connectedInstrumentsIds.filter(
       (item: any) => item.name.toLowerCase().toString().includes(search.toLowerCase().toString())
     );
   }

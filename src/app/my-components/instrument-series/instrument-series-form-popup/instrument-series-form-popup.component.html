@@ -54,16 +54,16 @@
 
             <div class="title">
 
-              <div (click)="sort(filteredUnconnectedAddressesIds, isAscUnconnectedAddressesIds);
-              isAscUnconnectedAddressesIds = !isAscUnconnectedAddressesIds">
-                <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedAddressesIds" style="color:green;">expand_less
+              <div (click)="sort(filteredUnconnectedInstrumentsIds, isAscUnconnectedInstrumentsIds);
+              isAscUnconnectedInstrumentsIds = !isAscUnconnectedInstrumentsIds">
+                <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedInstrumentsIds" style="color:green;">expand_less
                 </mat-icon>
-                <mat-icon matTooltip="Descending" *ngIf="!isAscUnconnectedAddressesIds" style="color: red;">expand_more
+                <mat-icon matTooltip="Descending" *ngIf="!isAscUnconnectedInstrumentsIds" style="color: red;">expand_more
                 </mat-icon>
               </div>
               <div style="padding-left: 5%; width: 100%;">
-                <input placeholder="Search" type="text" (ngModelChange)="filterUnconnectedAddressesIds($event)"
-                  formControlName="filteredUnConnectedAddress">
+                <input placeholder="Search" type="text" (ngModelChange)="filterUnconnectedInstrumentsIds($event)"
+                  formControlName="filteredUnConnectedInstrument">
               </div>
             </div>
 
@@ -75,9 +75,9 @@
 
             <table style="margin-top:10px;" border=1 frame=void rules=rows>
               <tbody>
-                <tr *ngFor="let item of filteredUnconnectedAddressesIds; let i = index"
-                  (click)="onSelectRowAddress(item.id, 0, i, $event)"
-                  [ngClass]="isSelectedAddress(item, 0) ? 'selected': ''">
+                <tr *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
+                  (click)="onSelectRowInstrument(item.id, 0, i, $event)"
+                  [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
                   <td>{{item.name ? item.name : '-' }}</td>
                   <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
                 </tr>
@@ -88,10 +88,10 @@
       </div>
 
       <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
-        <button mat-icon-button (click)="onMoveAddress('RIGHT', $event)">
+        <button mat-icon-button (click)="onMoveInstrument('RIGHT', $event)">
           <mat-icon>arrow_right</mat-icon>
         </button>
-        <button mat-icon-button (click)="onMoveAddress('LEFT', $event)">
+        <button mat-icon-button (click)="onMoveInstrument('LEFT', $event)">
           <mat-icon>arrow_left</mat-icon>
         </button>
       </div>
@@ -108,17 +108,17 @@
             <div class="title">
 
               <mat-icon class="nv-mi-format_align_left"></mat-icon>
-              <div (click)="sort(filteredConnectedAddressesIds, isAscConnectedAddressesIds);
-              isAscConnectedAddressesIds = !isAscConnectedAddressesIds"
-                [ngStyle]="{'color': this.connectedAddressesIds.length > 0 ? 'green' : '#dbdbdb'}">
-                <mat-icon matTooltip="Ascending" *ngIf="isAscConnectedAddressesIds" style="color:green;">expand_less
+              <div (click)="sort(filteredConnectedInstrumentsIds, isAscconnectedInstrumentsIds);
+              isAscconnectedInstrumentsIds = !isAscconnectedInstrumentsIds"
+                [ngStyle]="{'color': this.connectedInstrumentsIds.length > 0 ? 'green' : '#dbdbdb'}">
+                <mat-icon matTooltip="Ascending" *ngIf="isAscconnectedInstrumentsIds" style="color:green;">expand_less
                 </mat-icon>
-                <mat-icon matTooltip="Descending" *ngIf="!isAscConnectedAddressesIds" style="color: red;">expand_more
+                <mat-icon matTooltip="Descending" *ngIf="!isAscconnectedInstrumentsIds" style="color: red;">expand_more
                 </mat-icon>
               </div>
               <div style="padding-left: 5%; width: 100%;">
-                <input placeholder="Search" type="text" (ngModelChange)="filterConnectedAddressesIds($event)"
-                  formControlName="filteredConnectedAddress">
+                <input placeholder="Search" type="text" (ngModelChange)="filterConnectedInstrumentsIds($event)"
+                  formControlName="filteredConnectedInstrument">
               </div>
             </div>
 
@@ -129,9 +129,9 @@
 
           <table style="margin-top:10px;" border=1 frame=void rules=rows>
             <tbody>
-              <tr *ngFor="let item of filteredConnectedAddressesIds; let i = index"
-                (click)="onSelectRowAddress(item.id, 1, i, $event)"
-                [ngClass]="isSelectedAddress(item, 1) ? 'selected': ''">
+              <tr *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
+                (click)="onSelectRowInstrument(item.id, 1, i, $event)"
+                [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
                 <td>{{item.name ? item.name : '-' }}</td>
                 <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
               </tr>
