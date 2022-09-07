@@ -1,12 +1,19 @@
 <div fxLayout="column">
 
-  <div fxLayoutAlign="end center">
+  <div fxLayoutAlign="space-between center">
+
+    <h2 style="margin:0" mat-dialog-title>Create Instrument Series</h2>
+
     <button mat-icon-button tabindex="-1" (click)="onClose()">
       <mat-icon matTooltip="close">close</mat-icon>
     </button>
   </div>
 
-  <form>
+  <mat-divider style="margin-bottom:15px"></mat-divider>
+
+  <div></div>
+
+  <form [formGroup]="form">
 
     <div fxLayout="row">
 
@@ -19,7 +26,7 @@
         fxLayoutAlign="center center">
         <button [disabled]="!form.controls.instrumentSeriesCode.value" (click)="hideInputButtonShowQrCode()"
           class="mat-raised-button mat-primary scanner-button">Generate Qr
-          </button>
+        </button>
       </mat-dialog-actions>
 
       <div *ngIf="showQrCode" fxFlex>
@@ -40,8 +47,27 @@
 
         <mat-card>
 
-          <h2 style="color:black">Available Instruments <span style="padding-left:20px"></span>
+          <h2 style="color:black">Available Instruments<span style="padding-left:20px"></span>
           </h2>
+
+          <div class="header">
+
+            <div class="title">
+
+              <div (click)="sort(filteredUnconnectedAddressesIds, isAscUnconnectedAddressesIds);
+              isAscUnconnectedAddressesIds = !isAscUnconnectedAddressesIds">
+                <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedAddressesIds" style="color:green;">expand_less
+                </mat-icon>
+                <mat-icon matTooltip="Descending" *ngIf="!isAscUnconnectedAddressesIds" style="color: red;">expand_more
+                </mat-icon>
+              </div>
+              <div style="padding-left: 5%; width: 100%;">
+                <input placeholder="Search" type="text" (ngModelChange)="filterUnconnectedAddressesIds($event)"
+                  formControlName="filteredUnConnectedAddress">
+              </div>
+            </div>
+
+          </div>
 
           <div class="custom-scroll custom-scroll-table">
 
@@ -49,7 +75,9 @@
 
             <table style="margin-top:10px;" border=1 frame=void rules=rows>
               <tbody>
-                <tr *ngFor="let item of availableInstrumentsList">
+                <tr *ngFor="let item of filteredUnconnectedAddressesIds; let i = index"
+                  (click)="onSelectRowAddress(item.id, 0, i, $event)"
+                  [ngClass]="isSelectedAddress(item, 0) ? 'selected': ''">
                   <td>{{item.name ? item.name : '-' }}</td>
                   <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
                 </tr>
@@ -60,8 +88,12 @@
       </div>
 
       <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
-        <mat-icon>arrow_left</mat-icon>
-        <mat-icon>arrow_right</mat-icon>
+        <button mat-icon-button (click)="onMoveAddress('RIGHT', $event)">
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onMoveAddress('LEFT', $event)">
+          <mat-icon>arrow_left</mat-icon>
+        </button>
       </div>
 
       <div fxFlex="45" fxLayout="column">
@@ -71,7 +103,40 @@
           <h2 style="color:black">Selected Instruments<span style="padding-left:20px"></span>
           </h2>
 
+          <div class="header">
+
+            <div class="title">
+
+              <mat-icon class="nv-mi-format_align_left"></mat-icon>
+              <div (click)="sort(filteredConnectedAddressesIds, isAscConnectedAddressesIds);
+              isAscConnectedAddressesIds = !isAscConnectedAddressesIds"
+                [ngStyle]="{'color': this.connectedAddressesIds.length > 0 ? 'green' : '#dbdbdb'}">
+                <mat-icon matTooltip="Ascending" *ngIf="isAscConnectedAddressesIds" style="color:green;">expand_less
+                </mat-icon>
+                <mat-icon matTooltip="Descending" *ngIf="!isAscConnectedAddressesIds" style="color: red;">expand_more
+                </mat-icon>
+              </div>
+              <div style="padding-left: 5%; width: 100%;">
+                <input placeholder="Search" type="text" (ngModelChange)="filterConnectedAddressesIds($event)"
+                  formControlName="filteredConnectedAddress">
+              </div>
+            </div>
+
+          </div>
+
           <mat-divider></mat-divider>
+
+
+          <table style="margin-top:10px;" border=1 frame=void rules=rows>
+            <tbody>
+              <tr *ngFor="let item of filteredConnectedAddressesIds; let i = index"
+                (click)="onSelectRowAddress(item.id, 1, i, $event)"
+                [ngClass]="isSelectedAddress(item, 1) ? 'selected': ''">
+                <td>{{item.name ? item.name : '-' }}</td>
+                <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+              </tr>
+            </tbody>
+          </table>
         </mat-card>
       </div>
     </div>
