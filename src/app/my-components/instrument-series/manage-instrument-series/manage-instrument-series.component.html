@@ -1,12 +1,19 @@
-<mat-card fxLayout="column">
+<mat-card fxLayout="column" class="list_card_header">
 
   <div fxFlex fxLayoutAlign="end center">
     <mat-icon matTooltip="create instrument series" (click)="onForm()">add
     </mat-icon>
   </div>
 
+
+  <div *ngIf="modelList.length == 0">
+    <div class="no-data">
+      No Data
+    </div>
+  </div>
+
   <div fxLayout="row wrap">
-    <mat-card style="margin:15px;" class="list_card_header" fxFlex="48" *ngFor="let item of modelList">
+    <mat-card style="margin:15px;" class="multiple_list_card_header" fxFlex="48" *ngFor="let item of modelList">
 
       <h2>Instrument Series Code: <span style="padding-left:20px">{{item.instrumentSeriesCode}}</span>
       </h2>

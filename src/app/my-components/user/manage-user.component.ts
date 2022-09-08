@@ -144,33 +144,33 @@ export class ManageUserComponent extends GenericComponent implements OnInit, OnD
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.subscriptions.add(this.userService.deleteUser(id)
-        .subscribe(res => {
-          if (res) {
-            this.subscriptions.add(this.userService.fetchFirstNames().subscribe((data) => {
-              this.firstNameList = data;
-              this.filteredFirstNameList = data;
-            }));
-            this.subscriptions.add(this.userService.fetchLastNames().subscribe((data) => {
-              this.lastNameList = data;
-              this.filteredLastNameList = data;
-            }));
-            this.subscriptions.add(this.userService.fetchUsernames().subscribe((data) => {
-              this.usernameList = data;
-              this.filteredUsernameList = data;
-            }));
-            this.subscriptions.add(this.userService.fetchEmails().subscribe((data) => {
-              this.emailList = data;
-              this.filteredEmailList = data;
-            }));
-            this.onList();
-            this.notificationService.showNotification(
-              {
-                title: 'Delete',
-                type: 'SUCCESS',
-                message: 'User has been deleted',
-              });
-          }
-        }));
+          .subscribe(res => {
+            if (res) {
+              this.subscriptions.add(this.userService.fetchFirstNames().subscribe((data) => {
+                this.firstNameList = data;
+                this.filteredFirstNameList = data;
+              }));
+              this.subscriptions.add(this.userService.fetchLastNames().subscribe((data) => {
+                this.lastNameList = data;
+                this.filteredLastNameList = data;
+              }));
+              this.subscriptions.add(this.userService.fetchUsernames().subscribe((data) => {
+                this.usernameList = data;
+                this.filteredUsernameList = data;
+              }));
+              this.subscriptions.add(this.userService.fetchEmails().subscribe((data) => {
+                this.emailList = data;
+                this.filteredEmailList = data;
+              }));
+              this.onList();
+              this.notificationService.showNotification(
+                {
+                  title: 'Delete',
+                  type: 'SUCCESS',
+                  message: 'User has been deleted',
+                });
+            }
+          }));
       }
     });
   }

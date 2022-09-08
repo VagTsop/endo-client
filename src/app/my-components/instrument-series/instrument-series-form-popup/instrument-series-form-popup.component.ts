@@ -10,10 +10,7 @@ import { GenericComponent } from '../../generic.component';
   providers: [InstrumentSeriesService]
 })
 export class InstrumentSeriesFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
-  availableInstrumentsList: any = [];
-  selectedInstrumentsList: any = [];
   form: UntypedFormGroup;
-
   id: number;
   lastSelected: number;
   start: number;
