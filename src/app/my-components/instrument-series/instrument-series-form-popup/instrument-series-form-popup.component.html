@@ -58,7 +58,8 @@
               isAscUnconnectedInstrumentsIds = !isAscUnconnectedInstrumentsIds">
                 <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedInstrumentsIds" style="color:green;">expand_less
                 </mat-icon>
-                <mat-icon matTooltip="Descending" *ngIf="!isAscUnconnectedInstrumentsIds" style="color: red;">expand_more
+                <mat-icon matTooltip="Descending" *ngIf="!isAscUnconnectedInstrumentsIds" style="color: red;">
+                  expand_more
                 </mat-icon>
               </div>
               <div style="padding-left: 5%; width: 100%;">
@@ -73,13 +74,21 @@
 
             <mat-divider></mat-divider>
 
-            <table style="margin-top:10px;" border=1 frame=void rules=rows>
+            <table style="margin-top:10px;width:100%" border=1 frame=void rules=rows>
+              <thead>
+                <tr>
+                  <th style="text-align: left" [style.width.%]="33.3">Name</th>
+                  <th style="text-align: left" [style.width.%]="33.3">Description</th>
+                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 0, i, $event)"
                   [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
-                  <td>{{item.name ? item.name : '-' }}</td>
-                  <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+                  <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
+                  <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
+                  <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
                 </tr>
               </tbody>
             </table>
@@ -124,19 +133,29 @@
 
           </div>
 
-          <mat-divider></mat-divider>
+          <div class="custom-scroll custom-scroll-table">
 
+            <mat-divider></mat-divider>
 
-          <table style="margin-top:10px;" border=1 frame=void rules=rows>
-            <tbody>
-              <tr *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
-                (click)="onSelectRowInstrument(item.id, 1, i, $event)"
-                [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
-                <td>{{item.name ? item.name : '-' }}</td>
-                <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
-              </tr>
-            </tbody>
-          </table>
+            <table style="margin-top:10px;width:100%" border=1 frame=void rules=rows>
+              <thead>
+                <tr>
+                  <th style="text-align: left" [style.width.%]="33.3">Name</th>
+                  <th style="text-align: left" [style.width.%]="33.3">Description</th>
+                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="text-align: center;" *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
+                  (click)="onSelectRowInstrument(item.id, 1, i, $event)"
+                  [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
+                  <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
+                  <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
+                  <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </mat-card>
       </div>
     </div>

@@ -42,6 +42,6 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
   }
 
   onForm(id?: any) {
-    const dialogRef = this.dialog.open(InstrumentSeriesFormPopupComponent, { disableClose: true, maxHeight: '100vh', width: '50vw', panelClass: 'custom-instrument-series-form-dialog-container' });
+    const dialogRef = this.dialog.open(InstrumentSeriesFormPopupComponent, { disableClose: true, maxHeight: '100vh', width: '80vw', panelClass: 'custom-instrument-series-form-dialog-container' });
   }
 }
