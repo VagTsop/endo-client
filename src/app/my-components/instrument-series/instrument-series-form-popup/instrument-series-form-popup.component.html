@@ -19,12 +19,12 @@
 
       <div fxFlex="45" fxLayout="column">
         <div style="width:100%" fxLayout="row">
-          <mat-form-field *ngIf="showInput" fxFlex="78" appearance="fill">
+          <mat-form-field *ngIf="showInput" fxFlex="82" appearance="fill">
             <mat-label>Enter Instrument Series Code</mat-label>
             <input [formControl]="form.controls.instrumentSeriesCode" matInput>
           </mat-form-field>
 
-          <mat-dialog-actions fxFlex="22" *ngIf="showGenerateQrButton" style="height:100%"
+          <mat-dialog-actions fxFlex="18" *ngIf="showGenerateQrButton" style="height:100%;margin-left:15px"
             fxLayoutAlign="center center">
             <button [disabled]="!form.controls.instrumentSeriesCode.value" (click)="hideInputButtonShowQrCode()"
               class="mat-raised-button mat-primary scanner-button">Generate Qr
