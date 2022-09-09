@@ -10,6 +10,7 @@ import { GenericComponent } from '../../generic.component';
   providers: [InstrumentSeriesService]
 })
 export class InstrumentSeriesFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
+  counter:number;
   form: UntypedFormGroup;
   id: number;
   lastSelected: number;
@@ -122,6 +123,14 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
       }
     }
   }
+
+  // decrement() {
+  //   this.counter--;
+  // }
+
+  // increment() {
+  //   this.counter++;
+  // }
 
   onMoveInstrument(direction: string, event?: any) {
     // because onMoveInstrument is used without click event when edit pop up

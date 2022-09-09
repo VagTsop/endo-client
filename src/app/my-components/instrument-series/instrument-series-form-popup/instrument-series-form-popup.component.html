@@ -17,27 +17,31 @@
 
     <div fxLayout="row">
 
-      <mat-form-field *ngIf="showInput" fxFlex="45" appearance="fill">
-        <mat-label>Enter Instrument Series Code</mat-label>
-        <input [formControl]="form.controls.instrumentSeriesCode" matInput>
-      </mat-form-field>
+      <div fxFlex="45" fxLayout="column">
+        <div style="width:100%" fxLayout="row">
+          <mat-form-field *ngIf="showInput" fxFlex="78" appearance="fill">
+            <mat-label>Enter Instrument Series Code</mat-label>
+            <input [formControl]="form.controls.instrumentSeriesCode" matInput>
+          </mat-form-field>
 
-      <mat-dialog-actions *ngIf="showGenerateQrButton" style=" height:100%;margin-left:62px"
-        fxLayoutAlign="center center">
-        <button [disabled]="!form.controls.instrumentSeriesCode.value" (click)="hideInputButtonShowQrCode()"
-          class="mat-raised-button mat-primary scanner-button">Generate Qr
-        </button>
-      </mat-dialog-actions>
+          <mat-dialog-actions fxFlex="22" *ngIf="showGenerateQrButton" style="height:100%"
+            fxLayoutAlign="center center">
+            <button [disabled]="!form.controls.instrumentSeriesCode.value" (click)="hideInputButtonShowQrCode()"
+              class="mat-raised-button mat-primary scanner-button">Generate Qr
+            </button>
+          </mat-dialog-actions>
 
-      <div *ngIf="showQrCode" fxFlex>
-        <qrcode [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [errorCorrectionLevel]="'M'">
-        </qrcode>
+          <div *ngIf="showQrCode" fxFlex>
+            <qrcode [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [errorCorrectionLevel]="'M'">
+            </qrcode>
 
-        <mat-dialog-actions fxFlex="45" style="height:100%">
-          <button (click)="hideQrCodeShowInputButton()"
-            class="mat-raised-button mat-primary scanner-button"><span>Generate
-              New Qr</span></button>
-        </mat-dialog-actions>
+            <mat-dialog-actions fxFlex="45" style="height:100%">
+              <button (click)="hideQrCodeShowInputButton()"
+                class="mat-raised-button mat-primary scanner-button"><span>Generate
+                  New Qr</span></button>
+            </mat-dialog-actions>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -83,12 +87,29 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
+                <tr style="padding:15px" *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 0, i, $event)"
                   [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
-                  <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+                  <td style="text-align: center">
+                    <button style="background:none;border:none" [disabled]="item.instrumentsCount == 1"
+                      (click)="item.instrumentsCount=item.instrumentsCount-1">
+                      <mat-icon [ngStyle]="{'color': item.instrumentsCount == 1 ? '#c7c7c7' : '#282525'}"
+                        style="font-size:12px;position:relative;top:5px">
+                        remove</mat-icon>
+                    </button>
+                    {{item.instrumentsCount ? item.instrumentsCount : '-' }}
+                    <button style="background:none;border:none"
+                      [disabled]="item.instrumentsCount == item.instrumentIdsList.length"
+                      (click)="item.instrumentsCount=item.instrumentsCount+1">
+                      <mat-icon
+                        [ngStyle]="{'color': item.instrumentsCount == item.instrumentIdsList.length ? '#c7c7c7' : '#282525'}"
+                        style="font-size:12px;position:relative;top:5px">
+                        add
+                      </mat-icon>
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
