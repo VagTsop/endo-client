@@ -20,26 +20,34 @@
 
       <mat-divider></mat-divider>
 
-      <div class="custom-scroll custom-scroll-table">
-        <table style="width:100%;margin-top:30px" border=1 frame=void rules=rows>
-          <thead>
-            <tr>
-              <th [style.width.%]="33.3">Name</th>
 
-              <th [style.width.%]="33.3">Description</th>
+      <div style="width:100%;margin-top:30px" border=1 frame=void rules=rows>
 
-              <th [style.width.%]="33.3">Quantity</th>
-            </tr>
-          </thead>
-          <tbody class="table_body">
-            <tr class="table_row" *ngFor="let itemDetails of item.instrumentSeriesDetails">
-              <td>{{itemDetails.instrumentName ? itemDetails.instrumentName : '-' }}</td>
-              <td>{{itemDetails.instrumentDescription ? itemDetails.instrumentDescription : '-' }}</td>
-              <td>{{itemDetails.instrumentsCount ? itemDetails.instrumentsCount : '-' }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div style="text-align: center;color: #000000de;font-weight: bold;">
+
+          <div fxFlex="33.3">Name</div>
+
+          <div fxFlex="33.3">Description</div>
+
+          <div fxFlex="33.3">Quantity</div>
+        </div>
+
+        <div class="table_body custom-scroll custom-scroll-table">
+
+          <div style="text-align: center;" class="table_row" *ngFor="let itemDetails of item.instrumentSeriesDetails">
+
+            <div fxFlex="33.3" fxLayout="column">{{itemDetails.instrumentName ? itemDetails.instrumentName : '-' }}
+            </div>
+
+            <div fxFlex="33.3" fxLayout="column">{{itemDetails.instrumentDescription ? itemDetails.instrumentDescription
+              : '-' }}</div>
+
+            <div fxFlex="33.3" fxLayout="column">{{itemDetails.instrumentsCount ? itemDetails.instrumentsCount : '-' }}
+            </div>
+          </div>
+        </div>
       </div>
     </mat-card>
   </div>
 </mat-card>
+<!-- class="table_body" -->
