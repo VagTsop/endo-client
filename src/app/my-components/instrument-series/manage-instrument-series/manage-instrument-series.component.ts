@@ -12,6 +12,11 @@ import { InstrumentSeriesFormPopupComponent } from '../instrument-series-form-po
   providers: [InstrumentSeriesService]
 })
 export class ManageInstrumentSeriesComponent extends GenericComponent implements OnInit, OnDestroy {
+
+  itemsPerPage: number = 4;
+  allPages: number;
+  tempList: any = [];
+
   constructor(
     private dialog: MatDialog,
     private instrumentSeriesService: InstrumentSeriesService,
@@ -30,17 +35,14 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
     this.subscriptions.add(this.instrumentSeriesService.getInstrumentSeriesList(this.req)
       .subscribe(res => {
         this.modelList = res;
-        this.req.$paging.$totalSize = res.totalElements;
+        this.tempList = res;
+        this.onPageChange(1);
+        this.allPages = Math.ceil(this.tempList.length / this.itemsPerPage);
       }));
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-  }
-
-  onChangePaging(changePaging: any): void {
-    this.req.$paging = changePaging;
-    this.onList();
   }
 
   onForm(id?: any) {
@@ -57,5 +59,11 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
           });
       }
     });
+  }
+
+  onPageChange(page: number): void {
+    const startItem = (page - 1) * this.itemsPerPage;
+    const endItem = page * this.itemsPerPage;
+    this.modelList = this.tempList.slice(startItem, endItem);
   }
 }
