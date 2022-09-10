@@ -94,7 +94,7 @@
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
                   <td style="text-align: center">
                     <button style="background:none;border:none" [disabled]="item.instrumentsCount == 1"
-                      (click)="item.instrumentsCount=item.instrumentsCount-1">
+                      (click)="item.instrumentsCount=item.instrumentsCount-1;counter= item.instrumentsCount">
                       <mat-icon [ngStyle]="{'color': item.instrumentsCount == 1 ? '#c7c7c7' : '#282525'}"
                         style="font-size:12px;position:relative;top:5px">
                         remove</mat-icon>
@@ -102,13 +102,14 @@
                     {{item.instrumentsCount ? item.instrumentsCount : '-' }}
                     <button style="background:none;border:none"
                       [disabled]="item.instrumentsCount == item.instrumentIdsList.length"
-                      (click)="item.instrumentsCount=item.instrumentsCount+1">
+                      (click)="item.instrumentsCount=item.instrumentsCount+1;counter= item.instrumentsCount">
                       <mat-icon
                         [ngStyle]="{'color': item.instrumentsCount == item.instrumentIdsList.length ? '#c7c7c7' : '#282525'}"
                         style="font-size:12px;position:relative;top:5px">
                         add
                       </mat-icon>
                     </button>
+                    <!-- <input style="display:none" [(ngModel)]="req.$instrumentIdsList" value="item.instrumentsCount"> -->
                   </td>
                 </tr>
               </tbody>

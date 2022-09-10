@@ -10,6 +10,15 @@ export class InstrumentSeriesService extends CommonService {
 
   private baseUrl = environment.BASE_URL + '/instruments-series'
 
+
+  createInstrumentSeries(request: InstrumentSeriesRequest): Observable<any> {
+    return this.http.post(
+      this.baseUrl + '/create-instrument-series', request
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }//
+
   getInstrumentSeriesList(request: InstrumentSeriesRequest) {
     return this.http.get(
       this.baseUrl + '/get-instrument-series-list',

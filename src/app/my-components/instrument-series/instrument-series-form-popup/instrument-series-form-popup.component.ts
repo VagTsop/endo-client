@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { InstrumentSeriesService } from 'src/services/instrument-series.service';
+import { InstrumentSeriesRequest } from 'src/transport/instrument-series.request';
 import { GenericComponent } from '../../generic.component';
 
 @Component({
@@ -10,7 +11,7 @@ import { GenericComponent } from '../../generic.component';
   providers: [InstrumentSeriesService]
 })
 export class InstrumentSeriesFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
-  counter:number;
+  counter: number;
   form: UntypedFormGroup;
   id: number;
   lastSelected: number;
@@ -24,17 +25,20 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   filteredUnconnectedInstrumentsIds: Array<any> = [];
   isAscUnconnectedInstrumentsIds = false;
   isAscconnectedInstrumentsIds = false;
-
+  instrumentIdsListLIndex: number;
   showInput: boolean = true;
   showGenerateQrButton = true;
   showQrCode: boolean = false;
+  newArray: Array<any> = [];
 
   constructor(private instrumentSeriesService: InstrumentSeriesService,
     private dialogRef: MatDialogRef<InstrumentSeriesFormPopupComponent>,
     private formBuilder: UntypedFormBuilder,
   ) {
     super();
+    this.req = new InstrumentSeriesRequest();
   }
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       instrumentSeriesCode: [null, Validators.required],
@@ -124,14 +128,6 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
     }
   }
 
-  // decrement() {
-  //   this.counter--;
-  // }
-
-  // increment() {
-  //   this.counter++;
-  // }
-
   onMoveInstrument(direction: string, event?: any) {
     // because onMoveInstrument is used without click event when edit pop up
     // it runs only for user click.
@@ -219,7 +215,18 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   }
 
   onSaveInstrumentSeries() {
-    console.log(this.form.value.instrumentSeriesCode)
+    this.req.$instrumentSeriesCode = this.form.value.instrumentSeriesCode;
+    for (const item of this.connectedInstrumentsIds) {
+      this.counter = item.instrumentsCount;
+      this.newArray.push(item.instrumentIdsList.slice(0, this.counter));
+    }
+    this.req.instrumentIdsList = this.newArray.flat()
+    console.log(this.req.instrumentIdsList);
+    this.subscriptions.add(this.instrumentSeriesService.createInstrumentSeries(this.req).subscribe(
+      res => {
+        this.dialogRef.close(res);
+      }
+    ));
   }
 
   ngOnDestroy() {
