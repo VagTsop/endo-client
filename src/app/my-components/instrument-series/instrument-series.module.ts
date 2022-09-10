@@ -5,7 +5,8 @@ import { InstrumentSeriesScannerRoutingModule } from "./instrument-series-routin
 import { InstrumentSeriesScannerComponent } from "./instrument-series-scanner/instrument-series-scanner.component";
 import { ManageInstrumentSeriesComponent } from './manage-instrument-series/manage-instrument-series.component';
 import { InstrumentSeriesFormPopupComponent } from './instrument-series-form-popup/instrument-series-form-popup.component';
-import { InstrumentSeriesDetailsPopupComponent } from "./instrument-series-scanner/instrument-series-detaills-popup/instrument-series-details-popup.component";
+import { InstrumentSeriesDetailsPopupComponent } from "./instrument-series-detaills-popup/instrument-series-details-popup.component";
+import { QRCodeModule } from "angularx-qrcode";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InstrumentSeriesDetailsPopupComponent } from "./instrument-series-scann
     CommonModule,
     InstrumentSeriesScannerRoutingModule,
     SharedModule,
+    QRCodeModule
   ],
 })
 export class InstrumentSeriesModule { }

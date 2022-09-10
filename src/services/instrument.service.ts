@@ -11,18 +11,6 @@ export class InstrumentService extends CommonService {
 
   private baseUrl = environment.BASE_URL + '/instruments'
 
-  fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
-    return this.http
-      .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
-        params: new HttpParams().set('qrCode', qrCode.toString()),
-      })
-      .pipe(
-        map((response: any) => {
-          return response;
-        })
-      );
-  }
-
   createInstrument(request: InstrumentRequest): Observable<any> {
     return this.http.post(
       this.baseUrl + '/create-instrument', request

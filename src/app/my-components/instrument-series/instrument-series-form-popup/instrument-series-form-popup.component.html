@@ -1,51 +1,190 @@
 <div fxLayout="column">
 
-  <div fxLayoutAlign="end center">
+  <div fxLayoutAlign="space-between center">
+
+    <h2 style="margin:0" mat-dialog-title>Create Instrument Series</h2>
+
     <button mat-icon-button tabindex="-1" (click)="onClose()">
       <mat-icon matTooltip="close">close</mat-icon>
     </button>
   </div>
 
-  <div fxLayout="row">
+  <mat-divider style="margin-bottom:15px"></mat-divider>
 
-    <div fxFlex="45" fxLayout="column">
+  <div></div>
 
-      <mat-card>
+  <form [formGroup]="form">
 
-        <h2 style="color:black">Available Instruments <span style="padding-left:20px"></span>
-        </h2>
+    <div fxLayout="row">
 
-        <div class="custom-scroll custom-scroll-table">
+      <div fxFlex="45" fxLayout="column">
+        <div style="width:100%" fxLayout="row">
+          <mat-form-field *ngIf="showInput" fxFlex="82" appearance="fill">
+            <mat-label>Enter Instrument Series Code</mat-label>
+            <input [formControl]="form.controls.instrumentSeriesCode" matInput>
+          </mat-form-field>
 
-          <mat-divider></mat-divider>
+          <mat-dialog-actions fxFlex="18" *ngIf="showGenerateQrButton" style="height:100%;margin-left:15px"
+            fxLayoutAlign="center center">
+            <button [disabled]="!form.controls.instrumentSeriesCode.value" (click)="hideInputButtonShowQrCode()"
+              class="mat-raised-button mat-primary scanner-button">Generate Qr
+            </button>
+          </mat-dialog-actions>
 
-          <table style="margin-top:10px;" border=1 frame=void rules=rows>
-            <tbody>
-              <tr *ngFor="let item of availableInstrumentsList">
-                <td>{{item.name ? item.name : '-' }}</td>
-                <td>{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+          <div *ngIf="showQrCode" fxFlex>
+            <qrcode [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [errorCorrectionLevel]="'M'">
+            </qrcode>
 
-              </tr>
-            </tbody>
-          </table>
+            <mat-dialog-actions fxFlex="45" style="height:100%">
+              <button (click)="hideQrCodeShowInputButton()"
+                class="mat-raised-button mat-primary scanner-button"><span>Generate
+                  New Qr</span></button>
+            </mat-dialog-actions>
+          </div>
         </div>
-      </mat-card>
+      </div>
     </div>
 
-    <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
-      <mat-icon>arrow_left</mat-icon>
-      <mat-icon>arrow_right</mat-icon>
+    <div fxLayout="row">
+
+      <div fxFlex="45" fxLayout="column">
+
+        <mat-card>
+
+          <h2 style="color:black">Available Instruments<span style="padding-left:20px"></span>
+          </h2>
+
+          <div class="header">
+
+            <div class="title">
+
+              <div (click)="sort(filteredUnconnectedInstrumentsIds, isAscUnconnectedInstrumentsIds);
+              isAscUnconnectedInstrumentsIds = !isAscUnconnectedInstrumentsIds">
+                <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedInstrumentsIds" style="color:green;">expand_less
+                </mat-icon>
+                <mat-icon matTooltip="Descending" *ngIf="!isAscUnconnectedInstrumentsIds" style="color: red;">
+                  expand_more
+                </mat-icon>
+              </div>
+              <div style="padding-left: 5%; width: 100%;">
+                <input placeholder="Search" type="text" (ngModelChange)="filterUnconnectedInstrumentsIds($event)"
+                  formControlName="filteredUnConnectedInstrument">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="custom-scroll custom-scroll-table">
+
+            <mat-divider></mat-divider>
+
+            <table style="margin-top:10px;width:100%" border=1 frame=void rules=rows>
+              <thead>
+                <tr>
+                  <th style="text-align: left" [style.width.%]="33.3">Name</th>
+                  <th style="text-align: left" [style.width.%]="33.3">Description</th>
+                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="padding:15px" *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
+                  (click)="onSelectRowInstrument(item.id, 0, i, $event)"
+                  [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
+                  <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
+                  <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
+                  <td style="text-align: center">
+                    <button style="background:none;border:none" [disabled]="item.instrumentsCount == 1"
+                      (click)="item.instrumentsCount=item.instrumentsCount-1;counter= item.instrumentsCount">
+                      <mat-icon [ngStyle]="{'color': item.instrumentsCount == 1 ? '#c7c7c7' : '#282525'}"
+                        style="font-size:12px;position:relative;top:5px">
+                        remove</mat-icon>
+                    </button>
+                    {{item.instrumentsCount ? item.instrumentsCount : '-' }}
+                    <button style="background:none;border:none"
+                      [disabled]="item.instrumentsCount == item.instrumentIdsList.length"
+                      (click)="item.instrumentsCount=item.instrumentsCount+1;counter= item.instrumentsCount">
+                      <mat-icon
+                        [ngStyle]="{'color': item.instrumentsCount == item.instrumentIdsList.length ? '#c7c7c7' : '#282525'}"
+                        style="font-size:12px;position:relative;top:5px">
+                        add
+                      </mat-icon>
+                    </button>
+                    <!-- <input style="display:none" [(ngModel)]="req.$instrumentIdsList" value="item.instrumentsCount"> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card>
+      </div>
+
+      <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
+        <button mat-icon-button (click)="onMoveInstrument('RIGHT', $event)">
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onMoveInstrument('LEFT', $event)">
+          <mat-icon>arrow_left</mat-icon>
+        </button>
+      </div>
+
+      <div fxFlex="45" fxLayout="column">
+
+        <mat-card>
+
+          <h2 style="color:black">Selected Instruments<span style="padding-left:20px"></span>
+          </h2>
+
+          <div class="header">
+
+            <div class="title">
+
+              <mat-icon class="nv-mi-format_align_left"></mat-icon>
+              <div (click)="sort(filteredConnectedInstrumentsIds, isAscconnectedInstrumentsIds);
+              isAscconnectedInstrumentsIds = !isAscconnectedInstrumentsIds"
+                [ngStyle]="{'color': this.connectedInstrumentsIds.length > 0 ? 'green' : '#dbdbdb'}">
+                <mat-icon matTooltip="Ascending" *ngIf="isAscconnectedInstrumentsIds" style="color:green;">expand_less
+                </mat-icon>
+                <mat-icon matTooltip="Descending" *ngIf="!isAscconnectedInstrumentsIds" style="color: red;">expand_more
+                </mat-icon>
+              </div>
+              <div style="padding-left: 5%; width: 100%;">
+                <input placeholder="Search" type="text" (ngModelChange)="filterConnectedInstrumentsIds($event)"
+                  formControlName="filteredConnectedInstrument">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="custom-scroll custom-scroll-table">
+
+            <mat-divider></mat-divider>
+
+            <table style="margin-top:10px;width:100%" border=1 frame=void rules=rows>
+              <thead>
+                <tr>
+                  <th style="text-align: left" [style.width.%]="33.3">Name</th>
+                  <th style="text-align: left" [style.width.%]="33.3">Description</th>
+                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="text-align: center;" *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
+                  (click)="onSelectRowInstrument(item.id, 1, i, $event)"
+                  [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
+                  <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
+                  <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
+                  <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card>
+      </div>
     </div>
 
-    <div fxFlex="45" fxLayout="column">
-
-      <mat-card>
-
-        <h2 style="color:black">Selected Instruments<span style="padding-left:20px"></span>
-        </h2>
-
-        <mat-divider></mat-divider>
-      </mat-card>
-    </div>
-  </div>
+    <mat-dialog-actions fxLayoutAlign="center center">
+      <button (click)="onSaveInstrumentSeries()" [disabled]="!form.valid" type="submit"
+        class="mat-raised-button mat-primary">Save</button>
+    </mat-dialog-actions>
+  </form>
 </div>

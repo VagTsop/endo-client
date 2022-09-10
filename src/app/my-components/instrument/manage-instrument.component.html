@@ -148,6 +148,12 @@
 
     <tbody class="table_body">
 
+      <tr *ngIf="modelList.length == 0">
+        <td class="no-data" colspan="10">
+          No Data
+        </td>
+      </tr>
+
       <tr class="table_row" *ngFor="let item of modelList" (click)="onSelectRow(item)">
 
         <td>

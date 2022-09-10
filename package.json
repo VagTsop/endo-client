@@ -26,6 +26,7 @@
     "@zxing/browser": "^0.1.1",
     "@zxing/library": "^0.19.1",
     "@zxing/ngx-scanner": "^3.6.2",
+    "angularx-qrcode": "^14.0.0",
     "common-module": "^0.0.28",
     "hammerjs": "^2.0.8",
     "http-client": "^4.3.1",

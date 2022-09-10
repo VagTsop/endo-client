@@ -1,0 +1,32 @@
+<div fxLayoutAlign="space-between center">
+  <h2 fxFlex="90" mat-dialog-title>Instrument Series Content</h2>
+
+  <button fxFlex="5" mat-icon-button tabindex="-1" (click)="onClose()">
+    <mat-icon style="margin-bottom:10px" matTooltip="close">close</mat-icon>
+  </button>
+</div>
+
+<div class="custom-scroll custom-scroll-table">
+
+  <mat-divider></mat-divider>
+
+  <table style="width:100%" border=1 frame=void rules=rows>
+    <thead>
+      <tr>
+        <th [style.width.%]="25">Name</th>
+        <th [style.width.%]="25">Description</th>
+        <th [style.width.%]="25">LOT</th>
+        <th [style.width.%]="25">Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr style="text-align: center" *ngFor="let item of data.item">
+        <td>{{item.name ? item.name : '-'}}</td>
+        <td>{{item.description ? item.description : '-'}}</td>
+        <td>{{item.instrumentLot ? item.instrumentLot : '-'}}</td>
+        <td>{{item.instrumentsCount ? item.instrumentsCount : '-'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

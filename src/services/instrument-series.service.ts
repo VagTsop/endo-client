@@ -3,11 +3,21 @@ import { map, Observable } from "rxjs";
 import { InstrumentSeriesRequest } from "src/transport/instrument-series.request";
 import { environment } from "src/environments/environment";
 import { CommonService } from "./common.service";
+import { HttpParams } from "@angular/common/http";
 
 @Injectable()
 export class InstrumentSeriesService extends CommonService {
 
   private baseUrl = environment.BASE_URL + '/instruments-series'
+
+
+  createInstrumentSeries(request: InstrumentSeriesRequest): Observable<any> {
+    return this.http.post(
+      this.baseUrl + '/create-instrument-series', request
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }//
 
   getInstrumentSeriesList(request: InstrumentSeriesRequest) {
     return this.http.get(
@@ -18,6 +28,18 @@ export class InstrumentSeriesService extends CommonService {
     ).pipe(map((response: any) => {
       return response;
     }));
+  }
+
+  fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
+        params: new HttpParams().set('qrCode', qrCode.toString()),
+      })
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
   }
 
   fetchAvailableInstruments(): Observable<any> {

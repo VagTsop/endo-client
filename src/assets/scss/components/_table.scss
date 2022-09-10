@@ -11,3 +11,24 @@
     }
   }
 }
+.no-data {
+  color: black;
+  font-style: italic;
+  font-size: 120%;
+  text-align: center;
+  vertical-align: middle;
+  padding: 40px;
+}
+.multiple_list_card_header {
+  background-color: #b2b3ac;
+  .table_body {
+    line-height: 4em;
+    .table_row {
+      background-color: $listBackgroundPrimaryColor;
+      text-align: center;
+    }
+    .table_row:nth-child(odd) {
+      background: $listBackgroundSecondaryColor;
+    }
+  }
+}
