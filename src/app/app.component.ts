@@ -15,7 +15,7 @@ export class AppComponent implements DoCheck {
   instrumentSeriesRoutes = instrumentSeriesRoutes;
   title = 'endofusion-client';
   isSidebarOpened: boolean;
-  public menuItems: Array<any> = [];
+  public menuItems: any = [];
 
   constructor(
     public router: Router,
@@ -26,6 +26,9 @@ export class AppComponent implements DoCheck {
   }
 
   getMenuItems(): Array<any> {
+    if (this.router.url.includes('user')) {
+      this.menuItems = null;
+    }
     if (this.router.url.includes('instrument')) {
       this.menuItems = this.instrumentRoutes;
     }

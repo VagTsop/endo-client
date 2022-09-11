@@ -74,7 +74,7 @@
 
           </div>
 
-          <div class="custom-scroll custom-scroll-table">
+          <div style="max-height: 476px;" class="custom-scroll custom-scroll-table">
 
             <mat-divider></mat-divider>
 
@@ -155,7 +155,7 @@
 
           </div>
 
-          <div class="custom-scroll custom-scroll-table">
+          <div style="max-height: 476px;" class="custom-scroll custom-scroll-table">
 
             <mat-divider></mat-divider>
 
@@ -167,8 +167,9 @@
                   <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr style="text-align: center;" *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
+              <tbody style="line-height: 2em;">
+                <tr style="text-align: center;padding:15px"
+                  *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 1, i, $event)"
                   [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
