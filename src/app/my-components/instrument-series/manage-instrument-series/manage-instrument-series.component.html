@@ -60,7 +60,7 @@
     </mat-card>
   </div>
 
-  <div style="height:10%">
+  <div *ngIf="modelList.length !== 0" style="height:10%">
     <dropdown-paging fxFlex [allPagesNumber]="allPages" (changePage)="onPageChange($event)">
     </dropdown-paging>
   </div>
