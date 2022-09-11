@@ -16,8 +16,18 @@
     <mat-card style="height:45%;margin:15px" class="multiple_list_card_header" fxFlex="48"
       *ngFor="let item of modelList">
 
-      <h2>Instrument Series Code: <span style="padding-left:20px">{{item.instrumentSeriesCode}}</span>
-      </h2>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+
+        <div fxFlex="90" fxLayoutAlign="start center">
+
+          <mat-icon style="margin-bottom: 15px" fxFlex="5">list </mat-icon>
+
+          <h2>Instrument Series Code: <span style="padding-left:20px">{{item.instrumentSeriesCode}}</span>
+          </h2>
+        </div>
+
+        <mat-icon style="margin-bottom: 15px">more_vert</mat-icon>
+      </div>
 
       <mat-divider></mat-divider>
 
