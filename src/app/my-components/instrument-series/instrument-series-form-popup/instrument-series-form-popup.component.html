@@ -56,9 +56,9 @@
 
           <div class="header">
 
-            <div class="title">
+            <div fxLayoutAlign="start center" fxLayout="row" class="title">
 
-              <div (click)="sort(filteredUnconnectedInstrumentsIds, isAscUnconnectedInstrumentsIds);
+              <div fxFlex="5" (click)="sort(filteredUnconnectedInstrumentsIds, isAscUnconnectedInstrumentsIds);
               isAscUnconnectedInstrumentsIds = !isAscUnconnectedInstrumentsIds">
                 <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedInstrumentsIds" style="color:green;">expand_less
                 </mat-icon>
@@ -66,15 +66,18 @@
                   expand_more
                 </mat-icon>
               </div>
-              <div style="padding-left: 5%; width: 100%;">
-                <input placeholder="Search" type="text" (ngModelChange)="filterUnconnectedInstrumentsIds($event)"
-                  formControlName="filteredUnConnectedInstrument">
+
+              <div style="padding-left:15px">
+                <mat-form-field>
+                  <input matInput placeholder="Search" type="text"
+                    (ngModelChange)="filterUnconnectedInstrumentsIds($event)"
+                    formControlName="filteredUnConnectedInstrument" />
+                </mat-form-field>
               </div>
             </div>
-
           </div>
 
-          <div style="max-height: 476px;" class="custom-scroll custom-scroll-table">
+          <div style="max-height: 476px;min-height: 476px;" class="custom-scroll custom-scroll-table">
 
             <mat-divider></mat-divider>
 
@@ -136,10 +139,9 @@
 
           <div class="header">
 
-            <div class="title">
+            <div fxLayoutAlign="start center" fxLayout="row" class="title">
 
-              <mat-icon class="nv-mi-format_align_left"></mat-icon>
-              <div (click)="sort(filteredConnectedInstrumentsIds, isAscconnectedInstrumentsIds);
+              <div fxFlex="5" (click)="sort(filteredConnectedInstrumentsIds, isAscconnectedInstrumentsIds);
               isAscconnectedInstrumentsIds = !isAscconnectedInstrumentsIds"
                 [ngStyle]="{'color': this.connectedInstrumentsIds.length > 0 ? 'green' : '#dbdbdb'}">
                 <mat-icon matTooltip="Ascending" *ngIf="isAscconnectedInstrumentsIds" style="color:green;">expand_less
@@ -147,15 +149,18 @@
                 <mat-icon matTooltip="Descending" *ngIf="!isAscconnectedInstrumentsIds" style="color: red;">expand_more
                 </mat-icon>
               </div>
-              <div style="padding-left: 5%; width: 100%;">
-                <input placeholder="Search" type="text" (ngModelChange)="filterConnectedInstrumentsIds($event)"
-                  formControlName="filteredConnectedInstrument">
+
+              <div style="padding-left:15px">
+                <mat-form-field>
+                  <input matInput placeholder="Search" type="text"
+                    (ngModelChange)="filterConnectedInstrumentsIds($event)"
+                    formControlName="filteredConnectedInstrument" />
+                </mat-form-field>
               </div>
             </div>
-
           </div>
 
-          <div style="max-height: 476px;" class="custom-scroll custom-scroll-table">
+          <div style="max-height: 476px;min-height: 476px;" class="custom-scroll custom-scroll-table">
 
             <mat-divider></mat-divider>
 

@@ -40,15 +40,39 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   }
 
   ngOnInit(): void {
+
+    this.subscriptions.add(this.instrumentSeriesService.fetchAvailableInstruments().subscribe((data) => {
+      this.sort(data, true);
+      this.unconnectedInstrumentsIds = data;
+      this.filteredUnconnectedInstrumentsIds = data;
+    }));
+
     this.form = this.formBuilder.group({
       instrumentSeriesCode: [null, Validators.required],
       filteredUnConnectedInstrument: [null],
       filteredConnectedInstrument: [null],
     });
-    this.subscriptions.add(this.instrumentSeriesService.fetchAvailableInstruments().subscribe((data) => {
-      this.unconnectedInstrumentsIds = data;
-      this.filteredUnconnectedInstrumentsIds = data;
-    }));
+
+    if (this.id) {
+      // Fetch data from service
+      this.subscriptions.add(this.instrumentSeriesService.getById(this.id)
+        .subscribe(res => {
+          if (res) {
+            this.form = this.formBuilder.group({
+              instrumentSeriesCode: [res.instrumentSeriesCode],
+              filteredUnConnectedInstrument: [null],
+              filteredConnectedInstrument: [null],
+            });
+
+            if (res.connectedInstrumentsIds != null) {
+              for (const id of res.connectedInstrumentsIds) {
+                this.onSelect(id, 0, this.selected1InstrumentSet, this.selected2InstrumentSet);
+              }
+              this.onMoveInstrument('RIGHT');
+            }
+          }
+        }));
+    }
   }
 
   hideInputButtonShowQrCode() {
@@ -150,6 +174,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
       });
       this.unconnectedInstrumentsIds = remainingsAddress;
       this.filteredUnconnectedInstrumentsIds = remainingsAddress;
+      this.filteredConnectedInstrumentsIds = this.connectedInstrumentsIds;
       this.filterUnconnectedInstrumentsIds(
         this.form.value.filteredUnConnectedInstrument ? this.form.value.filteredUnConnectedInstrument : '');
       this.filterConnectedInstrumentsIds(
@@ -227,6 +252,27 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
         this.dialogRef.close(res);
       }
     ));
+  }
+
+  onSelect(recordId: number, list: number, tempSelectedOne: Set<number>, tempSelectedTwo: Set<number>) {
+    if (list === 0) {
+      if (tempSelectedOne.size === 0) {
+        if (!tempSelectedOne.has(recordId)) {
+          tempSelectedOne.add(recordId);
+        }
+      } else {
+        tempSelectedOne.add(recordId);
+      }
+    } else {
+      //  for  list 1
+      if (tempSelectedTwo.size === 0) {
+        if (!tempSelectedTwo.has(recordId)) {
+          tempSelectedTwo.add(recordId);
+        }
+      } else {
+        tempSelectedTwo.add(recordId);
+      }
+    }
   }
 
   ngOnDestroy() {

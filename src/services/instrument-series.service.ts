@@ -30,6 +30,18 @@ export class InstrumentSeriesService extends CommonService {
     }));
   }
 
+  getById(id: number): Observable<any> {
+    return this.http.get(
+      this.baseUrl + '/get-instrument-series-by-id',
+      {
+        params: new HttpParams().set('id', id.toString())
+      }
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
+
   fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
     return this.http
       .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
