@@ -133,7 +133,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
             this.selected1InstrumentSet.add(recordId);
           }
         } else {
-          // if selected1RoutingSet has one value and click different value
+          // if selected1Instrumentet has one value and click different value
           this.selected1InstrumentSet.clear();
           this.selected1InstrumentSet.add(recordId);
         }
@@ -144,7 +144,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
             this.selected2InstrumentSet.add(recordId);
           }
         } else {
-          // if selected1RoutingSet has one value and click different value
+          // if selected2nstrumentSet has one value and click different value
           this.selected2InstrumentSet.clear();
           this.selected2InstrumentSet.add(recordId);
         }
@@ -240,18 +240,25 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   }
 
   onSaveInstrumentSeries() {
+    // assign the form values to request
     this.req.$instrumentSeriesCode = this.form.value.instrumentSeriesCode;
     for (const item of this.connectedInstrumentsIds) {
-      this.counter = item.instrumentsCount;
-      this.newArray.push(item.instrumentIdsList.slice(0, this.counter));
+      this.req.$connectedInstrumentsIds.push(item.id);
     }
-    this.req.instrumentIdsList = this.newArray.flat()
-    console.log(this.req.instrumentIdsList);
-    this.subscriptions.add(this.instrumentSeriesService.createInstrumentSeries(this.req).subscribe(
-      res => {
-        this.dialogRef.close(res);
-      }
-    ));
+    // call service for create / edit
+    if (this.id) {
+      this.subscriptions.add(this.instrumentSeriesService.updateInstrumentSeries(this.req).subscribe(
+        res => {
+          this.dialogRef.close(res);
+        }
+      ));
+    } else {
+      this.subscriptions.add(this.instrumentSeriesService.createInstrumentSeries(this.req).subscribe(
+        res => {
+          this.dialogRef.close(res);
+        }
+      ));
+    }
   }
 
   onSelect(recordId: number, list: number, tempSelectedOne: Set<number>, tempSelectedTwo: Set<number>) {

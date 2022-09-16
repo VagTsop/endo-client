@@ -41,6 +41,14 @@ export class InstrumentSeriesService extends CommonService {
     }));
   }
 
+  updateInstrumentSeries(request: InstrumentSeriesRequest): Observable<any> {
+    return this.http.put(
+      this.baseUrl + '/update-instrument-series?id=' + request.$instrumentSeriesCode,
+      request)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 
   fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
     return this.http

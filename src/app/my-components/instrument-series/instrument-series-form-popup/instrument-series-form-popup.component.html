@@ -2,7 +2,7 @@
 
   <div fxLayoutAlign="space-between center">
 
-    <h2 style="margin:0" mat-dialog-title>Create Instrument Series</h2>
+    <h2 mat-dialog-title>{{id ? 'Edit Instrument Series' : 'Create Instrument Series'}}</h2>
 
     <button mat-icon-button tabindex="-1" (click)="onClose()">
       <mat-icon matTooltip="close">close</mat-icon>
@@ -86,7 +86,6 @@
                 <tr>
                   <th style="text-align: left" [style.width.%]="33.3">Name</th>
                   <th style="text-align: left" [style.width.%]="33.3">Description</th>
-                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
                 </tr>
               </thead>
               <tbody>
@@ -95,25 +94,6 @@
                   [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
-                  <td style="text-align: center">
-                    <button style="background:none;border:none" [disabled]="item.instrumentsCount == 1"
-                      (click)="item.instrumentsCount=item.instrumentsCount-1;counter= item.instrumentsCount">
-                      <mat-icon [ngStyle]="{'color': item.instrumentsCount == 1 ? '#c7c7c7' : '#282525'}"
-                        style="font-size:12px;position:relative;top:5px">
-                        remove</mat-icon>
-                    </button>
-                    {{item.instrumentsCount ? item.instrumentsCount : '-' }}
-                    <button style="background:none;border:none"
-                      [disabled]="item.instrumentsCount == item.instrumentIdsList.length"
-                      (click)="item.instrumentsCount=item.instrumentsCount+1;counter= item.instrumentsCount">
-                      <mat-icon
-                        [ngStyle]="{'color': item.instrumentsCount == item.instrumentIdsList.length ? '#c7c7c7' : '#282525'}"
-                        style="font-size:12px;position:relative;top:5px">
-                        add
-                      </mat-icon>
-                    </button>
-                    <!-- <input style="display:none" [(ngModel)]="req.$instrumentIdsList" value="item.instrumentsCount"> -->
-                  </td>
                 </tr>
               </tbody>
             </table>
@@ -169,7 +149,6 @@
                 <tr>
                   <th style="text-align: left" [style.width.%]="33.3">Name</th>
                   <th style="text-align: left" [style.width.%]="33.3">Description</th>
-                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
                 </tr>
               </thead>
               <tbody style="line-height: 2em;">
@@ -179,7 +158,6 @@
                   [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
-                  <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
                 </tr>
               </tbody>
             </table>
