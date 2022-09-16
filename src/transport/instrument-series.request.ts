@@ -5,6 +5,7 @@ export class InstrumentSeriesRequest extends GenericRequest {
   private instrumentSeriesCode: number;
   private instrumentIdsList: Array<string>;
   private connectedInstrumentsIds: number[] = [];
+  private unconnectedInstrumentsIds: number[] = [];
 
   /**
   * Getter $instrumentSeriesCode
@@ -51,5 +52,21 @@ export class InstrumentSeriesRequest extends GenericRequest {
    */
   public set $connectedInstrumentsIds(value: number[]) {
     this.connectedInstrumentsIds = value;
+  }
+
+  /**
+* Getter $unconnectedInstrumentsIds
+* @return {number[]}
+*/
+  public get $unconnectedInstrumentsIds(): number[] {
+    return this.unconnectedInstrumentsIds;
+  }
+
+  /**
+   * Setter $unconnectedInstrumentsIds
+   * @param {number[]} value
+   */
+  public set $unconnectedInstrumentsIds(value: number[]) {
+    this.unconnectedInstrumentsIds = value;
   }
 }

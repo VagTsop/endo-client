@@ -43,7 +43,7 @@ export class InstrumentSeriesService extends CommonService {
 
   updateInstrumentSeries(request: InstrumentSeriesRequest): Observable<any> {
     return this.http.put(
-      this.baseUrl + '/update-instrument-series?id=' + request.$instrumentSeriesCode,
+      this.baseUrl + '/update-instrument-series?id=' + request.$id,
       request)
       .pipe(map((response: any) => {
         return response;

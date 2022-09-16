@@ -242,11 +242,15 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   onSaveInstrumentSeries() {
     // assign the form values to request
     this.req.$instrumentSeriesCode = this.form.value.instrumentSeriesCode;
+    for (const item of this.unconnectedInstrumentsIds) {
+      this.req.$unconnectedInstrumentsIds.push(item.id);
+    }
     for (const item of this.connectedInstrumentsIds) {
       this.req.$connectedInstrumentsIds.push(item.id);
     }
     // call service for create / edit
     if (this.id) {
+      this.req.$id = this.id;
       this.subscriptions.add(this.instrumentSeriesService.updateInstrumentSeries(this.req).subscribe(
         res => {
           this.dialogRef.close(res);
