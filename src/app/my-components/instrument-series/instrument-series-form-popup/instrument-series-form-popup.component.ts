@@ -11,7 +11,6 @@ import { GenericComponent } from '../../generic.component';
   providers: [InstrumentSeriesService]
 })
 export class InstrumentSeriesFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
-  counter: number;
   form: UntypedFormGroup;
   id: number;
   lastSelected: number;
@@ -25,11 +24,9 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   filteredUnconnectedInstrumentsIds: Array<any> = [];
   isAscUnconnectedInstrumentsIds = false;
   isAscconnectedInstrumentsIds = false;
-  instrumentIdsListLIndex: number;
   showInput: boolean = true;
   showGenerateQrButton = true;
   showQrCode: boolean = false;
-  newArray: Array<any> = [];
 
   constructor(private instrumentSeriesService: InstrumentSeriesService,
     private dialogRef: MatDialogRef<InstrumentSeriesFormPopupComponent>,
@@ -66,7 +63,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
             this.hideInputButtonShowQrCode();
             if (res.connectedInstrumentsIds != null) {
               for (const id of res.connectedInstrumentsIds) {
-                this.onSelect(id, 0, this.selected1InstrumentSet, this.selected2InstrumentSet);
+                this.onSelect(+id, 0, this.selected1InstrumentSet, this.selected2InstrumentSet);
               }
               this.onMoveInstrument('RIGHT');
             }
