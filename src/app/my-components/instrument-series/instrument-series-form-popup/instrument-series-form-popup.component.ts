@@ -56,16 +56,16 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
         .subscribe(res => {
           if (res) {
             this.form = this.formBuilder.group({
-              instrumentSeriesCode: [res.instrumentSeriesCode.toString(), Validators.required],
+              instrumentSeriesCode: [res[0].instrumentSeriesCode, Validators.required],
               filteredUnConnectedInstrument: [null],
               filteredConnectedInstrument: [null],
             });
             this.hideInputButtonShowQrCode();
-            if (res.connectedInstrumentsIds != null) {
-              for (const id of res.connectedInstrumentsIds) {
-                this.onSelect(+id, 0, this.selected1InstrumentSet, this.selected2InstrumentSet);
+            if (res[0].id != null) {
+              for (const item of res) {
+                this.connectedInstrumentsIds.push(item);
               }
-              this.onMoveInstrument('RIGHT');
+              this.filteredConnectedInstrumentsIds = this.connectedInstrumentsIds;
             }
           }
         }));
