@@ -19,7 +19,7 @@ export class InstrumentSeriesScannerComponent extends GenericComponent implement
   ngOnInit(): void {
   }
 
-  onFetchInstrumentsByInstrumentSeriesCode(qrCode: any) {
+  onFetchInstrumentsByInstrumentSeriesCode(qrCode: string) {
     this.subscriptions.add(this.instrumentSeriesService.fetchInstrumentsByInstrumentSeriesCode(qrCode)
       .subscribe(res => {
         this.modelList = res;

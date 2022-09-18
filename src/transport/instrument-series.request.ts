@@ -2,27 +2,27 @@ import { GenericRequest } from "./generic.request";
 
 export class InstrumentSeriesRequest extends GenericRequest {
 
-  private instrumentSeriesCode: number;
+  private instrumentSeriesCode: string;
   private connectedInstrumentsIds: number[] = [];
   private unconnectedInstrumentsIds: number[] = [];
 
   /**
   * Getter $instrumentSeriesCode
-  * @return {number}
+  * @return {string}
   */
-  public get $instrumentSeriesCode(): number {
+  public get $instrumentSeriesCode(): string {
     return this.instrumentSeriesCode;
   }
 
   /**
    * Setter $instrumentSeriesCode
-   * @param {number} value
+   * @param {string} value
    */
-  public set $instrumentSeriesCode(value: number) {
+  public set $instrumentSeriesCode(value: string) {
     this.instrumentSeriesCode = value;
   }
   /**
-   * 
+   *
   /**
  * Getter $connectedInstrumentsIds
  * @return {number[]}

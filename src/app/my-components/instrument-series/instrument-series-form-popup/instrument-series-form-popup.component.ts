@@ -56,7 +56,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
         .subscribe(res => {
           if (res) {
             this.form = this.formBuilder.group({
-              instrumentSeriesCode: [res.instrumentSeriesCode.toString()],
+              instrumentSeriesCode: [res.instrumentSeriesCode.toString(), Validators.required],
               filteredUnConnectedInstrument: [null],
               filteredConnectedInstrument: [null],
             });

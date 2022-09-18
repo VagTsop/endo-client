@@ -53,7 +53,7 @@ export class InstrumentSeriesService extends CommonService {
   fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
     return this.http
       .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
-        params: new HttpParams().set('qrCode', qrCode.toString()),
+        params: new HttpParams().set('qrCode', qrCode),
       })
       .pipe(
         map((response: any) => {
