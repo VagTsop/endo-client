@@ -50,6 +50,14 @@ export class InstrumentSeriesService extends CommonService {
       }));
   }
 
+  deleteInstrumentSeries(id: number): Observable<any> {
+    return this.http.post(
+      this.baseUrl + '/delete-instrument-series', id
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
   fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
     return this.http
       .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {

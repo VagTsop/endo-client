@@ -26,8 +26,13 @@
           </h2>
         </div>
 
-        <button style="background: none;border:none;cursor: pointer;" (click)="onForm(item.id)">
+        <button matTooltip="edit" style="background: none;border:none;cursor: pointer;" (click)="onForm(item.id)">
           <mat-icon style="margin-bottom: 15px">edit</mat-icon>
+        </button>
+
+        <button (click)="onSelectRow(item)" matTooltip="delete" style="background: none;border:none;cursor: pointer;"
+          (click)="onDeleteInstrumentSeries(item.id)">
+          <mat-icon style="margin-bottom: 15px;color: black!important;">delete</mat-icon>
         </button>
       </div>
 

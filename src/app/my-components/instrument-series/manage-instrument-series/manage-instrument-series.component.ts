@@ -4,6 +4,7 @@ import { InstrumentSeriesService } from 'src/services/instrument-series.service'
 import { NotificationService } from 'src/services/notification.service';
 import { InstrumentSeriesRequest } from 'src/transport/instrument-series.request';
 import { GenericComponent } from '../../generic.component';
+import { VerificationPopupComponent } from '../../verification-popup/verification-popup.component';
 import { InstrumentSeriesFormPopupComponent } from '../instrument-series-form-popup/instrument-series-form-popup.component';
 
 @Component({
@@ -59,6 +60,38 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
           });
       }
     });
+  }
+
+  onDeleteInstrumentSeries(id: number) {
+    const dialogRef = this.dialog.open(VerificationPopupComponent, {
+      panelClass: 'custom-verification-dialog-container',
+      data:
+      {
+        item: "Are you sure you want to delete Instrument Series " +
+          ' "' + this.selectedRow.
+          instrumentSeriesCode + '" ?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.add(this.instrumentSeriesService.deleteInstrumentSeries(id)
+          .subscribe(res => {
+            if (res) {
+              this.onList();
+              this.notificationService.showNotification(
+                {
+                  title: 'Delete',
+                  type: 'SUCCESS',
+                  message: 'Your instrument has been deleted',
+                });
+            }
+          }));
+      }
+    });
+  }
+
+  onSelectRow(item: any): void {
+    this.selectedRow = item;
   }
 
   onPageChange(page: number): void {
