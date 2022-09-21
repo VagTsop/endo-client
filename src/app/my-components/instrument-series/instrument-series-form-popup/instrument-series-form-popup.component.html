@@ -32,9 +32,10 @@
           </mat-dialog-actions>
 
           <div *ngIf="showQrCode" fxFlex>
-            <qrcode [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [errorCorrectionLevel]="'M'">
+            <qrcode style="cursor:pointer" (click)="saveAsImage(parent)" #parent
+              [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [elementType]="'canvas'"
+              [errorCorrectionLevel]="'M'">
             </qrcode>
-
             <mat-dialog-actions fxFlex="45" style="height:100%">
               <button (click)="hideQrCodeShowInputButton()"
                 class="mat-raised-button mat-primary scanner-button"><span>Generate
