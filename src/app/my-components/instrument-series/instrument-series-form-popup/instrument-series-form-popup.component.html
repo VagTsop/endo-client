@@ -90,6 +90,11 @@
                 </tr>
               </thead>
               <tbody>
+                <tr style="text-align: center;padding:15px" *ngIf="filteredUnconnectedInstrumentsIds.length == 0">
+                  <td colspan="2" style="text-align: center;" class="no-data">
+                    No Data
+                  </td>
+                </tr>
                 <tr style="padding:15px" *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 0, i, $event)"
                   [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
@@ -153,6 +158,11 @@
                 </tr>
               </thead>
               <tbody style="line-height: 2em;">
+                <tr style="text-align: center;padding:15px" *ngIf="filteredConnectedInstrumentsIds.length == 0">
+                  <td colspan="2" style="text-align: center;" class="no-data">
+                    No Data
+                  </td>
+                </tr>
                 <tr style="text-align: center;padding:15px"
                   *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 1, i, $event)"
