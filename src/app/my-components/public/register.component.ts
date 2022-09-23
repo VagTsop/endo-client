@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ContentChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,8 @@ import { GenericComponent } from '../generic.component';
 export class RegisterComponent extends GenericComponent implements OnInit, OnDestroy {
   isSuccessful: boolean = false;
   isLoadingResult: boolean;
+  password: string;
+  show = false;
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
     private notificationService: NotificationService) {
@@ -22,8 +24,19 @@ export class RegisterComponent extends GenericComponent implements OnInit, OnDes
   }
 
   ngOnInit(): void {
+    this.password = 'password';
     if (this.authenticationService.isUserLoggedIn()) {
       this.router.navigateByUrl('/home');
+    }
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
     }
   }
 
