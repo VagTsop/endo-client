@@ -4,6 +4,7 @@ import { InstrumentSeriesService } from 'src/services/instrument-series.service'
 import { NotificationService } from 'src/services/notification.service';
 import { InstrumentSeriesRequest } from 'src/transport/instrument-series.request';
 import { GenericComponent } from '../../generic.component';
+import { VerificationPopupComponent } from '../../verification-popup/verification-popup.component';
 import { InstrumentSeriesFormPopupComponent } from '../instrument-series-form-popup/instrument-series-form-popup.component';
 
 @Component({
@@ -12,6 +13,11 @@ import { InstrumentSeriesFormPopupComponent } from '../instrument-series-form-po
   providers: [InstrumentSeriesService]
 })
 export class ManageInstrumentSeriesComponent extends GenericComponent implements OnInit, OnDestroy {
+
+  itemsPerPage: number = 4;
+  allPages: number;
+  tempList: any = [];
+
   constructor(
     private dialog: MatDialog,
     private instrumentSeriesService: InstrumentSeriesService,
@@ -30,17 +36,14 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
     this.subscriptions.add(this.instrumentSeriesService.getInstrumentSeriesList(this.req)
       .subscribe(res => {
         this.modelList = res;
-        this.req.$paging.$totalSize = res.totalElements;
+        this.tempList = res;
+        this.onPageChange(1);
+        this.allPages = Math.ceil(this.tempList.length / this.itemsPerPage);
       }));
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-  }
-
-  onChangePaging(changePaging: any): void {
-    this.req.$paging = changePaging;
-    this.onList();
   }
 
   onForm(id?: any) {
@@ -57,5 +60,43 @@ export class ManageInstrumentSeriesComponent extends GenericComponent implements
           });
       }
     });
+  }
+
+  onDeleteInstrumentSeries(id: number) {
+    const dialogRef = this.dialog.open(VerificationPopupComponent, {
+      panelClass: 'custom-verification-dialog-container',
+      data:
+      {
+        item: "Are you sure you want to delete Instrument Series " +
+          ' "' + this.selectedRow.
+          instrumentSeriesCode + '" ?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.add(this.instrumentSeriesService.deleteInstrumentSeries(id)
+          .subscribe(res => {
+            if (res) {
+              this.onList();
+              this.notificationService.showNotification(
+                {
+                  title: 'Delete',
+                  type: 'SUCCESS',
+                  message: 'Your instrument has been deleted',
+                });
+            }
+          }));
+      }
+    });
+  }
+
+  onSelectRow(item: any): void {
+    this.selectedRow = item;
+  }
+
+  onPageChange(page: number): void {
+    const startItem = (page - 1) * this.itemsPerPage;
+    const endItem = page * this.itemsPerPage;
+    this.modelList = this.tempList.slice(startItem, endItem);
   }
 }

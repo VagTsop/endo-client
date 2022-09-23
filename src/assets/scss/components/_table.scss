@@ -20,7 +20,7 @@
   padding: 40px;
 }
 .multiple_list_card_header {
-  background-color: #b2b3ac;
+  background-color: #cdcecf;
   .table_body {
     line-height: 4em;
     .table_row {
@@ -28,7 +28,7 @@
       text-align: center;
     }
     .table_row:nth-child(odd) {
-      background: $listBackgroundSecondaryColor;
+      background: #cdcecf;
     }
   }
 }

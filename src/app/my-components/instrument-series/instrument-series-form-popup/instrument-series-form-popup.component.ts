@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { QRCodeElementType } from 'angularx-qrcode';
 import { InstrumentSeriesService } from 'src/services/instrument-series.service';
 import { InstrumentSeriesRequest } from 'src/transport/instrument-series.request';
 import { GenericComponent } from '../../generic.component';
@@ -11,7 +12,6 @@ import { GenericComponent } from '../../generic.component';
   providers: [InstrumentSeriesService]
 })
 export class InstrumentSeriesFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
-  counter: number;
   form: UntypedFormGroup;
   id: number;
   lastSelected: number;
@@ -25,11 +25,10 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   filteredUnconnectedInstrumentsIds: Array<any> = [];
   isAscUnconnectedInstrumentsIds = false;
   isAscconnectedInstrumentsIds = false;
-  instrumentIdsListLIndex: number;
   showInput: boolean = true;
   showGenerateQrButton = true;
   showQrCode: boolean = false;
-  newArray: Array<any> = [];
+  elementType = "canvas" as QRCodeElementType
 
   constructor(private instrumentSeriesService: InstrumentSeriesService,
     private dialogRef: MatDialogRef<InstrumentSeriesFormPopupComponent>,
@@ -40,15 +39,39 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   }
 
   ngOnInit(): void {
+
+    this.subscriptions.add(this.instrumentSeriesService.fetchAvailableInstruments().subscribe((data) => {
+      this.sort(data, true);
+      this.unconnectedInstrumentsIds = data;
+      this.filteredUnconnectedInstrumentsIds = data;
+    }));
+
     this.form = this.formBuilder.group({
       instrumentSeriesCode: [null, Validators.required],
       filteredUnConnectedInstrument: [null],
       filteredConnectedInstrument: [null],
     });
-    this.subscriptions.add(this.instrumentSeriesService.fetchAvailableInstruments().subscribe((data) => {
-      this.unconnectedInstrumentsIds = data;
-      this.filteredUnconnectedInstrumentsIds = data;
-    }));
+
+    if (this.id) {
+      // Fetch data from service
+      this.subscriptions.add(this.instrumentSeriesService.getById(this.id)
+        .subscribe(res => {
+          if (res) {
+            this.form = this.formBuilder.group({
+              instrumentSeriesCode: [res[0].instrumentSeriesCode, Validators.required],
+              filteredUnConnectedInstrument: [null],
+              filteredConnectedInstrument: [null],
+            });
+            this.hideInputButtonShowQrCode();
+            if (res[0].id != null) {
+              for (const item of res) {
+                this.connectedInstrumentsIds.push(item);
+              }
+              this.filteredConnectedInstrumentsIds = this.connectedInstrumentsIds;
+            }
+          }
+        }));
+    }
   }
 
   hideInputButtonShowQrCode() {
@@ -109,7 +132,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
             this.selected1InstrumentSet.add(recordId);
           }
         } else {
-          // if selected1RoutingSet has one value and click different value
+          // if selected1Instrumentet has one value and click different value
           this.selected1InstrumentSet.clear();
           this.selected1InstrumentSet.add(recordId);
         }
@@ -120,7 +143,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
             this.selected2InstrumentSet.add(recordId);
           }
         } else {
-          // if selected1RoutingSet has one value and click different value
+          // if selected2nstrumentSet has one value and click different value
           this.selected2InstrumentSet.clear();
           this.selected2InstrumentSet.add(recordId);
         }
@@ -150,6 +173,7 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
       });
       this.unconnectedInstrumentsIds = remainingsAddress;
       this.filteredUnconnectedInstrumentsIds = remainingsAddress;
+      this.filteredConnectedInstrumentsIds = this.connectedInstrumentsIds;
       this.filterUnconnectedInstrumentsIds(
         this.form.value.filteredUnConnectedInstrument ? this.form.value.filteredUnConnectedInstrument : '');
       this.filterConnectedInstrumentsIds(
@@ -215,18 +239,98 @@ export class InstrumentSeriesFormPopupComponent extends GenericComponent impleme
   }
 
   onSaveInstrumentSeries() {
+    // assign the form values to request
     this.req.$instrumentSeriesCode = this.form.value.instrumentSeriesCode;
-    for (const item of this.connectedInstrumentsIds) {
-      this.counter = item.instrumentsCount;
-      this.newArray.push(item.instrumentIdsList.slice(0, this.counter));
+    for (const item of this.unconnectedInstrumentsIds) {
+      this.req.$unconnectedInstrumentsIds.push(item.id);
     }
-    this.req.instrumentIdsList = this.newArray.flat()
-    console.log(this.req.instrumentIdsList);
-    this.subscriptions.add(this.instrumentSeriesService.createInstrumentSeries(this.req).subscribe(
-      res => {
-        this.dialogRef.close(res);
+    for (const item of this.connectedInstrumentsIds) {
+      this.req.$connectedInstrumentsIds.push(item.id);
+    }
+    // call service for create / edit
+    if (this.id) {
+      this.req.$id = this.id;
+      this.subscriptions.add(this.instrumentSeriesService.updateInstrumentSeries(this.req).subscribe(
+        res => {
+          this.dialogRef.close(res);
+        }
+      ));
+    } else {
+      this.subscriptions.add(this.instrumentSeriesService.createInstrumentSeries(this.req).subscribe(
+        res => {
+          this.dialogRef.close(res);
+        }
+      ));
+    }
+  }
+
+  onSelect(recordId: number, list: number, tempSelectedOne: Set<number>, tempSelectedTwo: Set<number>) {
+    if (list === 0) {
+      if (tempSelectedOne.size === 0) {
+        if (!tempSelectedOne.has(recordId)) {
+          tempSelectedOne.add(recordId);
+        }
+      } else {
+        tempSelectedOne.add(recordId);
       }
-    ));
+    } else {
+      //  for  list 1
+      if (tempSelectedTwo.size === 0) {
+        if (!tempSelectedTwo.has(recordId)) {
+          tempSelectedTwo.add(recordId);
+        }
+      } else {
+        tempSelectedTwo.add(recordId);
+      }
+    }
+  }
+
+  saveAsImage(parent: any) {
+    let parentElement = null
+
+    if (this.elementType === "canvas") {
+      // fetches base 64 data from canvas
+      parentElement = parent.qrcElement.nativeElement
+        .querySelector("canvas")
+        .toDataURL("image/png")
+    } else if (this.elementType === "img" || this.elementType === "url") {
+      // fetches base 64 data from image
+      // parentElement contains the base64 encoded image src
+      // you might use to store somewhere
+      parentElement = parent.qrcElement.nativeElement.querySelector("img").src
+    } else {
+      alert("Set elementType to 'canvas', 'img' or 'url'.")
+    }
+
+    if (parentElement) {
+      // converts base 64 encoded image to blobData
+      let blobData = this.convertBase64ToBlob(parentElement)
+      // saves as image
+      const blob = new Blob([blobData], { type: "image/png" })
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement("a")
+      link.href = url
+      // name of the file
+      link.download = "Qrcode_" + this.form.controls.instrumentSeriesCode.value;
+      link.click()
+    }
+  }
+
+  private convertBase64ToBlob(Base64Image: string) {
+    // split into two parts
+    const parts = Base64Image.split(";base64,")
+    // hold the content type
+    const imageType = parts[0].split(":")[1]
+    // decode base64 string
+    const decodedData = window.atob(parts[1])
+    // create unit8array of size same as row data length
+    const uInt8Array = new Uint8Array(decodedData.length)
+    // insert all character code into uint8array
+    for (let i = 0; i < decodedData.length; ++i) {
+      uInt8Array[i] = decodedData.charCodeAt(i)
+    }
+    // return blob image after conversion
+    return new Blob([uInt8Array], { type: imageType })
   }
 
   ngOnDestroy() {

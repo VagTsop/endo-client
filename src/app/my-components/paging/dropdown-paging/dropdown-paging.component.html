@@ -1,0 +1,14 @@
+<div fxLayoutAlign="center center">
+
+  <button  mat-icon-button [disabled]="currentPage === 1" (click)="onPreviousPage()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+
+  <div>
+    <span> {{currentPage}}</span> / <span>{{allPagesNumber}}</span>
+  </div>
+
+  <button  mat-icon-button [disabled]="currentPage === allPagesNumber" (click)="onNextPage()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

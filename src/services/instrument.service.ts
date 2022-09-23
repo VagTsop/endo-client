@@ -17,7 +17,7 @@ export class InstrumentService extends CommonService {
     ).pipe(map((response: any) => {
       return response;
     }));
-  }//
+  }
 
   updateInstrument(request: InstrumentRequest): Observable<any> {
     return this.http.put(

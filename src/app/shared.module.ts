@@ -29,6 +29,7 @@ import { ControlMessageComponent } from './validation/control-message/control-me
 import { NotificationService } from "src/services/notification.service";
 import { ToastrModule } from "ngx-toastr";
 import { VerificationPopupComponent } from "./my-components/verification-popup/verification-popup.component";
+import { DropdownPagingComponent } from "./my-components/paging/dropdown-paging/dropdown-paging.component";
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -54,6 +55,7 @@ const MATERIAL_MODULES = [
 
   declarations: [
     PagingComponent,
+    DropdownPagingComponent,
     SortingComponent,
     ScannerComponent,
     HeaderComponent,
@@ -85,6 +87,7 @@ const MATERIAL_MODULES = [
     ReactiveFormsModule,
     CommonModule,
     PagingComponent,
+    DropdownPagingComponent,
     SortingComponent,
     ScannerComponent,
     ControlMessageComponent,

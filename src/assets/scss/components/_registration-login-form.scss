@@ -24,6 +24,10 @@
     }
     .reminder {
       color: $registerLoginSecondaryColor;
+      text-decoration: none;
+    }
+    .reminder:hover {
+      text-decoration: underline;
     }
     .mat-form-field-appearance-fill .mat-form-field-flex {
       background-color: white;

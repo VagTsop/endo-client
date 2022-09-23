@@ -30,10 +30,38 @@ export class InstrumentSeriesService extends CommonService {
     }));
   }
 
+  getById(id: number): Observable<any> {
+    return this.http.get(
+      this.baseUrl + '/get-instrument-series-by-id',
+      {
+        params: new HttpParams().set('id', id.toString())
+      }
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
+  updateInstrumentSeries(request: InstrumentSeriesRequest): Observable<any> {
+    return this.http.put(
+      this.baseUrl + '/update-instrument-series?id=' + request.$id,
+      request)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  deleteInstrumentSeries(id: number): Observable<any> {
+    return this.http.post(
+      this.baseUrl + '/delete-instrument-series', id
+    ).pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
   fetchInstrumentsByInstrumentSeriesCode(qrCode: string): Observable<any> {
     return this.http
       .get(this.baseUrl + '/fetch-instruments-by-instrument-series-code', {
-        params: new HttpParams().set('qrCode', qrCode.toString()),
+        params: new HttpParams().set('qrCode', qrCode),
       })
       .pipe(
         map((response: any) => {

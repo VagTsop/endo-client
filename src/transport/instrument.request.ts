@@ -2,7 +2,6 @@ import { GenericRequest } from "./generic.request";
 
 export class InstrumentRequest extends GenericRequest {
 
-  private userPhoto: any;
   private instrumentRef: string;
   private instrumentLot: string;
   private instrumentManufacturer: string;
@@ -10,23 +9,7 @@ export class InstrumentRequest extends GenericRequest {
   private instrumentPurchaseDate: string;
   private purchaseDateFrom: string;
   private purchaseDateTo: string;
-  private instrumentSeriesCodesList: number[];
-
-  /**
-* Getter $userPhoto
-* @return {any}
-*/
-  public get $userPhoto(): any {
-    return this.userPhoto;
-  }
-
-  /**
-   * Setter $userPhoto
-   * @param {any} value
-   */
-  public set $userPhoto(value: any) {
-    this.userPhoto = value;
-  }
+  private instrumentSeriesCodesList: string[];
 
   /**
    * Getter $instrumentRef
@@ -143,17 +126,17 @@ export class InstrumentRequest extends GenericRequest {
 
   /**
    * Getter $instrumentSeriesCodesList
-   * @return {number[]}
+   * @return {string[]}
    */
-  public get $instrumentSeriesCodesList(): number[] {
+  public get $instrumentSeriesCodesList(): string[] {
     return this.instrumentSeriesCodesList;
   }
 
   /**
    * Setter $instrumentSeriesCodesList
-   * @param {number[]} value
+   * @param {string[]} value
    */
-  public set $instrumentSeriesCodesList(value: number[]) {
+  public set $instrumentSeriesCodesList(value: string[]) {
     this.instrumentSeriesCodesList = value;
   }
 

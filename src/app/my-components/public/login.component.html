@@ -43,9 +43,13 @@
           </mat-dialog-actions>
         </form>
 
-        <div fxLayoutAlign="center center" style="width: 100%">
-          <div class="reminder">Don't have an account?
-            <a routerLink="/register" style="padding-left: 5px">Sign Up</a>
+        <div fxLayout="column" fxLayoutAlign="center start">
+          <div>Don't have an account?
+            <a class="reminder" routerLink="/register">Sign Up</a>
+          </div>
+          <br>
+          <div style="text-align: center;;width:100%">
+            <a class="reminder" routerLink="/password-reset">Forgotten password?</a>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@
                   (ngModelChange)="filterInstrumentSeriesCodesList($event)">
                 </ngx-mat-select-search>
               </mat-option>
-              <mat-option *ngFor="let item of filteredInstrumentSeriesCodesList" [value]="item.instrumentSeriesCode">
+              <mat-option *ngFor="let item of filteredInstrumentSeriesCodesList" [value]="item.id">
                 {{item.instrumentSeriesCode}}
               </mat-option>
             </mat-select>

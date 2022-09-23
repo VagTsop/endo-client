@@ -13,19 +13,19 @@
   <table style="width:100%" border=1 frame=void rules=rows>
     <thead>
       <tr>
-        <th [style.width.%]="25">Name</th>
-        <th [style.width.%]="25">Description</th>
-        <th [style.width.%]="25">LOT</th>
-        <th [style.width.%]="25">Quantity</th>
+        <th style="text-align: left" [style.width.%]="25">Name</th>
+        <th style="text-align: left" [style.width.%]="25">Description</th>
+        <th style="text-align: center" [style.width.%]="25">LOT</th>
+        <th style="text-align: center" [style.width.%]="25">Quantity</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr style="text-align: center" *ngFor="let item of data.item">
-        <td>{{item.name ? item.name : '-'}}</td>
-        <td>{{item.description ? item.description : '-'}}</td>
-        <td>{{item.instrumentLot ? item.instrumentLot : '-'}}</td>
-        <td>{{item.instrumentsCount ? item.instrumentsCount : '-'}}</td>
+      <tr *ngFor="let item of data.item">
+        <td style="text-align: left">{{item.name ? item.name : '-'}}</td>
+        <td style="text-align: left">{{item.description ? item.description : '-'}}</td>
+        <td style="text-align: center">{{item.instrumentLot ? item.instrumentLot : '-'}}</td>
+        <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-'}}</td>
       </tr>
     </tbody>
   </table>

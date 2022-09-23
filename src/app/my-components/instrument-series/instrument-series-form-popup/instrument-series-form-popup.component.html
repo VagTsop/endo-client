@@ -2,7 +2,7 @@
 
   <div fxLayoutAlign="space-between center">
 
-    <h2 style="margin:0" mat-dialog-title>Create Instrument Series</h2>
+    <h2 mat-dialog-title>{{id ? 'Edit Instrument Series' : 'Create Instrument Series'}}</h2>
 
     <button mat-icon-button tabindex="-1" (click)="onClose()">
       <mat-icon matTooltip="close">close</mat-icon>
@@ -32,9 +32,10 @@
           </mat-dialog-actions>
 
           <div *ngIf="showQrCode" fxFlex>
-            <qrcode [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [errorCorrectionLevel]="'M'">
+            <qrcode style="cursor:pointer" (click)="saveAsImage(parent)" #parent
+              [qrdata]="form.controls.instrumentSeriesCode.value" [width]="150" [elementType]="'canvas'"
+              [errorCorrectionLevel]="'M'">
             </qrcode>
-
             <mat-dialog-actions fxFlex="45" style="height:100%">
               <button (click)="hideQrCodeShowInputButton()"
                 class="mat-raised-button mat-primary scanner-button"><span>Generate
@@ -56,9 +57,9 @@
 
           <div class="header">
 
-            <div class="title">
+            <div fxLayoutAlign="start center" fxLayout="row" class="title">
 
-              <div (click)="sort(filteredUnconnectedInstrumentsIds, isAscUnconnectedInstrumentsIds);
+              <div fxFlex="5" (click)="sort(filteredUnconnectedInstrumentsIds, isAscUnconnectedInstrumentsIds);
               isAscUnconnectedInstrumentsIds = !isAscUnconnectedInstrumentsIds">
                 <mat-icon matTooltip="Ascending" *ngIf="isAscUnconnectedInstrumentsIds" style="color:green;">expand_less
                 </mat-icon>
@@ -66,15 +67,18 @@
                   expand_more
                 </mat-icon>
               </div>
-              <div style="padding-left: 5%; width: 100%;">
-                <input placeholder="Search" type="text" (ngModelChange)="filterUnconnectedInstrumentsIds($event)"
-                  formControlName="filteredUnConnectedInstrument">
+
+              <div style="padding-left:15px">
+                <mat-form-field>
+                  <input matInput placeholder="Search" type="text"
+                    (ngModelChange)="filterUnconnectedInstrumentsIds($event)"
+                    formControlName="filteredUnConnectedInstrument" />
+                </mat-form-field>
               </div>
             </div>
-
           </div>
 
-          <div class="custom-scroll custom-scroll-table">
+          <div style="max-height: 476px;min-height: 476px;" class="custom-scroll custom-scroll-table">
 
             <mat-divider></mat-divider>
 
@@ -83,34 +87,19 @@
                 <tr>
                   <th style="text-align: left" [style.width.%]="33.3">Name</th>
                   <th style="text-align: left" [style.width.%]="33.3">Description</th>
-                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
                 </tr>
               </thead>
               <tbody>
+                <tr style="text-align: center;padding:15px" *ngIf="filteredUnconnectedInstrumentsIds.length == 0">
+                  <td colspan="2" style="text-align: center;" class="no-data">
+                    No Data
+                  </td>
+                </tr>
                 <tr style="padding:15px" *ngFor="let item of filteredUnconnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 0, i, $event)"
                   [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
-                  <td style="text-align: center">
-                    <button style="background:none;border:none" [disabled]="item.instrumentsCount == 1"
-                      (click)="item.instrumentsCount=item.instrumentsCount-1;counter= item.instrumentsCount">
-                      <mat-icon [ngStyle]="{'color': item.instrumentsCount == 1 ? '#c7c7c7' : '#282525'}"
-                        style="font-size:12px;position:relative;top:5px">
-                        remove</mat-icon>
-                    </button>
-                    {{item.instrumentsCount ? item.instrumentsCount : '-' }}
-                    <button style="background:none;border:none"
-                      [disabled]="item.instrumentsCount == item.instrumentIdsList.length"
-                      (click)="item.instrumentsCount=item.instrumentsCount+1;counter= item.instrumentsCount">
-                      <mat-icon
-                        [ngStyle]="{'color': item.instrumentsCount == item.instrumentIdsList.length ? '#c7c7c7' : '#282525'}"
-                        style="font-size:12px;position:relative;top:5px">
-                        add
-                      </mat-icon>
-                    </button>
-                    <!-- <input style="display:none" [(ngModel)]="req.$instrumentIdsList" value="item.instrumentsCount"> -->
-                  </td>
                 </tr>
               </tbody>
             </table>
@@ -136,10 +125,9 @@
 
           <div class="header">
 
-            <div class="title">
+            <div fxLayoutAlign="start center" fxLayout="row" class="title">
 
-              <mat-icon class="nv-mi-format_align_left"></mat-icon>
-              <div (click)="sort(filteredConnectedInstrumentsIds, isAscconnectedInstrumentsIds);
+              <div fxFlex="5" (click)="sort(filteredConnectedInstrumentsIds, isAscconnectedInstrumentsIds);
               isAscconnectedInstrumentsIds = !isAscconnectedInstrumentsIds"
                 [ngStyle]="{'color': this.connectedInstrumentsIds.length > 0 ? 'green' : '#dbdbdb'}">
                 <mat-icon matTooltip="Ascending" *ngIf="isAscconnectedInstrumentsIds" style="color:green;">expand_less
@@ -147,15 +135,18 @@
                 <mat-icon matTooltip="Descending" *ngIf="!isAscconnectedInstrumentsIds" style="color: red;">expand_more
                 </mat-icon>
               </div>
-              <div style="padding-left: 5%; width: 100%;">
-                <input placeholder="Search" type="text" (ngModelChange)="filterConnectedInstrumentsIds($event)"
-                  formControlName="filteredConnectedInstrument">
+
+              <div style="padding-left:15px">
+                <mat-form-field>
+                  <input matInput placeholder="Search" type="text"
+                    (ngModelChange)="filterConnectedInstrumentsIds($event)"
+                    formControlName="filteredConnectedInstrument" />
+                </mat-form-field>
               </div>
             </div>
-
           </div>
 
-          <div class="custom-scroll custom-scroll-table">
+          <div style="max-height: 476px;min-height: 476px;" class="custom-scroll custom-scroll-table">
 
             <mat-divider></mat-divider>
 
@@ -164,16 +155,20 @@
                 <tr>
                   <th style="text-align: left" [style.width.%]="33.3">Name</th>
                   <th style="text-align: left" [style.width.%]="33.3">Description</th>
-                  <th style="text-align: center" [style.width.%]="33.3">Quantity</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr style="text-align: center;" *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
+              <tbody style="line-height: 2em;">
+                <tr style="text-align: center;padding:15px" *ngIf="filteredConnectedInstrumentsIds.length == 0">
+                  <td colspan="2" style="text-align: center;" class="no-data">
+                    No Data
+                  </td>
+                </tr>
+                <tr style="text-align: center;padding:15px"
+                  *ngFor="let item of filteredConnectedInstrumentsIds; let i = index"
                   (click)="onSelectRowInstrument(item.id, 1, i, $event)"
                   [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
-                  <td style="text-align: center">{{item.instrumentsCount ? item.instrumentsCount : '-' }}</td>
                 </tr>
               </tbody>
             </table>
