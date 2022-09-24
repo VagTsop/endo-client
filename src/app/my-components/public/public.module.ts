@@ -6,6 +6,7 @@ import { LoginComponent } from "./login.component";
 import { RegisterComponent } from "./register.component";
 import { EmailVerificationComponent } from "../email-verification/email-verification.component";
 import { PasswordResetComponent } from "../password-reset/password-reset.component";
+import { PasswordResetFormComponent } from "../password-reset/password-reset-form.component";
 
 
 
@@ -18,7 +19,8 @@ import { PasswordResetComponent } from "../password-reset/password-reset.compone
   declarations: [LoginComponent,
     RegisterComponent,
     EmailVerificationComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    PasswordResetFormComponent,
   ]
 })
 export class PublicModule { }
