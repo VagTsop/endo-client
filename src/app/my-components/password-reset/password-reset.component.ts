@@ -23,6 +23,9 @@ export class PasswordResetComponent extends GenericComponent implements OnInit, 
   onPasswordReset(email: any) {
     this.subscriptions.add(this.authenticationService.passwordReset(email).subscribe(
       (response: any) => {
+        this.router.navigateByUrl('/login');
+        this.notificationService.showNotification(
+          { title: 'Success', type: 'SUCCESS', message: response.message });
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse)

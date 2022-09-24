@@ -63,6 +63,8 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
     this.subscriptions.add(this.authenticationService.changePassword(this.code, password).subscribe(
       (response: any) => {
         this.router.navigateByUrl('/login');
+        this.notificationService.showNotification(
+          { title: 'Success', type: 'SUCCESS', message: response.body.message });
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse)
