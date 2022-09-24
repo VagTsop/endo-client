@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     if (httpRequest.url.includes(`${this.authenticationService.host}/user/password-reset`)) {
       return httpHandler.handle(httpRequest);
-    }//http://localhost:8080/api/user/change-password?code=bf0c8148-906e-43e0-a65b-ec4b41024ba6'
+    }
     if (httpRequest.url.includes(`${this.authenticationService.host}/user/change-password?code=${httpRequest.url.split('=')[1]}`)) {
       return httpHandler.handle(httpRequest);
     }
