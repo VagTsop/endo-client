@@ -49,12 +49,26 @@
           <div>
             <mat-form-field appearance="fill">
               <mat-icon fxFlex="20">email</mat-icon>
-              <input fxFlex="80" type="text" name="email" placeholder="Email" required ngModel #emailInput="ngModel"
+              <input fxFlex="80" type="email" name="email" placeholder="Email" required ngModel #emailInput="ngModel"
                 matInput />
             </mat-form-field>
           </div>
           <span *ngIf="emailInput.invalid && emailInput.touched">Please enter an
             email</span>
+
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-icon fxFlex="20">lock</mat-icon>
+              <input [type]="password" fxFlex="80" name="password" placeholder="New Password" required ngModel
+                #passwordInput="ngModel" matInput />
+              <div style="background-color: none;" (click)="onClick()">
+                <mat-icon matTooltip="visible" *ngIf="!show">visibility</mat-icon>
+                <mat-icon matTooltip="not visible" *ngIf="show">visibility_off</mat-icon>
+              </div>
+            </mat-form-field>
+          </div>
+          <span *ngIf="passwordInput.invalid && passwordInput.touched">Please enter a
+            password</span>
         </div>
 
         <div style="padding-top:10px;">
@@ -79,7 +93,7 @@
   <mat-card-content *ngIf="isSuccessful">
 
     <div fxLayout="column" fxLayoutAlign="space-between center">
-      
+
       <img src="./assets/images/logo/Capture.PNG" style="width: 100px" />
       <img src="./assets/images/logo/Capture2.PNG" style="width: 150px" />
       Your registration is successful! We've sent you a verification mail to your email account. Validate your account
