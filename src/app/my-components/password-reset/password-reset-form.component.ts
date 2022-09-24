@@ -1,25 +1,28 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
 import { GenericComponent } from '../generic.component';
-
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-password-reset-form',
   templateUrl: './password-reset-form.component.html',
 })
 export class PasswordResetFormComponent extends GenericComponent implements OnInit, OnDestroy {
+  @ViewChild('passwordInput') passwordInput: ElementRef;
+  @ViewChild('confirmPasswordInput') confirmPasswordInput: ElementRef;
   password: string;
   showPassword = false;
   showConfirmPassword = false;
-  @ViewChild('passwordInput') passwordInput: ElementRef;
-  @ViewChild('confirmPasswordInput') confirmPasswordInput: ElementRef;
+  code: any = '';
   form: UntypedFormGroup;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private notificationService: NotificationService,
     private formBuilder: UntypedFormBuilder,) {
@@ -55,10 +58,11 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
     };
   }
 
-  onPasswordReset(email: any) {
-    this.subscriptions.add(this.authenticationService.passwordReset(email).subscribe(
+  onChangePassword(password: string) {
+    this.code = this.route.snapshot.paramMap.get('code');
+    this.subscriptions.add(this.authenticationService.changePassword(this.code, password).subscribe(
       (response: any) => {
-        //this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/login');
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse)

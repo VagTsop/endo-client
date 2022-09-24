@@ -4,6 +4,8 @@ export class User {
   public lastName: string;
   public username: string;
   public email: string;
+  public password: string
+  public code: string
   public lastLoginDate: Date | null;
   public lastLoginDateDisplay: Date | null;
   public joinDate: Date | null;
@@ -19,6 +21,8 @@ export class User {
     this.lastName = '';
     this.username = '';
     this.email = '';
+    this.password = '';
+    this.code = '';
     this.lastLoginDate = null;
     this.lastLoginDateDisplay = null;
     this.joinDate = null;
