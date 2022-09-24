@@ -24,6 +24,10 @@ export class AuthenticationService {
     return this.http.post<User>(`${this.host}/user/register`, user);
   }
 
+  public passwordReset(email: string): Observable<User> {
+    return this.http.post<any>(`${this.host}/user/password-reset`, email);
+  }
+
   public logOut(): void {
     this.token = null;
     this.loggedInUsername = null;
