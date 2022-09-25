@@ -42,11 +42,13 @@
 
         <div style="text-align: center;color: #000000de;font-weight: bold;">
 
-          <div fxFlex="33.3">Name</div>
+          <div fxFlex="25">Name</div>
 
-          <div fxFlex="33.3">Description</div>
+          <div fxFlex="25">Description</div>
 
-          <div fxFlex="33.3">Quantity</div>
+          <div fxFlex="25">Lot</div>
+
+          <div fxFlex="25">Quantity</div>
         </div>
 
 
@@ -60,13 +62,16 @@
 
           <div style="text-align: center;" class="table_row" *ngFor="let itemDetails of item.instrumentSeriesDetails">
 
-            <div fxFlex="33.3" fxLayout="column">{{itemDetails.instrumentName ? itemDetails.instrumentName : '-' }}
+            <div fxFlex="25" fxLayout="column">{{itemDetails.instrumentName ? itemDetails.instrumentName : '-' }}
             </div>
 
-            <div fxFlex="33.3" fxLayout="column">{{itemDetails.instrumentDescription ? itemDetails.instrumentDescription
+            <div fxFlex="25" fxLayout="column">{{itemDetails.instrumentDescription ? itemDetails.instrumentDescription
               : '-' }}</div>
 
-            <div fxFlex="33.3" fxLayout="column">{{itemDetails.instrumentsCount ? itemDetails.instrumentsCount : '-' }}
+            <div fxFlex="25" fxLayout="column">{{itemDetails.instrumentLot ? itemDetails.instrumentLot
+              : '-' }}</div>
+
+            <div fxFlex="25" fxLayout="column">{{itemDetails.instrumentsCount ? itemDetails.instrumentsCount : '-' }}
             </div>
           </div>
         </div>
