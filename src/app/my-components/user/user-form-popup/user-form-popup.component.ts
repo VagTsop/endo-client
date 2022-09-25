@@ -14,7 +14,6 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
   form: UntypedFormGroup;
   url: string | null;
 
-
   constructor(
     private userService: UserService,
     public dialogRef: MatDialogRef<UserFormPopupComponent>,

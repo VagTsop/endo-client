@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-
   onUserDetails() {
     this.user = <User>JSON.parse(localStorage.getItem('user') as any);
     const dialogRef = this.dialog.open(UserDetailsPopupComponent, {

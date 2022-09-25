@@ -6,8 +6,12 @@ import { AuthenticationService } from 'src/services/authentication.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+
   role: any;
-  constructor(private authenticationService: AuthenticationService,) { }
+
+  constructor(private authenticationService: AuthenticationService)
+  { }
+
   ngOnInit(): void {
     this.getUserRole();
   }
@@ -15,6 +19,5 @@ export class HomeComponent {
   getUserRole() {
     this.role = this.authenticationService.getUserFromLocalCache().role
     console.log(this.role);
-
   }
 }

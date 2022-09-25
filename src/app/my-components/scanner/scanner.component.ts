@@ -10,6 +10,7 @@ export class ScannerComponent extends GenericComponent implements OnInit, OnDest
   @Output() qrCodeScanned = new EventEmitter<string>();
   scannerEnabled: boolean = true;
   information: string = "No code information detected. Zoom in QR code to scan.";
+  
   constructor(private cd: ChangeDetectorRef) {
     super();
   }

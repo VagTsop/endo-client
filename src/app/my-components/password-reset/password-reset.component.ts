@@ -1,10 +1,9 @@
-import { HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
 import { GenericComponent } from '../generic.component';
-
 
 @Component({
   selector: 'app-password-reset',

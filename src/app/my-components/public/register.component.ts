@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, ContentChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
 import { User } from 'src/model/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { ValidationHelper } from '../validation.model';
+import { CustomValidator } from '../custom-validator.component';
 
 @Component({
   selector: 'control-message',
@@ -14,7 +14,7 @@ export class ControlMessageComponent {
   get errorMessage() {
     for (const propertyName in this.control.errors) {
       if (this.control.errors.hasOwnProperty(propertyName)) {
-        return ValidationHelper.getValidatorErrorMessage(propertyName);
+        return CustomValidator.getValidatorErrorMessage(propertyName);
       }
     }
     return null;
