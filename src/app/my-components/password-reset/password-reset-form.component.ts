@@ -25,7 +25,8 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private notificationService: NotificationService,
-    private formBuilder: UntypedFormBuilder,) {
+    private formBuilder: UntypedFormBuilder
+    ) {
     super();
   }
 

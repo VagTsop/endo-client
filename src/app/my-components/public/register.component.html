@@ -11,69 +11,61 @@
 
       <img src="./assets/images/logo/endofusion.jpg" style="width: 200px" />
 
-      <form #registerForm="ngForm" style="margin-top:15px;margin-bottom:15px"
-        (ngSubmit)="onRegister(registerForm.value)">
+      <form [formGroup]="form" style="margin-top:15px;margin-bottom:15px">
 
         <div fxLayout="column" fxLayoutAlign="start center">
 
-          <div>
-            <mat-form-field appearance="fill">
-              <mat-icon fxFlex="20">person</mat-icon>
-              <input fxFlex="80" type="text" name="firstName" placeholder="First name" required ngModel
-                #firstNameInput="ngModel" matInput />
-            </mat-form-field>
-          </div>
-          <span *ngIf="firstNameInput.invalid && firstNameInput.touched">Please
-            enter a first name</span>
+          <mat-form-field appearance="fill">
+            <mat-icon fxFlex="20">person</mat-icon>
+            <input [formControl]="form.controls.firstName" fxFlex="80" type="text" placeholder="First name" matInput />
+          </mat-form-field>
 
-          <div>
-            <mat-form-field appearance="fill">
-              <mat-icon fxFlex="20">person</mat-icon>
-              <input fxFlex="80" type="text" name="lastName" placeholder="Last name" required ngModel
-                #lastNameInput="ngModel" matInput />
-            </mat-form-field>
-          </div>
-          <span *ngIf="lastNameInput.invalid && lastNameInput.touched">Please
-            enter a last name</span>
+          <control-message *ngIf="form.controls['firstName'].touched" [control]="form.controls.firstName">
+          </control-message>
 
-          <div>
-            <mat-form-field appearance="fill">
-              <mat-icon fxFlex="20">account_box</mat-icon>
-              <input fxFlex="80" type="text" name="username" placeholder="Username" required ngModel
-                #usernameInput="ngModel" matInput />
-            </mat-form-field>
-          </div>
-          <span *ngIf="usernameInput.invalid && usernameInput.touched">Please
-            enter a username</span>
+          <mat-form-field appearance="fill">
+            <mat-icon fxFlex="20">person</mat-icon>
+            <input [formControl]="form.controls.lastName" fxFlex="80" type="text" placeholder="Last name" matInput />
+          </mat-form-field>
 
-          <div>
-            <mat-form-field appearance="fill">
-              <mat-icon fxFlex="20">email</mat-icon>
-              <input fxFlex="80" type="email" name="email" placeholder="Email" required ngModel #emailInput="ngModel"
-                matInput />
-            </mat-form-field>
-          </div>
-          <span *ngIf="emailInput.invalid && emailInput.touched">Please enter an
-            email</span>
+          <control-message *ngIf="form.controls['lastName'].touched" [control]="form.controls.lastName">
+          </control-message>
 
-          <div>
-            <mat-form-field appearance="fill">
-              <mat-icon fxFlex="20">lock</mat-icon>
-              <input [type]="password" fxFlex="80" name="password" placeholder="New Password" required ngModel
-                #passwordInput="ngModel" matInput />
-              <div style="background-color: none;" (click)="onClick()">
-                <mat-icon matTooltip="visible" *ngIf="!show">visibility</mat-icon>
-                <mat-icon matTooltip="not visible" *ngIf="show">visibility_off</mat-icon>
-              </div>
-            </mat-form-field>
-          </div>
-          <span *ngIf="passwordInput.invalid && passwordInput.touched">Please enter a
-            password</span>
+          <mat-form-field appearance="fill">
+            <mat-icon fxFlex="20">account_box</mat-icon>
+            <input [formControl]="form.controls.username" fxFlex="80" type="text" placeholder="Username" ngModel
+              matInput />
+          </mat-form-field>
+
+          <control-message *ngIf="form.controls['username'].touched" [control]="form.controls.username">
+          </control-message>
+
+          <mat-form-field appearance="fill">
+            <mat-icon fxFlex="20">email</mat-icon>
+            <input [formControl]="form.controls.email" fxFlex="80" type="email" placeholder="Email" required ngModel
+              matInput />
+          </mat-form-field>
+
+          <control-message *ngIf="form.controls['email'].touched" [control]="form.controls.email">
+          </control-message>
+
+          <mat-form-field appearance="fill">
+            <mat-icon fxFlex="20">lock</mat-icon>
+            <input [formControl]="form.controls.password" [type]="password" fxFlex="80" placeholder="New Password"
+              matInput />
+            <div style="background-color: none;" (click)="onClick()">
+              <mat-icon matTooltip="visible" *ngIf="!show">visibility</mat-icon>
+              <mat-icon matTooltip="not visible" *ngIf="show">visibility_off</mat-icon>
+            </div>
+          </mat-form-field>
+
+          <control-message *ngIf="form.controls['password'].touched" [control]="form.controls.password">
+          </control-message>
         </div>
 
         <div style="padding-top:10px;">
           <mat-dialog-actions fxLayoutAlign="center center">
-            <button [disabled]="registerForm.invalid" type="submit" name="button" style="width: 100px;"
+            <button (click)="onRegister()" [disabled]="!form.valid" type="submit" name="button" style="width: 100px;"
               class="mat-raised-button mat-primary">
               <div>Register</div>
             </button>
