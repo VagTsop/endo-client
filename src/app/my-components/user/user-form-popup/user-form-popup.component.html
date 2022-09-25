@@ -54,7 +54,7 @@
         <input [formControl]="form.controls.userId" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.userId">
+      <control-message *ngIf="form.controls['userId'].touched" [control]="form.controls.userId">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -62,7 +62,7 @@
         <input [formControl]="form.controls.firstName" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.firstName">
+      <control-message *ngIf="form.controls['firstName'].touched" [control]="form.controls.firstName">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -70,7 +70,7 @@
         <input [formControl]="form.controls.lastName" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.lastName">
+      <control-message *ngIf="form.controls['lastName'].touched" [control]="form.controls.lastName">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -78,7 +78,7 @@
         <input [formControl]="form.controls.username" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.username">
+      <control-message *ngIf="form.controls['username'].touched" [control]="form.controls.username">
       </control-message>
 
 
@@ -86,6 +86,9 @@
         <mat-label>Email</mat-label>
         <input [formControl]="form.controls.email" matInput>
       </mat-form-field>
+
+      <control-message *ngIf="form.controls['email'].touched" [control]="form.controls.email">
+      </control-message>
 
       <div fxLayout="row" style="width:20%" fxLayoutAlign="space-between center">
         <mat-label>Status</mat-label>
