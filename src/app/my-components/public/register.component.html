@@ -33,8 +33,7 @@
 
           <mat-form-field appearance="fill">
             <mat-icon fxFlex="20">account_box</mat-icon>
-            <input [formControl]="form.controls.username" fxFlex="80" type="text" placeholder="Username" ngModel
-              matInput />
+            <input [formControl]="form.controls.username" fxFlex="80" type="text" placeholder="Username" matInput />
           </mat-form-field>
 
           <control-message *ngIf="form.controls['username'].touched" [control]="form.controls.username">
@@ -42,8 +41,7 @@
 
           <mat-form-field appearance="fill">
             <mat-icon fxFlex="20">email</mat-icon>
-            <input [formControl]="form.controls.email" fxFlex="80" type="email" placeholder="Email" required ngModel
-              matInput />
+            <input [formControl]="form.controls.email" fxFlex="80" type="email" placeholder="Email" matInput />
           </mat-form-field>
 
           <control-message *ngIf="form.controls['email'].touched" [control]="form.controls.email">
