@@ -12,7 +12,10 @@ import { InstrumentSeriesDetailsPopupComponent } from '../instrument-series-deta
 })
 export class InstrumentSeriesScannerComponent extends GenericComponent implements OnInit, OnDestroy {
 
-  constructor(private instrumentSeriesService: InstrumentSeriesService, private dialog: MatDialog) {
+  constructor(
+    private instrumentSeriesService: InstrumentSeriesService,
+    private dialog: MatDialog
+  ) {
     super();
   }
 
