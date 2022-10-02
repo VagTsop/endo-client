@@ -41,7 +41,4 @@ export class AppComponent implements DoCheck {
   onGetIsSideBarOpened(data: boolean) {
     this.isSidebarOpened = data;
   }
-  onGetIsUserLoggedIn(data: boolean) {
-    this.isUserLoggedIn = data;
-  }
 }
