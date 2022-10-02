@@ -4,25 +4,28 @@
 
     <div fxLayoutAlign="center center">
 
-      <button [disabled]="router.url ==='/home'" (click)="onSendIsSidebarOpened.emit(isOpened=!isOpened)"
-        mat-icon-button aria-label="Example icon-button with menu icon">
+      <button *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" [disabled]="router.url ==='/home'"
+        (click)="onSendIsSidebarOpened.emit(isOpened=!isOpened)" mat-icon-button
+        aria-label="Example icon-button with menu icon">
         <mat-icon class="mat-sidenav-icon">menu</mat-icon>
       </button>
 
       <img src="./assets/images/logo/endofusion.jpg" style="margin-left:20px;width:150px">
 
-      <h3 style="padding: 12px 20px 0px 18px">{{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
+      <h3 *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" style="padding: 12px 20px 0px 18px">
+        {{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
         currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
       </h3>
     </div>
 
     <div class="header__header-items" fxLayoutAlign="center center">
 
-      <a class="header__header-items--header-item" [routerLink]="['/home']"><img matTooltip="home"
-          src="./assets/images/icons/home.png"></a>
-      <a class="header__header-items--header-item" (click)="onUserDetails()"><img matTooltip="User Details"
-          src="./assets/images/icons/user.png"></a>
-      <a class="header__header-items--header-item" (click)="onLogout()"><img matTooltip="Log out"
+      <a *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" class="header__header-items--header-item"
+        [routerLink]="['/home']"><img matTooltip="home" src="./assets/images/icons/home.png"></a>
+      <a *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" class="header__header-items--header-item"
+        (click)="onUserDetails()"><img matTooltip="User Details" src="./assets/images/icons/user.png"></a>
+      <a *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER' || role=== 'ROLE_USER'"
+        class="header__header-items--header-item" (click)="onLogout()"><img matTooltip="Log out"
           src="./assets/images/icons/logout.png"></a>
     </div>
   </mat-toolbar>

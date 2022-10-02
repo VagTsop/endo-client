@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   isOpened: boolean = false;
   currentRoute: any = 'Home';
   user: any;
+  role: any;
 
   constructor(private dialog: MatDialog, private authenticationService: AuthenticationService,
     public router: Router
@@ -26,6 +27,8 @@ export class HeaderComponent implements OnInit {
       .subscribe(event => {
         this.currentRoute = event;
       });
+
+    this.getUserRole();
   }
 
   onUserDetails() {
@@ -43,5 +46,10 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.authenticationService.logOut();
     this.router.navigate(['/login'])
+  }
+
+  getUserRole() {
+    this.role = this.authenticationService.getUserFromLocalCache().role
+    console.log(this.role);
   }
 }
