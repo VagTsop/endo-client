@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isOpened: boolean = false;
   currentRoute: any = 'Home';
   user: any;
-  role: any;
+  role: any = '';
 
   constructor(private dialog: MatDialog, private authenticationService: AuthenticationService,
     public router: Router
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserRole() {
-    this.role = this.authenticationService.getUserFromLocalCache().role
+    this.role = this.authenticationService.getUserFromLocalCache()?.role;
     console.log(this.role);
   }
 }
