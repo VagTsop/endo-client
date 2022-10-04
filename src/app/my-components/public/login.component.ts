@@ -36,8 +36,10 @@ export class LoginComponent extends GenericComponent implements OnInit, OnDestro
         this.getUserRole();
         if (this.role === 'ROLE_USER') {
           this.router.navigateByUrl('/instrument-series-scanner');
+          this.authenticationService.changes.next(this.role);
         } else {
           this.router.navigateByUrl('/home');
+          this.authenticationService.changes.next(this.role);
         }
       },
       (errorResponse: HttpErrorResponse) => {

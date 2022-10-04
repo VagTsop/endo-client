@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  changes = new BehaviorSubject<string>(this.getUserFromLocalCache()?.role);
+
   private baseUrl = environment.BASE_URL + '/user'
   host = environment.BASE_URL;
   token: string | null;
@@ -54,7 +56,7 @@ export class AuthenticationService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  public getUserFromLocalCache(): User {
+  public getUserFromLocalCache(): any {
     return JSON.parse(localStorage.getItem('user') as any);
   }
 

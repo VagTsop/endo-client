@@ -2,6 +2,7 @@ import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { instrumentRoutes } from './my-components/instrument/instrument-routing.module';
 import { instrumentSeriesRoutes } from './my-components/instrument-series/instrument-series-routing.module';
+import { AuthenticationService } from 'src/services/authentication.service';
 
 
 
@@ -15,14 +16,19 @@ export class AppComponent implements DoCheck {
   instrumentSeriesRoutes = instrumentSeriesRoutes;
   title = 'endofusion-client';
   isSidebarOpened: boolean;
+  role: string;
   public menuItems: any = [];
 
   constructor(
-    public router: Router,
+    public router: Router, private authenticationService: AuthenticationService,
   ) { }
 
   ngDoCheck() {
     this.getMenuItems();
+  }
+
+  ngOnInit() {
+    this.authenticationService.changes.subscribe(role => this.role = role);
   }
 
   getMenuItems(): Array<any> {
