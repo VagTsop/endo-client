@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
         this.currentRoute = event;
       });
 
-    this.getUserRole();
+      this.authenticationService.changes.subscribe(role => this.role = role);
   }
 
   onUserDetails() {
@@ -46,10 +46,5 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.authenticationService.logOut();
     this.router.navigate(['/login'])
-  }
-
-  getUserRole() {
-    this.role = this.authenticationService.getUserFromLocalCache()?.role;
-    console.log(this.role);
   }
 }
