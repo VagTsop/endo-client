@@ -11,10 +11,9 @@
     </div>
   </div>
 
-  <div style="height:90%" fxLayout="row wrap">
+  <div style="height:85%" class="grid-container">
 
-    <mat-card style="height:46%;margin:15px" class="multiple_list_card_header" fxFlex="48"
-      *ngFor="let item of modelList">
+    <mat-card style="height:46%;margin:15px" class="multiple_list_card_header grid-item" *ngFor="let item of modelList">
 
       <div fxLayout="row" fxLayoutAlign="space-between center">
 
@@ -58,7 +57,7 @@
           </div>
         </div>
 
-        <div class="table_body custom-scroll custom-scroll-table">
+        <div class="table_body custom-scroll custom-manage-instrument-series-scroll custom-scroll-table">
 
           <div style="text-align: center;" class="table_row" *ngFor="let itemDetails of item.instrumentSeriesDetails">
 
