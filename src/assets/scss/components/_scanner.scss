@@ -1,12 +1,32 @@
-zxing-scanner video {
-  width: 270px !important;
-  height: 450px !important;
-}
-
 .scanner-button {
   color: $popupButtonTextColor;
   background-color: $popupButtonColor !important;
 }
 .scanner-button:hover {
   background-color: $popupHoverButtonColor !important;
+}
+
+// Laptops, Desktops
+@media only screen and (min-width: $desktop-laptop-breakpoint-min) {
+  zxing-scanner video {
+    width: 270px !important;
+    height: 450px !important;
+  }
+  .title{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+  }
+}
+
+// Tablets, Mobiles
+@media only screen and (max-width: $tablet-breakpoint-max) {
+  zxing-scanner video {
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  .title{
+    display: none;
+  }
 }

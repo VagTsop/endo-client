@@ -17,3 +17,37 @@
     }
   }
 }
+
+
+// // Laptops, Desktops
+// @media only screen and (min-width: $desktop-laptop-breakpoint-min) {
+//   .sidenav_container {
+//     height: 100%;
+//     .sidenav {
+//       padding: 25px;
+//       width: 300px;
+//       color: $sidebarColor;
+//       background-color: $sidebarBackgroundColor;
+//       .sidenav_item {
+//         font-size: 1.2rem;
+//         line-height: 25px;
+//         text-decoration: none;
+//         color: $sidebarColor;
+//         &.active {
+//           color: $sidebarActiveColor;
+//           text-decoration: none;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// // Tablets, Mobiles
+// @media only screen and (max-width: $tablet-breakpoint-max) {
+//   .sidenav_container {
+//     height: 100%;
+//     .sidenav {
+//      display: none;
+//     }
+//   }
+// }
