@@ -46,6 +46,12 @@
 // $tablet-breakpoint-min: 601px;
 // $mobile-breakpoint-max: 600px;
 
+@media only screen and (min-width: 1920px) {
+  .grid-container {
+   display:flex;
+   flex-direction: flex-wrap;
+  }
+}
 
 @media only screen and (min-width: 1281px) {
   .grid-container {
@@ -53,17 +59,26 @@
    flex-direction: flex-wrap;
   }
 }
-@media only screen and (min-width: 1281px) {
+
+@media only screen and (max-width: $desktop-laptop-breakpoint-max) {
+  .grid-container {
+   display:flex;
+   flex-direction: flex-wrap;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .grid-item {
+    width: 31%;
+  }
+}
+
+@media only screen and (min-width: 1281px) and (max-width: 1919px){
   .grid-item {
     width: 46%;
   }
 }
-@media only screen and (max-width: $desktop-laptop-breakpoint-max) {
-  .grid-container {
-   display:flex;
-   flex-direction: column;
-  }
-}
+
 @media only screen and (max-width: $desktop-laptop-breakpoint-max) {
   .grid-item {
     width: 100%;

@@ -13,7 +13,7 @@ import { InstrumentSeriesFormPopupComponent } from '../instrument-series-form-po
   providers: [InstrumentSeriesService]
 })
 export class ManageInstrumentSeriesComponent extends GenericComponent implements OnInit, OnDestroy {
-  itemsPerPage: number = 4;
+  itemsPerPage: number = 6;
   allPages: number;
   tempList: any = [];
 
