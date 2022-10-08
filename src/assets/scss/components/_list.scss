@@ -38,12 +38,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-// $desktop: 1281px;
-// $desktop-laptop-breakpoint-max: 1280px;
-// $desktop-laptop-breakpoint-min: 1025px;
-// $tablet-breakpoint-max: 1024px;
-// $tablet-breakpoint-min: 601px;
-// $mobile-breakpoint-max: 600px;
 
 @media only screen and (min-width: 1920px) {
   .grid-container {
@@ -83,39 +77,4 @@
     width: 100%;
   }
 }
-
-// Desktops
-// @media only screen and (max-width: 1831px) {
-//   .grid-item {
-//     width: 47%;
-//   }
-// }
-
-// .grid-item {
-//   width: 48%;
-//   flex: 6;
-// }
-// // Desktops
-
-
-// // Laptops, Desktops
-// @media only screen and (min-width: $desktop-laptop-breakpoint-min) and (max-width: $desktop-laptop-breakpoint-max) {
-//   .grid-item {
-//     width: 48%
-//   }
-// }
-
-// // Tablets
-// @media only screen and (min-width: $tablet-breakpoint-min) and (max-width: $tablet-breakpoint-max) {
-//   .grid-item {
-//     width: 48%
-//   }
-// }
-
-// // Most of the Smartphones Mobiles
-// @media only screen and (max-width: $mobile-breakpoint-max) {
-//   .grid-item {
-//     width: 48%
-//   }
-// }
 
