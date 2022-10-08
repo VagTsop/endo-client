@@ -1,4 +1,4 @@
-<mat-card class="list_card_header">
+<mat-card style="max-height: 753px; overflow: auto" class="list_card_header custom-scroll-table">
 
   <div fxLayoutAlign="space-between center">
 
@@ -157,7 +157,7 @@
       </tr>
     </thead>
 
-    <tbody class="table_body">
+    <tbody class="table_body custom-scroll">
 
       <tr *ngIf="modelList.length == 0">
         <td class="no-data" colspan="10">
