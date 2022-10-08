@@ -22,11 +22,24 @@
 }
 
 // Tablets, Mobiles
-@media only screen and (max-width: $tablet-breakpoint-max) {
+@media only screen and (max-width: 1279px) {
   .sidenav_container {
     height: 100%;
     .sidenav {
      display: none;
+    }
+  }
+
+  mat-list-item{
+    .sidenav_item {
+      font-size: 1.2rem;
+      line-height: 25px;
+      text-decoration: none;
+      color: #aebab5;
+      &.active {
+        color: $sidebarColor;
+        text-decoration: none;
+      }
     }
   }
 }
