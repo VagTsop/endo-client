@@ -4,11 +4,6 @@
   overflow: auto;
 }
 
-.custom-manage-instrument-series-scroll {
-  max-height: 130px;
-  overflow: auto;
-}
-
 .custom-scroll-table::-webkit-scrollbar-track {
   background: #dbd5d5;
 }
@@ -19,6 +14,25 @@
 }
 
 .custom-scroll-table::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-manage-instrument-series-scroll {
+  max-height: 130px;
+  overflow: auto;
+}
+
+.custom-manage-instrument-series-scroll-table::-webkit-scrollbar-track {
+  background: #dbd5d5;
+}
+
+.custom-manage-instrument-series-scroll-table::-webkit-scrollbar-thumb {
+  background: #949494;
+  border-radius: 30px;
+}
+
+.custom-manage-instrument-series-scroll-table::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
