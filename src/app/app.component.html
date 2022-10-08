@@ -20,11 +20,14 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <h2 *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'"
-      style="background-color: white;padding-left: 25px;margin:0;text-align: center;">
-      {{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
-      currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
-    </h2>
+    <div
+      *ngIf="router.url !== '/login' && !router.url.includes('register') && router.url !== '/notfound' && !router.url.includes('password-reset')">
+      <h2 *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'"
+        style="background-color: white;padding-left: 25px;margin:0;text-align: center;">
+        {{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
+        currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
+      </h2>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
