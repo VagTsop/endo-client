@@ -1,4 +1,4 @@
-<mat-card style="height:100%;background-color: #fff;" fxLayout="column" class="list_card_header">
+<div style="background-color: #fff;" fxLayout="column" class="list_card_header">
 
   <div fxFlex fxLayoutAlign="end center">
     <mat-icon matTooltip="create instrument series" (click)="onForm()">add
@@ -11,9 +11,9 @@
     </div>
   </div>
 
-  <div style="height:85%" class="grid-container">
+  <div class="grid-container">
 
-    <mat-card style="height:46%;margin:15px" class="multiple_list_card_header grid-item" *ngFor="let item of modelList">
+    <mat-card style="margin:15px" class="multiple_list_card_header grid-item" *ngFor="let item of modelList">
 
       <div fxLayout="row" fxLayoutAlign="space-between center">
 
@@ -21,7 +21,8 @@
 
           <mat-icon style="margin-bottom: 15px" fxFlex="5">list </mat-icon>
 
-          <h2 style="padding-left:15px">Instrument Series Code: <span style="padding-left:5px">{{item.instrumentSeriesCode}}</span>
+          <h2 style="padding-left:15px">Instrument Series Code: <span
+              style="padding-left:5px">{{item.instrumentSeriesCode}}</span>
           </h2>
         </div>
 
@@ -57,7 +58,7 @@
           </div>
         </div>
 
-        <div class="table_body custom-scroll custom-manage-instrument-series-scroll custom-scroll-table">
+        <div style="line-height:2em" class="table_body custom-manage-instrument-series-scroll custom-scroll-table">
 
           <div style="text-align: center;" class="table_row" *ngFor="let itemDetails of item.instrumentSeriesDetails">
 
@@ -82,4 +83,4 @@
     <dropdown-paging fxFlex [allPagesNumber]="allPages" (changePage)="onPageChange($event)">
     </dropdown-paging>
   </div>
-</mat-card>
+</div>
