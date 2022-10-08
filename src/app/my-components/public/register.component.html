@@ -5,7 +5,7 @@
 
 <div style="height: 100%" class="register-login" fxLayoutAlign="center center">
 
-  <mat-card-content fxFlex="25" *ngIf="!isSuccessful">
+  <mat-card-content style="width: 340px" *ngIf="!isSuccessful">
 
     <div fxLayout="column" fxLayoutAlign="space-between center">
 
@@ -80,12 +80,11 @@
     </div>
   </mat-card-content>
 
-  <mat-card-content *ngIf="isSuccessful">
+  <mat-card-content style="width: 330px" *ngIf="isSuccessful">
 
     <div fxLayout="column" fxLayoutAlign="space-between center">
 
-      <img src="./assets/images/logo/Capture.PNG" style="width: 100px" />
-      <img src="./assets/images/logo/Capture2.PNG" style="width: 150px" />
+      <img src="./assets/images/logo/endofusion.jpg" style="width: 200px" />
       Your registration is successful! We've sent you a verification mail to your email account. Validate your account
       and try to login.
       <a routerLink="/login" style="padding-left: 5px">Go back to Login</a>
