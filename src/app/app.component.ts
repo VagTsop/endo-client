@@ -1,9 +1,9 @@
 import { Component, DoCheck } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd,  Router } from '@angular/router';
 import { instrumentRoutes } from './my-components/instrument/instrument-routing.module';
 import { instrumentSeriesRoutes } from './my-components/instrument-series/instrument-series-routing.module';
 import { AuthenticationService } from 'src/services/authentication.service';
-
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -16,6 +16,8 @@ export class AppComponent implements DoCheck {
   instrumentSeriesRoutes = instrumentSeriesRoutes;
   title = 'endofusion-client';
   isSidebarOpened: boolean;
+  currentRoute: any = 'Home';
+
   role: string;
   public menuItems: any = [];
 
@@ -28,6 +30,10 @@ export class AppComponent implements DoCheck {
   }
 
   ngOnInit() {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe(event => {
+      this.currentRoute = event;
+    });
     this.authenticationService.changes.subscribe(role => this.role = role);
   }
 

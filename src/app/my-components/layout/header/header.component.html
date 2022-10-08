@@ -11,11 +11,6 @@
       </button>
 
       <img src="./assets/images/logo/endofusion.jpg" style="margin-left:20px;width:150px">
-
-      <h3 *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" style="padding: 12px 20px 0px 18px">
-        {{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
-        currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
-      </h3>
     </div>
 
     <div class="header__header-items" fxLayoutAlign="center center">

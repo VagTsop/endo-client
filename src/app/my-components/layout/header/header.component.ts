@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 import { User } from 'src/model/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { UserDetailsPopupComponent } from '../../user/user-details-popup/user-details-popup.component';
@@ -14,7 +14,6 @@ import { UserDetailsPopupComponent } from '../../user/user-details-popup/user-de
 export class HeaderComponent implements OnInit {
   @Output() onSendIsSidebarOpened = new EventEmitter();
   isOpened: boolean = false;
-  currentRoute: any = 'Home';
   user: any;
   role: any = '';
 
@@ -23,11 +22,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(event => {
-        this.currentRoute = event;
-      });
-
       this.authenticationService.changes.subscribe(role => this.role = role);
   }
 
