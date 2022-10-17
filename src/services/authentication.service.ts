@@ -30,11 +30,6 @@ export class AuthenticationService {
     return this.http.post<any>(`${this.host}/user/password-reset`, email);
   }
 
-
-  // public changePassword(user: User): Observable<any> {
-  //   return this.http.post<User>(`${this.host}/user/change-password`, user);
-  // }
-
   public changePassword(code: any, password: string): Observable<any> {
     return this.http.post<any>(`${this.host}/user/change-password?code=${code}`, password, { observe: 'response' });
   }
@@ -75,7 +70,6 @@ export class AuthenticationService {
   resendToken(code: string): Observable<any> {
     return this.http.post<any>(`${this.host}/user/resend?code=${code}`, code, { observe: 'response' });
   }
-
 
   public isUserLoggedIn(): boolean {
     this.loadToken();

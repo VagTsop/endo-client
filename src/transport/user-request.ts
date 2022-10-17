@@ -6,9 +6,9 @@ export class UserRequest extends GenericRequest {
   private firstName: string;
   private lastName: string;
   private email: string;
+  private password: string;
   private status: boolean;
   private locked: boolean;
-  private profileImage: any;
 
   /**
   * Getter $userId
@@ -90,6 +90,21 @@ export class UserRequest extends GenericRequest {
     this.email = value;
   }
 
+  /**
+   * Getter $password
+   * @return {string}
+   */
+  public get $password(): string {
+    return this.password;
+  }
+
+  /**
+  * Setter $password
+  * @param {string} value
+  */
+  public set $password(value: string) {
+    this.password = value;
+  }
 
   /**
   * Getter $status
@@ -107,35 +122,19 @@ export class UserRequest extends GenericRequest {
     this.status = value;
   }
 
-    /**
-  * Getter $locked
-  * @return {boolean}
-  */
-     public get $locked(): boolean {
-      return this.locked;
-    }
-
-    /**
-    * Setter $locked
-    * @param {boolean} value
-    */
-    public set $locked(value: boolean) {
-      this.locked = value;
-    }
-
   /**
-* Getter $profileImage
-* @return {any}
+* Getter $locked
+* @return {boolean}
 */
-  public get $profileImage(): any {
-    return this.profileImage;
+  public get $locked(): boolean {
+    return this.locked;
   }
 
   /**
-  * Setter $status
-  * @param {any} value
+  * Setter $locked
+  * @param {boolean} value
   */
-  public set $profileImage(value: any) {
-    this.profileImage = value;
+  public set $locked(value: boolean) {
+    this.locked = value;
   }
 }
