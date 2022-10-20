@@ -29,7 +29,6 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
       lastName: [null, Validators.required],
       username: [null, Validators.required],
       email: [null, Validators.required],
-      password: [null, Validators.required],
       status: [false],
       locked: [false]
     });
@@ -44,7 +43,6 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
               lastName: [res.lastName, Validators.required],
               username: [res.username, Validators.required],
               email: [res.email, Validators.required],
-              password: [res.password, Validators.required],
               status: [res.status],
               locked: [res.locked],
             });
@@ -64,7 +62,6 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
     this.req.$username = this.form.value.username;
     this.req.$userId = this.form.value.userId;
     this.req.$email = this.form.value.email;
-    this.req.$password = this.form.value.password;
     this.req.$status = this.form.value.status;
     this.req.$locked = this.form.value.locked;
     if (this.id) {

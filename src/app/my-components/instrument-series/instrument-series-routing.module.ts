@@ -6,13 +6,15 @@ import { ManageInstrumentSeriesComponent } from "./manage-instrument-series/mana
 
 export const instrumentSeriesRoutes: Routes = [
   {
-    path: 'manage-instrument-series',  canActivate: [AuthenticationGuard], component: ManageInstrumentSeriesComponent, data: {
-      label: 'Manage Instrument Series'
+    path: 'manage-instrument-series', canActivate: [AuthenticationGuard], component: ManageInstrumentSeriesComponent, data: {
+      label: 'Manage Instrument Series',
+      role: 'ROLE_ADMIN'
     },
   },
   {
-    path: 'instrument-series-scanner',  canActivate: [AuthenticationGuard], component: InstrumentSeriesScannerComponent, data: {
-      label: 'Scan Instrument Series'
+    path: 'instrument-series-scanner', canActivate: [AuthenticationGuard], component: InstrumentSeriesScannerComponent, data: {
+      label: 'Scan Instrument Series',
+      role: 'ROLE_ADMIN,ROLE_USER',
     },
   }
 ];

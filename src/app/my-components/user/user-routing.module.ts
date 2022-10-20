@@ -6,7 +6,8 @@ import { ManageUserComponent } from "./manage-user.component";
 export const userRoutes: Routes = [
   {
     path: 'manage-user', canActivate: [AuthenticationGuard], component: ManageUserComponent, data: {
-      label: 'Manage Users'
+      label: 'Manage Users',
+      role: 'ROLE_ADMIN'
     }
   }
 ];

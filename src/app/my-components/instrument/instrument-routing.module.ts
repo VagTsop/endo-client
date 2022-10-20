@@ -6,7 +6,8 @@ import { ManageInstrumentComponent } from "./manage-instrument.component";
 export const instrumentRoutes: Routes = [
   {
     path: 'manage-instrument', canActivate: [AuthenticationGuard], component: ManageInstrumentComponent, data: {
-      label: 'Manage Instruments'
+      label: 'Manage Instruments',
+      role: 'ROLE_ADMIN'
     }
   }
 ];

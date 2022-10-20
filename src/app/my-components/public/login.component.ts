@@ -13,6 +13,8 @@ import { GenericComponent } from '../generic.component';
 })
 export class LoginComponent extends GenericComponent implements OnInit, OnDestroy {
   role: any;
+  password: string;
+  show = false;
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
     private notificationService: NotificationService) {
@@ -49,6 +51,16 @@ export class LoginComponent extends GenericComponent implements OnInit, OnDestro
       }
     )
     );
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
+    }
   }
 
   getUserRole() {
