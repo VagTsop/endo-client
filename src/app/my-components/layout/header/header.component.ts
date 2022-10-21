@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { User } from 'src/model/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { instrumentSeriesRoutes } from '../../instrument-series/instrument-series-routing.module';
@@ -27,26 +28,22 @@ export class HeaderComponent implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authenticationService.changes.subscribe(role => this.role = role);
-  }
 
-  ngDoCheck() {
-    this.getMenuItems();
-  }
-
-  getMenuItems(): Array<any> {
-    if (this.router.url.includes('user')) {
-      this.menuItems = null;
-    }
-    if (this.router.url.includes('instrument')) {
-      this.menuItems = this.instrumentRoutes;
-    }
-    if (this.router.url.includes('instrument-series')) {
-      this.menuItems = this.instrumentSeriesRoutes;
-      console.log(this.menuItems)
-    }
-    return this.menuItems;
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => {
+        this.currentRoute = event;
+        if (this.router.url.includes('user')) {
+          this.menuItems = null;
+        }
+        if (this.router.url.includes('instrument')) {
+          this.menuItems = this.instrumentRoutes;
+        }
+        if (this.router.url.includes('instrument-series')) {
+          this.menuItems = this.instrumentSeriesRoutes;
+        }
+      });
   }
 
   onUserDetails() {

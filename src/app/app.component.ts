@@ -1,5 +1,5 @@
-import { Component, DoCheck } from '@angular/core';
-import { NavigationEnd,  Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { instrumentRoutes } from './my-components/instrument/instrument-routing.module';
 import { instrumentSeriesRoutes } from './my-components/instrument-series/instrument-series-routing.module';
 import { AuthenticationService } from 'src/services/authentication.service';
@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements DoCheck {
+export class AppComponent implements OnInit {
   isUserLoggedIn = false;
   instrumentRoutes = instrumentRoutes;
   instrumentSeriesRoutes = instrumentSeriesRoutes;
@@ -25,29 +25,22 @@ export class AppComponent implements DoCheck {
     public router: Router, private authenticationService: AuthenticationService,
   ) { }
 
-  ngDoCheck() {
-    this.getMenuItems();
-  }
-
   ngOnInit() {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe(event => {
-      this.currentRoute = event;
-    });
-    this.authenticationService.changes.subscribe(role => this.role = role);
-  }
+      .subscribe(event => {
+        this.currentRoute = event;
+        if (this.router.url.includes('user')) {
+          this.menuItems = null;
+        }
+        if (this.router.url.includes('instrument')) {
+          this.menuItems = this.instrumentRoutes;
+        }
+        if (this.router.url.includes('instrument-series')) {
+          this.menuItems = this.instrumentSeriesRoutes;
+        }
+      });
 
-  getMenuItems(): Array<any> {
-    if (this.router.url.includes('user')) {
-      this.menuItems = null;
-    }
-    if (this.router.url.includes('instrument')) {
-      this.menuItems = this.instrumentRoutes;
-    }
-    if (this.router.url.includes('instrument-series')) {
-      this.menuItems = this.instrumentSeriesRoutes;
-    }
-    return this.menuItems;
+    this.authenticationService.changes.subscribe(role => this.role = role);
   }
 
   onGetIsSideBarOpened(data: boolean) {
