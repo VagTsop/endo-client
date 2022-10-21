@@ -6,7 +6,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './verification-popup.component.html',
 })
 export class VerificationPopupComponent {
-
   private state: string;
   messageTitle: string = '';
   message: string = '';

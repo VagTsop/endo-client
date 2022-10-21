@@ -8,8 +8,6 @@ import { EmailVerificationComponent } from "../email-verification/email-verifica
 import { PasswordResetComponent } from "../password-reset/password-reset.component";
 import { PasswordResetFormComponent } from "../password-reset/password-reset-form.component";
 
-
-
 @NgModule({
   imports: [
     CommonModule,

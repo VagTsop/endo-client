@@ -1,4 +1,4 @@
-<mat-card class="list_card_header">
+<mat-card style="max-height: 753px; overflow: auto" class="list_card_header custom-scroll-table">
 
   <div>
 
@@ -146,7 +146,7 @@
       </tr>
     </thead>
 
-    <tbody class="table_body">
+    <tbody class="table_body custom-scroll">
 
       <tr *ngIf="modelList.length == 0">
         <td class="no-data" colspan="10">
@@ -164,7 +164,7 @@
 
           <mat-menu #ol="matMenu">
 
-            <button (click)="onForm(item.id)" mat-menu-item>
+            <button fxLayoutAlign="space-between center" (click)="onForm(item.id)" mat-menu-item>
               <span>Edit</span>
               <mat-icon>edit</mat-icon>
             </button>

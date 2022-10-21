@@ -6,11 +6,10 @@ import { Subscription } from 'rxjs';
 })
 
 export class GenericComponent {
-
-  constructor() { }
-
   modelList: any = [];
   subscriptions: Subscription = new Subscription();
   req: any;
   selectedRow: any = null;
+
+  constructor() { }
 }

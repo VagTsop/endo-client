@@ -17,44 +17,12 @@
 
     <mat-dialog-content style="max-height: 80vh" fxLayout='column'>
 
-      <div style="padding:20px;padding-left:0" fxLayout="row">
-
-        <label style="padding:0;text-align: center;font-size: 12px" fxLayoutAlign="center center"
-          [ngStyle]="{'border': url ?  '1px solid black' :  '1px dashed black'}" class="hoverable" for="fileInput">
-
-          <img [ngStyle]="{'display': url ?  'block' :  'none'}" *ngIf="form.controls.profileImage.value" [src]="url">
-
-          <p style="margin:0" *ngIf="!url">Click To Upload Preview Image</p>
-
-          <div style="width:100%;text-align:center" *ngIf="url" class="hover-text">Click
-            To Change Preview
-            Image
-          </div>
-
-          <div class="background"></div>
-        </label>
-
-        <input id="fileInput" type='file' (change)="onSelectFile($event)">
-
-        <mat-card-actions style="margin-left:25px" fxLayoutAlign="center center"
-          *ngIf="form.controls.profileImage.value ">
-
-          <button style="margin: 0 8px" mat-raised-button color="primary" (click)="remove()">Remove
-            Image
-          </button>
-        </mat-card-actions>
-      </div>
-
-      <mat-form-field style="display:none">
-        <input readonly [formControl]="form.controls.profileImageName" matInput>
-      </mat-form-field>
-
       <mat-form-field appearance="fill">
         <mat-label>ID</mat-label>
         <input [formControl]="form.controls.userId" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.userId">
+      <control-message *ngIf="form.controls['userId'].touched" [control]="form.controls.userId">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -62,7 +30,7 @@
         <input [formControl]="form.controls.firstName" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.firstName">
+      <control-message *ngIf="form.controls['firstName'].touched" [control]="form.controls.firstName">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -70,7 +38,7 @@
         <input [formControl]="form.controls.lastName" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.lastName">
+      <control-message *ngIf="form.controls['lastName'].touched" [control]="form.controls.lastName">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -78,14 +46,16 @@
         <input [formControl]="form.controls.username" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.username">
+      <control-message *ngIf="form.controls['username'].touched" [control]="form.controls.username">
       </control-message>
-
 
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input [formControl]="form.controls.email" matInput>
       </mat-form-field>
+
+      <control-message *ngIf="form.controls['email'].touched" [control]="form.controls.email">
+      </control-message>
 
       <div fxLayout="row" style="width:20%" fxLayoutAlign="space-between center">
         <mat-label>Status</mat-label>

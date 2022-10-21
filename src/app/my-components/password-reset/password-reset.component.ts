@@ -1,10 +1,9 @@
-import { HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
 import { GenericComponent } from '../generic.component';
-
 
 @Component({
   selector: 'app-password-reset',
@@ -23,6 +22,9 @@ export class PasswordResetComponent extends GenericComponent implements OnInit, 
   onPasswordReset(email: any) {
     this.subscriptions.add(this.authenticationService.passwordReset(email).subscribe(
       (response: any) => {
+        this.router.navigateByUrl('/login');
+        this.notificationService.showNotification(
+          { title: 'Success', type: 'SUCCESS', message: response.message });
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse)

@@ -1,6 +1,7 @@
 .custom-scroll {
-  max-height: 240px;
-  overflow-y: scroll;
+  max-height: 400px;
+  min-height: 400px;
+  overflow: auto;
 }
 
 .custom-scroll-table::-webkit-scrollbar-track {
@@ -14,7 +15,26 @@
 
 .custom-scroll-table::-webkit-scrollbar {
   width: 10px;
-  height: 6px;
+  height: 10px;
+}
+
+.custom-manage-instrument-series-scroll {
+  max-height: 130px;
+  overflow: auto;
+}
+
+.custom-manage-instrument-series-scroll-table::-webkit-scrollbar-track {
+  background: #dbd5d5;
+}
+
+.custom-manage-instrument-series-scroll-table::-webkit-scrollbar-thumb {
+  background: #949494;
+  border-radius: 30px;
+}
+
+.custom-manage-instrument-series-scroll-table::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
 [disabled].mat-raised-button {
@@ -26,4 +46,48 @@
   border-radius: 4.5px;
   border: none;
   cursor: pointer;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 1920px) {
+  .grid-container {
+   display:flex;
+   flex-direction: flex-wrap;
+  }
+}
+
+@media only screen and (min-width: 1281px) {
+  .grid-container {
+   display:flex;
+   flex-direction: flex-wrap;
+  }
+}
+
+@media only screen and (max-width: $desktop-laptop-breakpoint-max) {
+  .grid-container {
+   display:flex;
+   flex-direction: flex-wrap;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .grid-item {
+    width: 31%;
+  }
+}
+
+@media only screen and (min-width: 1281px) and (max-width: 1919px){
+  .grid-item {
+    width: 46%;
+  }
+}
+
+@media only screen and (max-width: $desktop-laptop-breakpoint-max) {
+  .grid-item {
+    width: 100%;
+  }
 }

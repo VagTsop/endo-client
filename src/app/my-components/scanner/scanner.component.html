@@ -1,18 +1,13 @@
 <div fxLayout="column" fxLayoutAlign="space-between center" style="height:70%">
 
-  <div fxLayoutAlign="center end" fxFlex="20">
+  <div class="title">
     <h1>Endofusion QR code Scanner</h1>
   </div>
 
   <div *ngIf="scannerEnabled" fxFlex="75" fxLayoutAlign="center start">
-    <zxing-scanner (scanSuccess)="scanSuccessHandler($event)" style="position:absolute" #scanner>
+    <zxing-scanner (scanSuccess)="scanSuccessHandler($event)" style="position:absolute" #scanner start="true">
     </zxing-scanner>
 
-    <!-- <button
-      style="z-index:1;position:relative;top:390px;border-radius:18px;cursor: pointer;background: none;height:39px;"
-      (click)="scanSuccessHandler($event)" type="button">
-      <mat-icon style="padding-top: 3px;padding-left: 0px;">camera_alt</mat-icon>
-    </button> -->
   </div>
 
   <mat-dialog-actions fxLayoutAlign="center center">

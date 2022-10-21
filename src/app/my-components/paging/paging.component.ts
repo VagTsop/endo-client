@@ -6,7 +6,6 @@ import { Paging } from 'src/transport/helper/paging.helper';
   templateUrl: './paging.component.html'
 })
 export class PagingComponent {
-
   @Input() paging: Paging;
   @Output() emitPaging: EventEmitter<Paging> = new EventEmitter<Paging>();
 

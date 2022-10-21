@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStatus } from 'src/enum/token-status.enum';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
-
-export enum TokenStatus {
-  VALID,
-  ALREADY_CONFIRMED,
-  EXPIRED,
-}
 
 @Component({
   selector: 'app-email-verification',

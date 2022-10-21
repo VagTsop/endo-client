@@ -1,29 +1,61 @@
 <div>
-
-  <mat-toolbar class="header" fxFlex fxLayoutAlign="space-between center">
+  <mat-toolbar [fxHide.lt-lg]="true" class="header" fxFlex fxLayoutAlign="space-between center">
 
     <div fxLayoutAlign="center center">
 
-      <button [disabled]="router.url ==='/home'" (click)="onSendIsSidebarOpened.emit(isOpened=!isOpened)"
-        mat-icon-button aria-label="Example icon-button with menu icon">
+      <button *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" [disabled]="router.url ==='/home'"
+        (click)="onSendIsSidebarOpened.emit(isOpened=!isOpened)" mat-icon-button
+        aria-label="Example icon-button with menu icon">
         <mat-icon class="mat-sidenav-icon">menu</mat-icon>
       </button>
 
       <img src="./assets/images/logo/endofusion.jpg" style="margin-left:20px;width:150px">
-
-      <!-- <h1 style="font-weight:550;">Βαγγέλης Τσοπάνος</h1> -->
-      <h3 style="padding: 12px 20px 0px 18px">{{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
-        currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
-      </h3>
     </div>
 
     <div class="header__header-items" fxLayoutAlign="center center">
 
-      <a class="header__header-items--header-item" [routerLink]="['/home']"><img matTooltip="home"
+      <a *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" class="header__header-items--header-item"
+        [routerLink]="['/home']"><img matTooltip="home" src="./assets/images/icons/home.png"></a>
+      <a *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" class="header__header-items--header-item"
+        (click)="onUserDetails()"><img matTooltip="User Details" src="./assets/images/icons/user.png"></a>
+      <a *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER' || role=== 'ROLE_USER'"
+        class="header__header-items--header-item" (click)="onLogout()"><img matTooltip="Log out"
+          src="./assets/images/icons/logout.png"></a>
+    </div>
+  </mat-toolbar>
+
+  <mat-toolbar [fxHide.gt-md]="true" [fxHide.lt-lg]="false" class="header" fxFlex fxLayoutAlign="space-between center">
+
+    <div fxLayoutAlign="center center">
+      <img src="./assets/images/logo/endofusion.jpg" style="width:150px">
+    </div>
+
+    <div class="header__header-items" fxLayoutAlign="center center">
+      <button style="background:none;border:none;cursor:pointer" [matMenuTriggerFor]="ol"
+        *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'" class="header__header-items--header-item"><img
+          matTooltip="home" src="./assets/images/icons/caret-down.png"></button>
+
+      <mat-menu #ol="matMenu">
+        <mat-list-item mat-menu-item fxLayoutAlign="start center" menuToggleLink *ngFor="let menuitem of menuItems">
+          <a class="sidenav_item" menuToggle [routerLink]="menuitem.path" routerLinkActive="active"
+            [routerLinkActiveOptions]={exact:true}>
+            <div fxLayout="column" fxLayoutAlign="space-between center" fxFlex="100">
+              <div>
+                <span>{{ menuitem.data.label }}</span>
+              </div>
+            </div>
+          </a>
+        </mat-list-item>
+      </mat-menu>
+
+      <a style="cursor:pointer" *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'"
+        class="header__header-items--header-item" [routerLink]="['/home']"><img matTooltip="home"
           src="./assets/images/icons/home.png"></a>
-      <a class="header__header-items--header-item" (click)="onUserDetails()"><img matTooltip="User Details"
+      <a style="cursor:pointer" *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'"
+        class="header__header-items--header-item" (click)="onUserDetails()"><img matTooltip="User Details"
           src="./assets/images/icons/user.png"></a>
-      <a class="header__header-items--header-item" (click)="onLogout()"><img matTooltip="Log out"
+      <a style="cursor:pointer" *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER' || role=== 'ROLE_USER'"
+        class="header__header-items--header-item" (click)="onLogout()"><img matTooltip="Log out"
           src="./assets/images/icons/logout.png"></a>
     </div>
   </mat-toolbar>

@@ -18,7 +18,7 @@
         <input [formControl]="form.controls.instrumentName" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.instrumentName">
+      <control-message *ngIf="form.controls['instrumentName'].touched" [control]="form.controls.instrumentName">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -31,7 +31,7 @@
         <input [formControl]="form.controls.instrumentRef" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.instrumentRef">
+      <control-message *ngIf="form.controls['instrumentRef'].touched" [control]="form.controls.instrumentRef">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -39,7 +39,7 @@
         <input [formControl]="form.controls.instrumentLot" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.instrumentLot">
+      <control-message *ngIf="form.controls['instrumentLot'].touched" [control]="form.controls.instrumentLot">
       </control-message>
 
       <mat-form-field appearance="fill">
@@ -47,7 +47,8 @@
         <input [formControl]="form.controls.instrumentManufacturer" matInput>
       </mat-form-field>
 
-      <control-message [control]="form.controls.instrumentManufacturer">
+      <control-message *ngIf="form.controls['instrumentManufacturer'].touched"
+        [control]="form.controls.instrumentManufacturer">
       </control-message>
 
       <mat-form-field>
@@ -57,7 +58,8 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <control-message [control]="form.controls.instrumentPurchaseDate">
+      <control-message *ngIf="form.controls['instrumentPurchaseDate'].touched"
+        [control]="form.controls.instrumentPurchaseDate">
       </control-message>
 
       <mat-form-field appearance="fill">

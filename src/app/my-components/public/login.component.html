@@ -1,6 +1,6 @@
 <div style="height: 100%" class="register-login" fxLayoutAlign="center center">
 
-  <mat-card-content fxFlex="25">
+  <mat-card-content style="width: 340px">
 
     <div fxLayout="column" fxLayoutAlign="center center">
 
@@ -27,8 +27,11 @@
           <div>
             <mat-form-field appearance="fill">
               <mat-icon fxFlex="20">lock</mat-icon>
-              <input fxFlex="80" type="password" name="password" placeholder="Password" ngModel #passwordInput="ngModel"
-                required matInput />
+              <input fxFlex="80" [type]="password" name="password" placeholder="Password" ngModel #passwordInput="ngModel" matInput />
+              <div style="background-color: none;" (click)="onClick()">
+                <mat-icon matTooltip="visible" *ngIf="!show">visibility</mat-icon>
+                <mat-icon matTooltip="not visible" *ngIf="show">visibility_off</mat-icon>
+              </div>
             </mat-form-field>
           </div>
 

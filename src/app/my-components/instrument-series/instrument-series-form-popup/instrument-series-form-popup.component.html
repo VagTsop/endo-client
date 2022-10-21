@@ -87,6 +87,7 @@
                 <tr>
                   <th style="text-align: left" [style.width.%]="33.3">Name</th>
                   <th style="text-align: left" [style.width.%]="33.3">Description</th>
+                  <th style="text-align: left" [style.width.%]="33.3">Lot</th>
                 </tr>
               </thead>
               <tbody>
@@ -100,6 +101,7 @@
                   [ngClass]="isSelectedInstrument(item, 0) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
+                  <td style="text-align: left;">{{item.instrumentLot ? item.instrumentLot : '-' }}</td>
                 </tr>
               </tbody>
             </table>
@@ -155,6 +157,7 @@
                 <tr>
                   <th style="text-align: left" [style.width.%]="33.3">Name</th>
                   <th style="text-align: left" [style.width.%]="33.3">Description</th>
+                  <th style="text-align: left" [style.width.%]="33.3">Lot</th>
                 </tr>
               </thead>
               <tbody style="line-height: 2em;">
@@ -169,6 +172,7 @@
                   [ngClass]="isSelectedInstrument(item, 1) ? 'selected': ''">
                   <td style="text-align: left;">{{item.name ? item.name : '-' }}</td>
                   <td style="text-align: left;">{{item.description ? item.description : '-' }}</td>
+                  <td style="text-align: left;">{{item.instrumentLot ? item.instrumentLot : '-' }}</td>
                 </tr>
               </tbody>
             </table>

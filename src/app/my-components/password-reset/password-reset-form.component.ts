@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
 import { GenericComponent } from '../generic.component';
-import { User } from '../../../model/user';
+import { CustomValidator as customValidator } from '../../validation/custom-validator.component';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -25,7 +25,8 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private notificationService: NotificationService,
-    private formBuilder: UntypedFormBuilder,) {
+    private formBuilder: UntypedFormBuilder
+    ) {
     super();
   }
 
@@ -36,26 +37,8 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
       confirmPassword: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(30)])],
     },
       {
-        validators: this.ConfirmPasswordValidator("password", "confirmPassword")
+        validators: customValidator.ConfirmPasswordValidator("password", "confirmPassword")
       });
-  }
-
-  ConfirmPasswordValidator(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      let control = formGroup.controls[controlName];
-      let matchingControl = formGroup.controls[matchingControlName]
-      if (
-        matchingControl.errors &&
-        !matchingControl.errors.confirmPasswordValidator
-      ) {
-        return;
-      }
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ confirmPasswordValidator: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
   }
 
   onChangePassword(password: string) {
@@ -63,6 +46,8 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
     this.subscriptions.add(this.authenticationService.changePassword(this.code, password).subscribe(
       (response: any) => {
         this.router.navigateByUrl('/login');
+        this.notificationService.showNotification(
+          { title: 'Success', type: 'SUCCESS', message: response.body.message });
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse)
@@ -94,7 +79,7 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
   }
 
   onResetPassword() {
-    return true
+    return true;
   }
 
   ngOnDestroy() {

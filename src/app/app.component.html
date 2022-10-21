@@ -4,7 +4,7 @@
 
 <mat-sidenav-container class="sidenav_container">
   <mat-sidenav class="sidenav"
-    *ngIf="router.url !== '/login' && !router.url.includes('register') && router.url !== '/notfound' && !router.url.includes('password-reset')"
+    *ngIf="router.url !== '/login' && router.url !== '/home' && !router.url.includes('register') && router.url !== '/notfound' && !router.url.includes('password-reset') && role !== 'ROLE_USER'"
     [opened]="router.url !=='/home' ? !isSidebarOpened: isSidebarOpened" mode="side">
     <mat-nav-list fxLayout="column" menuToggleDirective>
       <mat-list-item fxLayoutAlign="start center" menuToggleLink *ngFor="let menuitem of menuItems">
@@ -20,6 +20,14 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <div
+      *ngIf="router.url !== '/login' && !router.url.includes('register') && router.url !== '/notfound' && !router.url.includes('password-reset')">
+      <h2 *ngIf="role === 'ROLE_ADMIN' || role === 'ROLE_MANAGER'"
+        style="background-color: white;padding-left: 25px;margin:0;text-align: center;">
+        {{currentRoute.url ? currentRoute.url.charAt(1).toUpperCase() +
+        currentRoute.url.slice(2).replaceAll('-',' ') : ''}}
+      </h2>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

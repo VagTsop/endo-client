@@ -12,8 +12,6 @@ import { GenericComponent } from '../../generic.component';
 export class UserFormPopupComponent extends GenericComponent implements OnInit, OnDestroy {
   id: any;
   form: UntypedFormGroup;
-  url: string | null;
-
 
   constructor(
     private userService: UserService,
@@ -32,12 +30,7 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
       username: [null, Validators.required],
       email: [null, Validators.required],
       status: [false],
-      locked: [false],
-      profileImage: [null],
-      profileImageName: [null],
-      profileImageBytes: [null],
-      profileImageSize: [null],
-      profileImageType: [null],
+      locked: [false]
     });
 
     if (this.id) {
@@ -52,17 +45,7 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
               email: [res.email, Validators.required],
               status: [res.status],
               locked: [res.locked],
-              profileImage: [res.profileImage],
-              profileImageName: [null],
-              profileImageBytes: [null],
-              profileImageSize: [null],
-              profileImageType: [null]
             });
-            this.url =
-              'data:' +
-              'image/jpeg' +
-              ';base64,' +
-              this.form.controls.profileImage.value;
           }
         }));
     }
@@ -81,7 +64,6 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
     this.req.$email = this.form.value.email;
     this.req.$status = this.form.value.status;
     this.req.$locked = this.form.value.locked;
-    this.req.$profileImage = this.form.value.profileImage;
     if (this.id) {
       this.subscriptions.add(this.userService.updateUser(this.req).subscribe(
         res => {
@@ -99,50 +81,5 @@ export class UserFormPopupComponent extends GenericComponent implements OnInit, 
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-  }
-
-  onSelectFile(event: any) {
-    const reader = new FileReader();
-    const file = event.target.files[0] as File;
-    reader.readAsDataURL(file);
-    if (file.type !== '' && file.type !== 'application/x-msdownload') {
-      reader.onload = () => {
-        const res: any = reader.result;
-        this.form.controls['profileImageBytes'].patchValue(res.split(',')[1], {
-          onlySelf: true,
-        });
-        this.form.controls['profileImageType'].patchValue(
-          file.type ? file.type : 'application/octet-stream',
-          { onlySelf: true }
-        );
-        this.form.controls['profileImageSize'].patchValue(file.size, {
-          onlySelf: true,
-        });
-        this.form.controls['profileImageName'].patchValue(file.name, {
-          onlySelf: true,
-        });
-        this.form.markAsTouched();
-        this.form.updateValueAndValidity();
-        this.form.controls.profileImage.patchValue(
-          this.form.value.profileImageBytes
-        );
-        this.form.updateValueAndValidity();
-        // imagePreview
-        this.url =
-          'data:' +
-          'image/jpeg' +
-          ';base64,' +
-          this.form.controls.profileImage.value;
-      };
-    }
-  }
-
-  public remove() {
-    this.url = null;
-    this.form.controls['profileImage'].patchValue(null);
-    this.form.controls['profileImageName'].patchValue(null);
-    this.form.controls['profileImageBytes'].patchValue(null);
-    this.form.controls['profileImageType'].patchValue(null);
-    this.form.controls['profileImageSize'].patchValue(null);
   }
 }

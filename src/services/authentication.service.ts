@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  changes = new BehaviorSubject<string>(this.getUserFromLocalCache()?.role);
+
   private baseUrl = environment.BASE_URL + '/user'
   host = environment.BASE_URL;
   token: string | null;
@@ -27,11 +29,6 @@ export class AuthenticationService {
   public passwordReset(email: string): Observable<User> {
     return this.http.post<any>(`${this.host}/user/password-reset`, email);
   }
-
-
-  // public changePassword(user: User): Observable<any> {
-  //   return this.http.post<User>(`${this.host}/user/change-password`, user);
-  // }
 
   public changePassword(code: any, password: string): Observable<any> {
     return this.http.post<any>(`${this.host}/user/change-password?code=${code}`, password, { observe: 'response' });
@@ -54,7 +51,7 @@ export class AuthenticationService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  public getUserFromLocalCache(): User {
+  public getUserFromLocalCache(): any {
     return JSON.parse(localStorage.getItem('user') as any);
   }
 
@@ -73,7 +70,6 @@ export class AuthenticationService {
   resendToken(code: string): Observable<any> {
     return this.http.post<any>(`${this.host}/user/resend?code=${code}`, code, { observe: 'response' });
   }
-
 
   public isUserLoggedIn(): boolean {
     this.loadToken();
