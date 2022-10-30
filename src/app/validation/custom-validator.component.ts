@@ -7,7 +7,8 @@ export class CustomValidator {
       'required': 'Field is required',
       'minlength': 'Minimum Characters Must Be 6',
       'maxlength': 'Maximum Characters Must Be 30',
-      'confirmPasswordValidator': 'Passsword and Confirm Password did not match.'
+      'confirmPasswordValidator': 'Passsword and Confirm Password did not match.',
+      'invalidEmailAddress': 'Invalid email address',
     };
 
     return config[validatorName];
@@ -29,5 +30,13 @@ export class CustomValidator {
         matchingControl.setErrors(null);
       }
     };
+  }
+
+  static emailValidator(control) {
+    if (control.value != null && control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
+      return null;
+    } else {
+      return { 'invalidEmailAddress': true };
+    }
   }
 }

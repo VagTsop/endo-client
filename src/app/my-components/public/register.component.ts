@@ -6,7 +6,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationService } from 'src/services/notification.service';
 import { GenericComponent } from '../generic.component';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-
+import { CustomValidator } from '../../validation/custom-validator.component';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +34,11 @@ export class RegisterComponent extends GenericComponent implements OnInit, OnDes
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
       username: [null, Validators.required],
-      email: [null, Validators.required],
+      email: [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(100),
+        CustomValidator.emailValidator])],
       password: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(30)])]
     });
   }

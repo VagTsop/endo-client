@@ -26,7 +26,7 @@ export class PasswordResetFormComponent extends GenericComponent implements OnIn
     private authenticationService: AuthenticationService,
     private notificationService: NotificationService,
     private formBuilder: UntypedFormBuilder
-    ) {
+  ) {
     super();
   }
 
