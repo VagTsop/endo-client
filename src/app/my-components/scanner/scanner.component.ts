@@ -40,7 +40,7 @@ export class ScannerComponent extends GenericComponent implements AfterViewInit,
     console.log('scanned')
     this.scannerEnabled = false;
     this.information = "Wait retrieving information... ";
-    this.onSendQrCode(+code);
+    this.onSendQrCode(code);
   }
 
   public enableScanner() {
