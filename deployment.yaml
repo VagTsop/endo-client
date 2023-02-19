@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: endo-client
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: endo-client
+  template:
+    metadata:
+      labels:
+        app: endo-client
+    spec:
+      containers:
+        - name: endo-client
+          image: vagtsop/endo-endo-client-container:latest
+         #env:
+         #   - name: ENDO_SERVER_SERVICE
+              # value: "10.99.104.252"
+             #value: "endo-server-service"
+      imagePullSecrets:
+        - name: dbsecret  
