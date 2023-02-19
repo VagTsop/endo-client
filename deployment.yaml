@@ -15,9 +15,12 @@ spec:
       containers:
         - name: endo-client
           image: vagtsop/endo-endo-client-container:latest
-         #env:
-         #   - name: ENDO_SERVER_SERVICE
-              # value: "10.99.104.252"
-             #value: "endo-server-service"
+          volumeMounts:
+          - name: endo-client-configmap
+            mountPath: /etc/nginx
+      volumes:
+      - name: endo-client-configmap
+        configMap:
+          name: endo-client-configmap     
       imagePullSecrets:
         - name: dbsecret  

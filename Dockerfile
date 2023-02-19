@@ -16,8 +16,6 @@ RUN npm run build
 
 FROM nginx:stable-alpine
 
-COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
-
 COPY --from=build /app/dist/endofusion-client /usr/share/nginx/html
 
 EXPOSE 80
