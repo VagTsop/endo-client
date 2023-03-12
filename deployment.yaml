@@ -4,7 +4,7 @@ metadata:
   name: endo-client
 spec:
   replicas: 1
-  selector: 
+  selector:
     matchLabels:
       app: endo-client
   template:
@@ -15,12 +15,5 @@ spec:
       containers:
         - name: endo-client
           image: vagtsop/endo-endo-client-container:latest
-          volumeMounts:
-          - name: endo-client-configmap
-            mountPath: /etc/nginx
-      volumes:
-      - name: endo-client-configmap
-        configMap:
-          name: endo-client-configmap     
       imagePullSecrets:
-        - name: dbsecret  
+        - name: dbsecret

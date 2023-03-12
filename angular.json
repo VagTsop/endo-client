@@ -65,7 +65,8 @@
         },
         "serve": {
           "options": {
-            "port": 80
+            "sslKey": "./server.key",
+            "sslCert": "./server.crt"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
