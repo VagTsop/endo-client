@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -14,6 +14,10 @@ import { UserDetailsPopupComponent } from '../../user/user-details-popup/user-de
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
+  private inactivityTimeout = 3600000; // 1 hour (in milliseconds)
+//  private inactivityTimeout = 60000; // 1 minute for test purposes
+
+  private inactivityTimer: any;
   @Output() onSendIsSidebarOpened = new EventEmitter();
   isOpened: boolean = false;
   instrumentRoutes = instrumentRoutes;
@@ -56,6 +60,15 @@ export class HeaderComponent implements OnInit {
       },
       position: { right: '50px', top: '50px' }
     });
+  }
+  @HostListener('window:mousemove')
+  @HostListener('window:keypress')
+  resetInactivityTimer(): void {
+    clearTimeout(this.inactivityTimer);
+    this.inactivityTimer = setTimeout(() => {
+      this.authenticationService.logOut();
+      this.router.navigate(['/login'])
+    }, this.inactivityTimeout);
   }
 
   onLogout() {
