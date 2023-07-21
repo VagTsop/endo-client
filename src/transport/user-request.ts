@@ -1,4 +1,5 @@
 import { GenericRequest } from "./generic.request";
+import { RoleDTO } from "./helper/role";
 
 export class UserRequest extends GenericRequest {
   private userId: number;
@@ -9,6 +10,7 @@ export class UserRequest extends GenericRequest {
   private password: string;
   private status: boolean;
   private locked: boolean;
+  private role: RoleDTO = new RoleDTO();
 
   /**
   * Getter $userId
@@ -137,4 +139,21 @@ export class UserRequest extends GenericRequest {
   public set $locked(value: boolean) {
     this.locked = value;
   }
+
+  /**
+* Getter $role
+* @return {RoleDto }
+*/
+  public get $role(): RoleDTO {
+    return this.role;
+  }
+
+  /**
+  * Setter $role
+  * @param {RoleDto } value
+  */
+  public set $role(value: RoleDTO) {
+    this.role = value;
+  }
+
 }

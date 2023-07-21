@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { map, Observable } from 'rxjs';
 import { UserRequest } from 'src/transport/user-request';
 import { CommonService } from './common.service';
+import { RoleDTO } from 'src/transport/helper/role';
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends CommonService {
@@ -23,6 +24,20 @@ export class UserService extends CommonService {
   fetchFirstNames(): Observable<any> {
     return this.http
       .get(this.baseUrl + '/fetch-firstnames')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  fetchRoles(): Observable<RoleDTO[]> {
+    return this.http.get<RoleDTO[]>(this.baseUrl + '/fetch-roles');
+  }
+
+  fetchLastUserId(): Observable<any> {
+    return this.http
+      .get(this.baseUrl + '/fetch-last-userid')
       .pipe(
         map((response: any) => {
           return response;

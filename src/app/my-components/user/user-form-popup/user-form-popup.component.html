@@ -57,6 +57,22 @@
       <control-message *ngIf="form.controls['email'].touched" [control]="form.controls.email">
       </control-message>
 
+      <div fxLayoutAlign="start center" fxFlex="20">
+
+        <label>Select Roles</label>
+
+        <mat-form-field>
+
+          <mat-select [formControl]="form.controls['role']"
+            disableOptionCentering>
+            <mat-option *ngFor="let item of roles" [value]="item.name">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+          <control-message [control]="form.controls['role']"></control-message>
+        </mat-form-field>
+      </div>
+
       <div fxLayout="row" style="width:20%" fxLayoutAlign="space-between center">
         <mat-label>Status</mat-label>
         <mat-checkbox [formControl]="form.controls.status">

@@ -10,6 +10,7 @@ export enum Field {
   LAST_NAME = 'LAST_NAME',
   USERNAME = 'USERNAME',
   EMAIL = 'EMAIL',
+  ROLE = 'ROLE',
   STATUS = 'STATUS',
   LOCKED = 'LOCKED'
 }

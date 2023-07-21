@@ -144,6 +144,11 @@
         </th>
 
         <th [style.width.%]="12.5">
+          <app-sorting [paging]="req.$paging" [label]="'Role'" [sortField]="'ROLE'"
+            (emitSorting)="onChangePaging($event)"></app-sorting>
+        </th>
+
+        <th [style.width.%]="12.5">
           <app-sorting [paging]="req.$paging" [label]="'Status'" [sortField]="'STATUS'"
             (emitSorting)="onChangePaging($event)">
           </app-sorting>
@@ -191,6 +196,7 @@
         <td>{{item.lastName ? item.lastName : '-' }}</td>
         <td>{{item.username ? item.username : '-' }}</td>
         <td>{{item.email ? item.email : '-' }}</td>
+        <td>{{item.name ? item.name : '-' }}</td>
         <td>
           <mat-icon matTooltip="account active" *ngIf="item.status" style="color:green;">check</mat-icon>
           <mat-icon matTooltip="account not active" *ngIf="!item.status" style="color: red;">close</mat-icon>
