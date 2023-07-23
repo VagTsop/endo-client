@@ -9,6 +9,7 @@ export class CustomValidator {
       'maxlength': 'Maximum Characters Must Be 30',
       'confirmPasswordValidator': 'Passsword and Confirm Password did not match.',
       'invalidEmailAddress': 'Invalid email address',
+      'passwordPolicy': 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one numeric digit.'
     };
 
     return config[validatorName];
@@ -38,5 +39,26 @@ export class CustomValidator {
     } else {
       return { 'invalidEmailAddress': true };
     }
+  }
+
+  static passwordPolicyValidator(control) {
+    if (!control.value) {
+      // If the control value is empty, do not validate
+      return null;
+    }
+
+    // Regular expressions for checking the password policy criteria
+    const regexes = [
+      /(?=.*[a-z])/,
+      /(?=.*[A-Z])/,
+      /(?=.*\d)/,
+      /.{8,}/
+    ];
+
+    // Check each regex to see if the password meets the criteria
+    const valid = regexes.every(regex => regex.test(control.value));
+
+    // If the password does not meet the criteria, return an error
+    return valid ? null : { 'passwordPolicy': true };
   }
 }

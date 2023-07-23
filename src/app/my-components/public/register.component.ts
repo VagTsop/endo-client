@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ContentChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/model/user';
@@ -39,7 +39,10 @@ export class RegisterComponent extends GenericComponent implements OnInit, OnDes
         Validators.minLength(5),
         Validators.maxLength(100),
         CustomValidator.emailValidator])],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(30)])]
+      password: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(30),
+        CustomValidator.passwordPolicyValidator])]
     });
   }
 
