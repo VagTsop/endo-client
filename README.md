@@ -177,9 +177,6 @@ NGINX can be used as a reverse proxy server to serve the Angular application and
 ## SCSS (Sass)
 The application uses SCSS (Sass) for styling, allowing for modular and maintainable CSS.
 
-## Design Pattern
-Endofusion follows a 7-in-1 design pattern to structure the application code in a scalable and organized manner.
-
 ## Contributing
 We welcome contributions from the community! To contribute:
 
