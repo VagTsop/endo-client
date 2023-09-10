@@ -49,6 +49,39 @@ The project is structured as follows:
 - src/environments: Environment configuration files.
 - Various services and components for instrument, instrument series, user, and authentication management.
 
+## Authentication Guards
+Authentication guards are used to protect routes and ensure that only authenticated users can access certain parts of your application. 
+
+## Lazy Loading
+Lazy loading is a technique in Angular that allows you to load feature modules only when they are needed. This can significantly improve the initial load time of your application.
+
+## Interceptors
+Interceptors in Angular allow you to intercept HTTP requests and responses globally. They are useful for tasks like adding headers, handling errors, and more. 
+
+## SCSS (Sass) 7-in-1 Pattern
+Description: The project follows 7-in-1  SCSS pattern for styling, emphasizing a structured and organized approach to CSS.
+Usage: SCSS files are organized into modules and follow naming conventions for consistency.
+
+// SCSS file structure
+```sh
+styles/
+|-- variables.scss   // Contains global variables
+|-- mixins.scss      // Reusable mixins
+|-- base.scss        // Base styles for the application
+|-- components/
+|   |-- button.scss  // Styles for buttons
+|   |-- form.scss    // Styles for forms
+|   |-- ...          // Other component-specific styles
+|-- layout/
+|   |-- header.scss  // Styles for the header
+|   |-- footer.scss  // Styles for the footer
+|   |-- ...          // Other layout-specific styles
+|-- themes/
+|   |-- light.scss   // Styles for the light theme
+|   |-- dark.scss    // Styles for the dark theme
+|   |-- ...          // Other theme-specific styles
+```
+
 ## Getting Started
 ### Prerequisites
 Before running the application, ensure you have the following installed:
